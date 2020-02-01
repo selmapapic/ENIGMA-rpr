@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.60003662109375" minWidth="10.0" prefWidth="107.60003662109375" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="170.39998779296877" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="0.0" prefWidth="25.600012207031227" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="180.79999389648438" minHeight="10.0" prefHeight="46.79999389648438" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="301.1999877929687" minHeight="10.0" prefHeight="81.20000610351562" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="95.39996948242188" minHeight="10.0" prefHeight="62.20001220703125" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="184.0" fitWidth="27.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowSpan="3">
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <ButtonBar prefHeight="57.0" prefWidth="305.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+        <buttons>
+            <Button fx:id="btnOk" mnemonicParsing="false" onAction="#okAction" text="Ok" />
+          <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
+        </buttons>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </ButtonBar>
+      <Label text="Unesite sifru:" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </TextField>
+   </children>
+</GridPane>

@@ -24,7 +24,7 @@
    <children>
       <Label prefHeight="18.0" prefWidth="480.0" text="Dobrodosli u bazu podataka za naucne radove. " GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1">
          <font>
-            <Font name="Dubai Medium" size="14.0" />
+            <Font size="14.0" />
          </font>
          <GridPane.margin>
             <Insets left="10.0" />
@@ -32,14 +32,14 @@
       </Label>
       <Label alignment="TOP_LEFT" text="Izaberite jednu od sljedecih opcija:" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
          <font>
-            <Font name="Dubai Medium" size="14.0" />
+            <Font size="14.0" />
          </font>
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="btnAdmin" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Administrator" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button fx:id="btnUser" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Korisnik" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#adminAction" prefHeight="30.0" prefWidth="96.0" text="Administrator" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button fx:id="btnUser" mnemonicParsing="false" onAction="#userAction" prefHeight="30.0" prefWidth="90.0" text="Korisnik" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <AnchorPane prefHeight="262.0" prefWidth="158.0" GridPane.rowSpan="4">
          <children>
             <ImageView fitHeight="263.0" fitWidth="142.0" pickOnBounds="true">
