@@ -1,5 +1,3 @@
-package sample;
-
 import java.util.Date;
 
 public class Other extends ScientificPaper {

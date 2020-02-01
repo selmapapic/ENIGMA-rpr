@@ -1,5 +1,3 @@
-package sample;
-
 public class Author extends Person {
     private String name, surname;
 

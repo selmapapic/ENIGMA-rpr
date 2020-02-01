@@ -1,5 +1,3 @@
-package sample;
-
 public abstract class Person {
     private String password; //password je jedini zajednicki atribut administratora i korisnika
 

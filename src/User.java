@@ -1,5 +1,3 @@
-package sample;
-
 public class User extends Person {
     private String name, surname, mail, degOfEducation;
 

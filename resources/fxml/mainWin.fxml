@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.199951171875" minWidth="10.0" prefWidth="78.4" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.199951171875" minWidth="10.0" prefWidth="105.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.2000274658203" minWidth="10.0" prefWidth="36.19996337890623" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.2" minWidth="10.0" prefWidth="105.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.2000274658203" minWidth="10.0" prefWidth="80.80000000000001" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="96.00000610351563" minHeight="10.0" prefHeight="42.60001831054687" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.8" minHeight="10.0" prefHeight="72.99998168945312" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="179.1999897003174" minHeight="7.400025939941386" prefHeight="73.00001220703125" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="171.39999237060545" minHeight="10.0" prefHeight="80.9999938964844" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="18.0" prefWidth="480.0" text="Dobrodosli u bazu podataka za naucne radove. " GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1">
+         <font>
+            <Font name="Dubai Medium" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label alignment="TOP_LEFT" text="Izaberite jednu od sljedecih opcija:" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
+         <font>
+            <Font name="Dubai Medium" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Button fx:id="btnAdmin" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Administrator" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button fx:id="btnUser" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Korisnik" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <AnchorPane prefHeight="262.0" prefWidth="158.0" GridPane.rowSpan="4">
+         <children>
+            <ImageView fitHeight="263.0" fitWidth="142.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/bg.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="38.0" layoutY="27.0" text="E" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="62.0" text="N" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Nova Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="98.0" prefHeight="39.0" prefWidth="20.0" text="I" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="137.0" text="G" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Nova Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="173.0" text="M" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="69.0" layoutY="213.0" text="A" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans Nova Ultra Bold" size="27.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</GridPane>
