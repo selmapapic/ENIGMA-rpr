@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
@@ -23,7 +23,7 @@
    <children>
       <ImageView fitHeight="184.0" fitWidth="27.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowSpan="3">
          <image>
-            <Image url="@../images/bg.jpg" />
+            <Image url="@../images/side.jpg" />
          </image>
       </ImageView>
       <ButtonBar prefHeight="57.0" prefWidth="305.0" GridPane.columnSpan="2" GridPane.rowIndex="2">

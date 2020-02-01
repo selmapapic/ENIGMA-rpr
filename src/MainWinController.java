@@ -17,15 +17,24 @@ public class MainWinController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminWin.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
-        stageAdmin.setTitle("Pretraga slike");
+        stageAdmin.setTitle("Administrator");
         stageAdmin.setResizable(true);
         stageAdmin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stageAdmin.setResizable(false);
         stageAdmin.show();
     }
 
-    public void userAction () {
-
+    public void userAction () throws IOException {
+        Stage stageAdmin = new Stage();
+        LoginController controller = new LoginController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userLogin.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+        stageAdmin.setTitle("Login page");
+        stageAdmin.setResizable(true);
+        stageAdmin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageAdmin.setResizable(false);
+        stageAdmin.show();
     }
 
 }
