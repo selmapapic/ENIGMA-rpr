@@ -25,16 +25,16 @@ public class MainWinController {
     }
 
     public void userAction () throws IOException {
-        Stage stageAdmin = new Stage();
+        Stage stageUser = new Stage();
         LoginController controller = new LoginController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userLogin.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
-        stageAdmin.setTitle("Login page");
-        stageAdmin.setResizable(true);
-        stageAdmin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stageAdmin.setResizable(false);
-        stageAdmin.show();
+        stageUser.setTitle("Login page");
+        stageUser.setResizable(true);
+        stageUser.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageUser.setResizable(false);
+        stageUser.show();
     }
 
 }
