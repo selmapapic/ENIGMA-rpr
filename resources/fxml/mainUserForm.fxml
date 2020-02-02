@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.199951171875" minWidth="10.0" prefWidth="275.199951171875" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="141.8" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.39999999999998" minWidth="10.0" prefWidth="165.79999999999995" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="25.200024414062455" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="86.60000839233399" minHeight="10.0" prefHeight="30.000018310546878" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="162.20001831054688" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="198.2000061035156" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="122.19998168945312" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="87.80000000000001" minHeight="10.0" prefHeight="51.39997558593751" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="87.80000000000001" minHeight="10.0" prefHeight="56.79998779296875" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </ListView>
+      <Label text="Tip naucnog rada: " GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="18.0" prefWidth="132.0" text="Kategorija nucnog rada:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <ButtonBar prefHeight="66.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
+        <buttons>
+          <Button mnemonicParsing="false" text="Otvori" />
+            <Button mnemonicParsing="false" text="Pretrazi" />
+            <Button mnemonicParsing="false" text="Cancel" />
+        </buttons>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </ButtonBar>
+      <ChoiceBox prefHeight="26.0" prefWidth="188.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </ChoiceBox>
+      <ChoiceBox prefHeight="26.0" prefWidth="178.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </ChoiceBox>
+      <Label text="Radovi poslije: " GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </DatePicker>
+      <ImageView fitHeight="368.0" fitWidth="26.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowSpan="6">
+         <image>
+            <Image url="@../images/side.jpg" />
+         </image></ImageView>
+   </children>
+</GridPane>
