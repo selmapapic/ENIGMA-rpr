@@ -35,4 +35,8 @@ public class RegisterController {
         stage.close();
     }
 
+    public void registerAction () {
+
+    }
+
 }
