@@ -3,13 +3,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class AllPapers {
+public final class AllPapers {
     private ArrayList<ScientificPaper> papers = new ArrayList<>();
     private ArrayList<String> categories = new ArrayList<>();
+    private static AllPapers instance;
 
     public AllPapers(ArrayList<ScientificPaper> papers, ArrayList<String> categories) {
         this.papers = papers;
         this.categories = categories;
+    }
+
+    public static AllPapers getInstance() {
+        if(instance == null) instance = new AllPapers();
+        return instance;
     }
 
     public AllPapers() {

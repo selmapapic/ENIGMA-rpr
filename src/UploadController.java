@@ -1,3 +1,5 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -11,16 +13,26 @@ import java.time.LocalDate;
 
 public class UploadController {
     public TextField fldTitle, fldAuthorName, fldAuthorSurname, fldCategory;
-    public ChoiceBox<ScientificPaper> choiceType;
+    public ChoiceBox<String> choiceType;
     public DatePicker dpDateOfIssue;
     public TextArea areaText;
-    private AllPapers papers;
+    private AllPapers papers = AllPapers.getInstance();
+    public ObservableList<String> type = FXCollections.observableArrayList();
 
-    public UploadController(AllPapers papers) {
-        this.papers = papers;
+    public UploadController () {
+        type.add("Bachelors Thesis");
+        type.add("Doctorate");
+        type.add("Masters Thesis");
+        type.add("Scientific Article");
+        type.add("Seminary Paper");
+        type.add("Other");
     }
 
-    public void zapisiDatoteku (File fajl) {
+    public void initialize() {
+        choiceType.setItems(type);
+    }
+
+    public void writeFile (File fajl) {
         if(fajl == null) return;
         try {
             FileWriter reader = new FileWriter(fajl);
@@ -37,7 +49,7 @@ public class UploadController {
         stage.close();
     }
 
-    public void submitAction () {
+    public void submitAction () throws IOException {
         if(fldTitle.getText().isEmpty() || fldAuthorName.getText().isEmpty() || fldAuthorSurname.getText().isEmpty()) {
             if (fldTitle.getText().isEmpty()) {
                 fldTitle.getStyleClass().removeAll("validField");
@@ -65,11 +77,11 @@ public class UploadController {
         }
         else {
             String title = fldTitle.getText();
-            title.replaceAll("\\s+", "");
+            title.replaceAll(" ", "");
             File file = new File(title + ".txt");
             ScientificPaper paper = null;
 
-            if(choiceType.getSelectionModel().getSelectedItem() == null) {
+            if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) {
                 paper = new Other();
             }
             else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelors Thesis")) {
@@ -97,7 +109,12 @@ public class UploadController {
             Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
             paper.setAuthor(author);
             paper.setCategory(fldCategory.getText());
+            file.createNewFile();
+            writeFile(file);
             papers.addPaper(paper);
+
+            Stage stage = (Stage) fldTitle.getScene().getWindow();
+            stage.close();
         }
     }
 }
