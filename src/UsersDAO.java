@@ -16,17 +16,17 @@ public class UsersDAO {
 
     private UsersDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:users.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:scientificPapers.db");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         try {
-            usersQuery = conn.prepareStatement("SELECT * from user;");
+            usersQuery = conn.prepareStatement("SELECT * from user");
         } catch (SQLException e) {
             regenerateBase();
             try {
-                usersQuery = conn.prepareStatement("SELECT * from user;");
+                usersQuery = conn.prepareStatement("SELECT * from user");
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -34,7 +34,7 @@ public class UsersDAO {
 
         try {
             insertUserQuery = conn.prepareStatement("INSERT INTO user VALUES (?,?,?,?,?,?)");
-            getUserId = conn.prepareStatement("SELECT MAX (id) + 1 FROM user");
+            getUserId = conn.prepareStatement("SELECT MAX (id)+1 FROM user");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class UsersDAO {
     private void regenerateBase() {
         Scanner in = null;
         try {
-            in = new Scanner(new FileInputStream("scientificPapers.db"));
+            in = new Scanner(new FileInputStream("scientificPapers.db.sql"));
             String sqlQuery = "";
             while(in.hasNext()) {
                 sqlQuery += in.nextLine();
@@ -78,13 +78,14 @@ public class UsersDAO {
             if(rs.next()) {
                 id = rs.getInt(1);
             }
-
+            if(id == 0) id = 1;
             insertUserQuery.setInt(1, id);
             insertUserQuery.setString(2, user.getName());
             insertUserQuery.setString(3, user.getSurname());
             insertUserQuery.setString(4, user.getMail());
             insertUserQuery.setString(5, user.getDegOfEducation());
             insertUserQuery.setString(6, user.getPassword());
+            insertUserQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

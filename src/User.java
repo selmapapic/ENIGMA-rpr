@@ -1,7 +1,7 @@
 public class User extends Person {
     private String name, surname, mail, degOfEducation;
 
-    public User(String password, String name, String surname, String mail, String degOfEducation) {
+    public User(String name, String surname, String mail, String degOfEducation, String password) {
         super(password);
         this.name = name;
         this.surname = surname;
