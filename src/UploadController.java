@@ -67,25 +67,37 @@ public class UploadController {
             String title = fldTitle.getText();
             title.replaceAll("\\s+", "");
             File file = new File(title + ".txt");
-            ScientificPaper paper;
+            ScientificPaper paper = null;
 
             if(choiceType.getSelectionModel().getSelectedItem() == null) {
                 paper = new Other();
-                if(dpDateOfIssue.getValue() == null) {
-                    paper.setReleaseDate(LocalDate.now());
-                }
-                else {
-                    paper.setReleaseDate(dpDateOfIssue.getValue());
-                }
-                Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
-                paper.setAuthor(author);
-                paper.setCategory(fldCategory.getText());
-                papers.addPaper(paper);
             }
             else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelors Thesis")) {
                 paper = new BachelorsThesis();
             }
+            else if (choiceType.getSelectionModel().getSelectedItem().equals("Doctorate")) {
+                paper = new Doctorate();
+            }
+            else if(choiceType.getSelectionModel().getSelectedItem().equals("Masters Thesis")) {
+                paper = new MastersThesis();
+            }
+            else if(choiceType.getSelectionModel().getSelectedItem().equals("Scientific Article")) {
+                paper = new ScientificArticle();
+            }
+            else if(choiceType.getSelectionModel().getSelectedItem().equals("Seminary Paper")) {
+                paper = new SeminaryPaper();
+            }
 
+            if(dpDateOfIssue.getValue() == null) {
+                paper.setReleaseDate(LocalDate.now());
+            }
+            else {
+                paper.setReleaseDate(dpDateOfIssue.getValue());
+            }
+            Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
+            paper.setAuthor(author);
+            paper.setCategory(fldCategory.getText());
+            papers.addPaper(paper);
         }
     }
 }
