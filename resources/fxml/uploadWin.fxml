@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.*?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="152.60001220703123" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="196.19998779296878" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="254.79996337890623" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.8" minWidth="10.0" prefWidth="114.80000000000001" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.8" minWidth="10.0" prefWidth="108.8" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.8" minWidth="10.0" prefWidth="118.80000000000001" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.2" minWidth="10.0" prefWidth="255.2" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
   </columnConstraints>
   <rowConstraints>
@@ -23,12 +24,12 @@
       <RowConstraints maxHeight="44.199972534179665" minHeight="-Infinity" prefHeight="57.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Unesite podatke o naucnom radu ispod, a u prozor pored unesite tekst naucnog rada" GridPane.columnSpan="3">
+      <Label text="Unesite podatke o naucnom radu ispod, a u prozor pored unesite tekst naucnog rada." GridPane.columnSpan="4">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextArea prefHeight="200.0" prefWidth="267.0" wrapText="true" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS">
+      <TextArea fx:id="areaText" prefHeight="200.0" prefWidth="267.0" wrapText="true" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
@@ -38,9 +39,9 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField fx:id="fldAuthorName" prefHeight="26.0" prefWidth="147.0" promptText="Ime" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets right="10.0" />
+            <Insets right="5.0" />
          </GridPane.margin>
       </TextField>
       <Label text="Datum izdanja:" GridPane.rowIndex="3">
@@ -48,7 +49,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <DatePicker prefHeight="26.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <DatePicker fx:id="dpDateOfIssue" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
@@ -63,17 +64,12 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <ChoiceBox prefHeight="26.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <ChoiceBox fx:id="choiceType" prefHeight="26.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <ChoiceBox prefHeight="26.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </ChoiceBox>
-      <ImageView fitHeight="900.0" fitWidth="64.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowSpan="7">
+      <ImageView fitHeight="900.0" fitWidth="64.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowSpan="7">
          <image>
             <Image url="@../images/side.jpg" />
          </image></ImageView>
@@ -82,12 +78,12 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="fldTitle" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </TextField>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
         <buttons>
             <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submitAction" text="Submit" />
           <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
@@ -96,5 +92,15 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </ButtonBar>
+      <TextField fx:id="fldCategory" prefHeight="26.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="fldAuthorSurname" promptText="Prezime" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" right="10.0" />
+         </GridPane.margin>
+      </TextField>
    </children>
 </GridPane>

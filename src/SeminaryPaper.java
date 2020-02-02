@@ -1,8 +1,11 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class SeminaryPaper extends ScientificPaper {
 
-    public SeminaryPaper(Author author, Date releaseDate, String category, String title) {
+    public SeminaryPaper(Author author, LocalDate releaseDate, String category, String title) {
         super(author, releaseDate, category, title);
+    }
+
+    public SeminaryPaper() {
     }
 }

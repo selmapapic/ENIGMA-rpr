@@ -1,16 +1,19 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class ScientificPaper {
     private Author author;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private String category;
     private String title;
 
-    public ScientificPaper(Author author, Date releaseDate, String category, String title) {
+    public ScientificPaper(Author author, LocalDate releaseDate, String category, String title) {
         this.author = author;
         this.releaseDate = releaseDate;
         this.category = category;
         this.title = title;
+    }
+
+    public ScientificPaper() {
     }
 
     public Author getAuthor() {
@@ -21,11 +24,11 @@ public abstract class ScientificPaper {
         this.author = author;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

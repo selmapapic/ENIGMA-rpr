@@ -1,8 +1,11 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BachelorsThesis extends ScientificPaper {
 
-    public BachelorsThesis(Author author, Date releaseDate, String category, String title) {
+    public BachelorsThesis(Author author, LocalDate releaseDate, String category, String title) {
         super(author, releaseDate, category, title);
+    }
+
+    public BachelorsThesis() {
     }
 }
