@@ -84,7 +84,7 @@ public class UploadController {
         else {
             String title = fldTitle.getText();
             title.replace(" ", "");
-            File file = new File(title + ".txt");
+            File file = new File("resources/files", title + ".txt");
             ScientificPaper paper = null;
 
             if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) {
