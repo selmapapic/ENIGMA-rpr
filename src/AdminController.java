@@ -30,18 +30,17 @@ public class AdminController {
     }
 
     public void okAction () throws IOException {
-        System.out.println(fldPass.getStyleClass().toString());
         if(!fldPass.getStyleClass().contains("invalidField")) {
-            Stage stageUpload = new Stage();
-            UploadController controller = new UploadController();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/uploadWin.fxml"));
+            Stage stageChoice = new Stage();
+            AdminChoiceController controller = new AdminChoiceController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminChoice.fxml"));
             loader.setController(controller);
             Parent root = loader.load();
-            stageUpload.setTitle("Upload");
-            stageUpload.setResizable(true);
-            stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            //stageUpload.setResizable(false);
-            stageUpload.show();
+            stageChoice.setTitle("Choice");
+            stageChoice.setResizable(true);
+            stageChoice.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stageChoice.setResizable(false);
+            stageChoice.show();
         }
     }
 }
