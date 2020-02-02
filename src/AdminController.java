@@ -13,7 +13,7 @@ public class AdminController {
 
     public void initialize () {
         fldPass.textProperty().addListener((observable, oldPass, newPass) -> {
-            if(!newPass.isEmpty() && newPass.equals("administrator")) {
+            if(!newPass.isEmpty() && newPass.equals("a")) {
                 fldPass.getStyleClass().removeAll("invalidField");
                 fldPass.getStyleClass().add("validField");
             }
@@ -40,7 +40,7 @@ public class AdminController {
             stageUpload.setTitle("Upload");
             stageUpload.setResizable(true);
             stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stageUpload.setResizable(false);
+            //stageUpload.setResizable(false);
             stageUpload.show();
         }
     }
