@@ -36,7 +36,13 @@ public class UploadController {
         if(fajl == null) return;
         try {
             FileWriter reader = new FileWriter(fajl);
-            String s = fldTitle.getText() + "\n" + areaText.getText();
+            String s = fldTitle.getText() + "\n";
+            for(int i = 0; i < areaText.getText().length() - 1; i++) {
+                if(i == 0 || i % 160 != 0) {
+                    s += areaText.getText().charAt(i);
+                }
+                else s += areaText.getText().charAt(i) + "\n";
+            }
             reader.write(s);
             reader.close();
         } catch (IOException e) {
@@ -77,7 +83,7 @@ public class UploadController {
         }
         else {
             String title = fldTitle.getText();
-            title.replaceAll(" ", "");
+            title.replace(" ", "");
             File file = new File(title + ".txt");
             ScientificPaper paper = null;
 
