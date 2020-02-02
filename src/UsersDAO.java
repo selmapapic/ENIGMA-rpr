@@ -7,7 +7,7 @@ public class UsersDAO {
     private static UsersDAO instance;
     private Connection conn;
 
-    private PreparedStatement usersQuery, insertUserQuery, getUserId;
+    private PreparedStatement usersQuery, insertUserQuery, getUserId, certainUserQuery;
 
     public static UsersDAO getInstance() {
         if(instance == null) instance = new UsersDAO();
@@ -35,6 +35,7 @@ public class UsersDAO {
         try {
             insertUserQuery = conn.prepareStatement("INSERT INTO user VALUES (?,?,?,?,?,?)");
             getUserId = conn.prepareStatement("SELECT MAX (id)+1 FROM user");
+            certainUserQuery = conn.prepareStatement("SELECT * FROM user WHERE email=? AND password=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,5 +91,27 @@ public class UsersDAO {
             e.printStackTrace();
         }
     }
+
+    public User getUser (String email, String password) {
+        User user = null;
+        try {
+            certainUserQuery.setString(1, email);
+            certainUserQuery.setString(2, password);
+            ResultSet rs = certainUserQuery.executeQuery();
+
+            if(rs.next()) {
+                user = new User();
+                user.setName(rs.getString(2));
+                user.setSurname(rs.getString(3));
+                user.setMail(rs.getString(4));
+                user.setDegOfEducation(rs.getString(5));
+                user.setPassword(rs.getString(6));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 
 }

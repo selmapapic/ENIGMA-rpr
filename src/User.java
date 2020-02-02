@@ -9,6 +9,9 @@ public class User extends Person {
         this.degOfEducation = degOfEducation;
     }
 
+    public User() {
+    }
+
     public String getName() {
         return name;
     }
