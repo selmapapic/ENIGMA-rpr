@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     public void okAction () throws IOException {
-        if(!fldPass.getStyleClass().contains("invalidField")) {
+        if(!fldPass.getStyleClass().contains("invalidField") && !fldPass.getText().isEmpty()) {
             Stage stageChoice = new Stage();
             AdminChoiceController controller = new AdminChoiceController();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminChoice.fxml"));

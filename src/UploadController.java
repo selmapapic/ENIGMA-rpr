@@ -5,6 +5,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.davidmoten.text.utils.WordWrap;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,14 +37,9 @@ public class UploadController {
         if(fajl == null) return;
         try {
             FileWriter reader = new FileWriter(fajl);
-            String s = fldTitle.getText() + "\n";
-            for(int i = 0; i < areaText.getText().length() - 1; i++) {
-                if(i == 0 || i % 160 != 0) {
-                    s += areaText.getText().charAt(i);
-                }
-                else s += areaText.getText().charAt(i) + "\n";
-            }
-            reader.write(s);
+            String s = fldTitle.getText() + "\n" + areaText.getText();
+            String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
+            reader.write(wrapped);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

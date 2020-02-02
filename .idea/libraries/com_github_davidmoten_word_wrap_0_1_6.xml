@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="com.github.davidmoten:word-wrap:0.1.6" type="repository">
+    <properties maven-id="com.github.davidmoten:word-wrap:0.1.6" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/davidmoten/word-wrap/0.1.6/word-wrap-0.1.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/davidmoten/guava-mini/0.1.2/guava-mini-0.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
