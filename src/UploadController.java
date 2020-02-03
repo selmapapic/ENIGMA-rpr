@@ -31,6 +31,7 @@ public class UploadController {
 
     public void initialize() {
         choiceType.setItems(type);
+        choiceType.setValue("Type");
     }
 
     public void writeFile (File fajl) {

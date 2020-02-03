@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.4" minWidth="10.0" prefWidth="222.4" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="23.599999999999994" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="320.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btnOverview" mnemonicParsing="false" onAction="#overviewAction" prefHeight="26.0" prefWidth="161.0" text="Pregled">
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin>
-      </Button>
-      <Button fx:id="btnUpload" mnemonicParsing="false" onAction="#uploadAction" prefHeight="26.0" prefWidth="161.0" text="Unos " GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin>
-      </Button>
-      <ImageView fitHeight="312.0" fitWidth="37.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowSpan="2">
+      <ImageView fitHeight="215.0" fitWidth="324.0" layoutX="-2.0" layoutY="-4.0" opacity="0.6" pickOnBounds="true">
          <image>
-            <Image url="@../images/side.jpg" />
+            <Image url="@../images/background.png" />
          </image>
       </ImageView>
+      <Label layoutX="46.0" layoutY="30.0" text="Choose one..." textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnUpload" layoutX="89.0" layoutY="90.0" mnemonicParsing="false" onAction="#uploadAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Upload" />
+      <Button fx:id="btnOverview" layoutX="89.0" layoutY="135.0" mnemonicParsing="false" onAction="#overviewAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Overview of all files" />
    </children>
-</GridPane>
+</AnchorPane>
