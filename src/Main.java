@@ -14,7 +14,7 @@ public class Main extends Application {
         loader.setController(ctrl);
         Parent root = loader.load();
         primaryStage.setTitle("ENIGMA");
-        primaryStage.setScene(new Scene(root, 533, 260));
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

@@ -1,53 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-      <ColumnConstraints maxWidth="204.2" minWidth="176.2" prefWidth="204.2" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.199951171875" minWidth="10.0" prefWidth="62.60001525878903" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.199951171875" minWidth="10.0" prefWidth="90.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.2000274658203" minWidth="0.0" prefWidth="26.80000000000001" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.2" minWidth="10.0" prefWidth="90.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.2000274658203" minWidth="10.0" prefWidth="60.799999999999955" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="96.00000610351563" minHeight="10.0" prefHeight="42.60001831054687" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="100.8" minHeight="10.0" prefHeight="72.99998168945312" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="179.1999897003174" minHeight="7.400025939941386" prefHeight="73.00001220703125" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="171.39999237060545" minHeight="10.0" prefHeight="80.9999938964844" vgrow="SOMETIMES" />
-  </rowConstraints>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefHeight="18.0" prefWidth="480.0" text="Dobrodosli u bazu podataka za naucne radove. " GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="TOP_LEFT" text="Izaberite jednu od sljedecih opcija:" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#adminAction" prefHeight="30.0" prefWidth="96.0" text="Administrator" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button fx:id="btnUser" mnemonicParsing="false" onAction="#userAction" prefHeight="30.0" prefWidth="90.0" text="Korisnik" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <AnchorPane prefHeight="262.0" prefWidth="158.0" GridPane.rowSpan="4">
+      <ImageView fitHeight="400.0" fitWidth="613.0" layoutX="-10.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
+         <image>
+            <Image url="@../images/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="307.0" layoutY="200.0">
+         <image>
+            <Image url="@../images/enigma.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="83.0" fitWidth="75.0" layoutX="25.0" layoutY="224.0">
+         <image>
+            <Image url="@../images/gradCap.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="315.0" layoutY="24.0" prefHeight="338.0" prefWidth="247.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <ImageView fitHeight="263.0" fitWidth="205.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/enigma.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
+            <Button fx:id="btnAdmin" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onAction="#adminAction" prefHeight="26.0" prefWidth="232.0" style="-fx-opacity: 0.9; -fx-background-color: e8ffe3;" text="Administrator" AnchorPane.rightAnchor="7.199999999999989">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </Button>
+            <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="126.0" layoutY="34.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
+            <TextField fx:id="fldEmail" layoutX="25.0" layoutY="132.0" prefHeight="34.0" prefWidth="198.0" promptText="Email" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" />
+            <PasswordField fx:id="fldPass" layoutX="25.0" layoutY="176.0" prefHeight="34.0" prefWidth="198.0" promptText="Password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" />
+            <Label layoutX="82.0" layoutY="73.0" text="Sign in">
+               <font>
+                  <Font name="Century Gothic Bold" size="28.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSignIn" layoutX="24.0" layoutY="230.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #08ea00;" text="Sign in" />
+            <Button fx:id="btnRegister" layoutX="24.0" layoutY="278.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #058900;" text="Register" />
+         </children>
+      </AnchorPane>
+      <Line endX="132.49996948242188" endY="-1.52587890625E-5" layoutX="164.0" layoutY="200.0" startX="-139.60000610351562" startY="-1.52587890625E-5" stroke="WHITE" />
+      <Label layoutX="25.0" layoutY="63.0" text="Say bye bye to paper " textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="146.0" text="Always stay up-to-date with the newest scientific " textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="168.0" text="paper management software." textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="127.0" layoutY="91.0" text="and book collecting." textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
-</GridPane>
+</AnchorPane>
