@@ -32,8 +32,8 @@ public class MainWinController {
 
     public void registerAction () throws IOException {
         Stage stageUser = new Stage();
-        LoginController controller = new LoginController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userLogin.fxml"));
+        RegisterController controller = new RegisterController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userRegister.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
         stageUser.setTitle("Login page");

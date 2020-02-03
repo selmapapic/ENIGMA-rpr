@@ -31,7 +31,8 @@ public class UploadController {
 
     public void initialize() {
         choiceType.setItems(type);
-        choiceType.setValue("Type");
+        choiceType.setValue("Other");
+        dpDateOfIssue.setValue(LocalDate.now());
     }
 
     public void writeFile (File fajl) {
@@ -104,9 +105,13 @@ public class UploadController {
             }
 
             if(dpDateOfIssue.getValue() == null) {
+                assert paper != null;
                 paper.setReleaseDate(LocalDate.now());
             }
             else {
+                assert paper != null;
+                System.out.println(dpDateOfIssue.getValue());
+                System.out.println(paper);
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
             Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
