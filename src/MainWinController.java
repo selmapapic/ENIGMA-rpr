@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,10 +13,16 @@ import java.io.IOException;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class MainWinController {
-    public Button btnAdmin, btnSignIn, btnRegister;
+    public Button btnAdmin, btnSignIn, btnRegister, btnSignIn1, btnRegister1;
     public TextField fldEmail;
     public PasswordField fldPass;
     public UsersDAO dao = UsersDAO.getInstance();
+    public AnchorPane anchorSignUp, anchorSignIn;
+
+    public void initialize () {
+        anchorSignUp.toBack();
+        anchorSignIn.toFront();
+    }
 
     public void adminAction () throws IOException {
         Stage stageAdmin = new Stage();
@@ -30,17 +37,25 @@ public class MainWinController {
         stageAdmin.show();
     }
 
+    public void openRegisterAction () {
+        anchorSignUp.toFront();
+    }
+
+    public void openSignInAction () {
+        anchorSignIn.toFront();
+    }
+
     public void registerAction () throws IOException {
-        Stage stageUser = new Stage();
-        RegisterController controller = new RegisterController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userRegister.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        stageUser.setTitle("Login page");
-        stageUser.setResizable(true);
-        stageUser.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stageUser.setResizable(false);
-        stageUser.show();
+//        Stage stageUser = new Stage();
+//        RegisterController controller = new RegisterController();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userRegister.fxml"));
+//        loader.setController(controller);
+//        Parent root = loader.load();
+//        stageUser.setTitle("Login page");
+//        stageUser.setResizable(true);
+//        stageUser.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//        stageUser.setResizable(false);
+//        stageUser.show();
     }
 
     public void signInAction () throws IOException {

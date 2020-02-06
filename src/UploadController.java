@@ -80,6 +80,8 @@ public class UploadController {
             }
         }
         else {
+
+            //todo dodati da pozelene mjesta
             String title = fldTitle.getText();
             title.replace(" ", "");
             File file = new File("resources/files", title + ".txt");

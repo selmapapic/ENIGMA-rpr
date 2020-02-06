@@ -41,6 +41,9 @@ public class AdminController {
             stageChoice.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stageChoice.setResizable(false);
             stageChoice.show();
+
+            Stage stage = (Stage) fldPass.getScene().getWindow();
+            stage.close();
         }
     }
 }

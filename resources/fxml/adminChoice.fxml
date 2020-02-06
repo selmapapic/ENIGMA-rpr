@@ -6,9 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="320.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="366.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="215.0" fitWidth="324.0" layoutX="-2.0" layoutY="-4.0" opacity="0.6" pickOnBounds="true">
+      <ImageView fitHeight="215.0" fitWidth="373.0" layoutX="-2.0" layoutY="-4.0" opacity="0.6" pickOnBounds="true">
          <image>
             <Image url="@../images/background.png" />
          </image>
@@ -18,7 +18,7 @@
             <Font name="Century Gothic" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="btnUpload" layoutX="89.0" layoutY="90.0" mnemonicParsing="false" onAction="#uploadAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Upload" />
-      <Button fx:id="btnOverview" layoutX="89.0" layoutY="135.0" mnemonicParsing="false" onAction="#overviewAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Overview of all files" />
+      <Button fx:id="btnUpload" layoutX="112.0" layoutY="86.0" mnemonicParsing="false" onAction="#uploadAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Upload" />
+      <Button fx:id="btnOverview" layoutX="110.0" layoutY="136.0" mnemonicParsing="false" onAction="#overviewAction" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #0aab35;" text="Overview of all files" />
    </children>
 </AnchorPane>
