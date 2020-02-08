@@ -70,50 +70,36 @@ public class MainWinController {
         fldSurname.setText("");
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
-        choiceEduDeg.setValue("");
+        choiceEduDeg.getSelectionModel().clearSelection();
         fldName.getStyleClass().removeAll("invalidField", "validField");       //brisu se i obrubi
         fldSurname.getStyleClass().removeAll("invalidField", "validField");
         fldEmailSignUp.getStyleClass().removeAll("invalidField", "validField");
         fldPassSignUp.getStyleClass().removeAll("invalidField", "validField");
     }
 
+    private void fieldsValidationCheck(TextField fldName, TextField fldSurname) {
+        if(fldName.getText().isEmpty()) {
+            fldName.getStyleClass().removeAll("validField");
+            fldName.getStyleClass().add("invalidField");
+        }
+        else {
+            fldName.getStyleClass().removeAll("invalidField");
+        }
+
+        if(fldSurname.getText().isEmpty()) {
+            fldSurname.getStyleClass().removeAll("validField");
+            fldSurname.getStyleClass().add("invalidField");
+        }
+        else {
+            fldSurname.getStyleClass().removeAll("invalidField");
+        }
+    }
+
     public void registerAction () {
         if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || choiceEduDeg.getSelectionModel().getSelectedItem() == null) {
-            if(fldName.getText().isEmpty()) {
-                fldName.getStyleClass().removeAll("validField");
-                fldName.getStyleClass().add("invalidField");
-            }
-            else {
-                fldName.getStyleClass().removeAll("invalidField");
-                //fldName.getStyleClass().add("validField");
-            }
+            fieldsValidationCheck(fldName, fldSurname);
 
-            if(fldSurname.getText().isEmpty()) {
-                fldSurname.getStyleClass().removeAll("validField");
-                fldSurname.getStyleClass().add("invalidField");
-            }
-            else {
-                fldSurname.getStyleClass().removeAll("invalidField");
-                //fldSurname.getStyleClass().add("validField");
-            }
-
-            if(fldEmailSignUp.getText().isEmpty()) {
-                fldEmailSignUp.getStyleClass().removeAll("validField");
-                fldEmailSignUp.getStyleClass().add("invalidField");
-            }
-            else {
-                fldEmailSignUp.getStyleClass().removeAll("invalidField");
-                //fldEmailSignUp.getStyleClass().add("validField");
-            }
-
-            if(fldPassSignUp.getText().isEmpty()) {
-                fldPassSignUp.getStyleClass().removeAll("validField");
-                fldPassSignUp.getStyleClass().add("invalidField");
-            }
-            else {
-                fldPassSignUp.getStyleClass().removeAll("invalidField");
-                //fldPassSignUp.getStyleClass().add("validField");
-            }
+            fieldsValidationCheck(fldEmailSignUp, fldPassSignUp);
         }
 
         if(!isTheStyleClassInvalid(fldName.getStyleClass().toString()) && !isTheStyleClassInvalid(fldSurname.getStyleClass().toString()) //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
@@ -127,21 +113,7 @@ public class MainWinController {
 
     public void signInAction () throws IOException {
         if(fldEmail.getText().isEmpty() || fldPass.getText().isEmpty()) {
-            if (fldEmail.getText().isEmpty()) {
-                fldEmail.getStyleClass().removeAll("validField");
-                fldEmail.getStyleClass().add("invalidField");
-            } else {
-                fldEmail.getStyleClass().removeAll("invalidField");
-                //fldEmail.getStyleClass().add("validField");
-            }
-
-            if (fldPass.getText().isEmpty()) {
-                fldPass.getStyleClass().removeAll("validField");
-                fldPass.getStyleClass().add("invalidField");
-            } else {
-                fldPass.getStyleClass().removeAll("invalidField");
-                //fldPass.getStyleClass().add("validField");
-            }
+            fieldsValidationCheck(fldEmail, fldPass);
         }
         else {
             fldPass.getStyleClass().removeAll("invalidField", "validField"); //uklanja se crveni obrub ukoliko nisu prazna polja

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="463.0" fitWidth="697.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
          <image>
@@ -86,7 +87,7 @@
                         <Font name="Century Gothic Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnSignIn" layoutX="24.0" layoutY="266.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="Sign in" />
+                  <Button fx:id="btnSignIn" layoutX="25.0" layoutY="266.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="Sign in" />
                   <Button fx:id="btnOpenRegister" layoutX="121.0" layoutY="315.0" mnemonicParsing="false" onAction="#openRegisterAction" opacity="0.0" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #058900;" text="Register" />
                   <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="212.0" layoutY="194.0" opacity="0.37">
                      <image>

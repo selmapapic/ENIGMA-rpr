@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public final class AllPapers {
+public class AllPapers {
     private ArrayList<ScientificPaper> papers = new ArrayList<>();
     private ArrayList<String> categories = new ArrayList<>();
     private static AllPapers instance;
