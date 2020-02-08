@@ -8,4 +8,9 @@ public class ScientificArticle extends ScientificPaper {
 
     public ScientificArticle() {
     }
+
+    @Override
+    public String toString() {
+        return "ScientificArticle: " + super.toString();
+    }
 }

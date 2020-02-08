@@ -47,4 +47,9 @@ public abstract class ScientificPaper {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return title + ", " + author.getName() + " " + author.getSurname() + ", " + releaseDate + ", " + category;
+    }
 }

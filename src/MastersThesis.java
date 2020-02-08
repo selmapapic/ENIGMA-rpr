@@ -8,4 +8,9 @@ public class MastersThesis extends ScientificPaper {
 
     public MastersThesis() {
     }
+
+    @Override
+    public String toString() {
+        return "MastersThesis: " + super.toString();
+    }
 }

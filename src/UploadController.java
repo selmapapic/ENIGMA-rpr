@@ -17,7 +17,7 @@ public class UploadController {
     public ChoiceBox<String> choiceType;
     public DatePicker dpDateOfIssue;
     public TextArea areaText;
-    private AllPapers papers = AllPapers.getInstance();
+    //private AllPapers papers = AllPapers.getInstance();
     public ObservableList<String> type = FXCollections.observableArrayList();
     public PapersDAO dao = PapersDAO.getInstance();
 

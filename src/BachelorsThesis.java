@@ -8,4 +8,9 @@ public class BachelorsThesis extends ScientificPaper {
 
     public BachelorsThesis() {
     }
+
+    @Override
+    public String toString() {
+        return "BachelorsThesis: " + super.toString();
+    }
 }

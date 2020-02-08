@@ -8,4 +8,9 @@ public class SeminaryPaper extends ScientificPaper {
 
     public SeminaryPaper() {
     }
+
+    @Override
+    public String toString() {
+        return "SeminaryPaper: " + super.toString();
+    }
 }

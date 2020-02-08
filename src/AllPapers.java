@@ -1,28 +1,56 @@
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class AllPapers {
-    private ArrayList<ScientificPaper> papers = new ArrayList<>();
+    private PapersDAO dao = PapersDAO.getInstance();
+    private ArrayList<ScientificPaper> papers = dao.getAllPapers();
     private ArrayList<String> categories = new ArrayList<>();
-    private static AllPapers instance;
 
-    public AllPapers(ArrayList<ScientificPaper> papers, ArrayList<String> categories) {
-        this.papers = papers;
-        this.categories = categories;
-    }
+    private ObservableList<ScientificPaper> papersObservable = FXCollections.observableArrayList(papers);
+    private SimpleObjectProperty<ScientificPaper> currentPaper = new SimpleObjectProperty<>();
 
-    public static AllPapers getInstance() {
-        if(instance == null) instance = new AllPapers();
-        return instance;
-    }
+//    public AllPapers(ArrayList<ScientificPaper> papers, ArrayList<String> categories) {
+//        this.papers = papers;
+//        this.categories = categories;
+//    }
 
     public AllPapers() {
     }
 
+
+    public ObservableList<ScientificPaper> getPapersObservable() {
+        return papersObservable;
+    }
+
+    public void setPapersObservable(ObservableList<ScientificPaper> papersObservable) {
+        this.papersObservable = papersObservable;
+    }
+
+    public ScientificPaper getCurrentPaper() {
+        return currentPaper.get();
+    }
+
+    public SimpleObjectProperty<ScientificPaper> currentPaperProperty() {
+        return currentPaper;
+    }
+
+    public void setCurrentPaper(ScientificPaper currentPaper) {
+        this.currentPaper.set(currentPaper);
+    }
+
+//    public static AllPapers getInstance() {
+//        if(instance == null) instance = new AllPapers();
+//        return instance;
+//    }
+
     public ArrayList<ScientificPaper> getPapers() {
-        return papers;
+        return dao.getAllPapers();
     }
 
     public void setPapers(ArrayList<ScientificPaper> papers) {

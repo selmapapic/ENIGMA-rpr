@@ -8,4 +8,9 @@ public class Other extends ScientificPaper {
 
     public Other() {
     }
+
+    @Override
+    public String toString() {
+        return "Other: " + super.toString();
+    }
 }
