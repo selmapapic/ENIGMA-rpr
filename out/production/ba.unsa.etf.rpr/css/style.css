@@ -4,3 +4,8 @@
 .invalidField {
     -fx-control-inner-background: lightpink;
 }
+
+.myborderedregion {
+    -fx-border-color:red;
+    -fx-border-width:3px
+}
