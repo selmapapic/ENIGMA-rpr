@@ -1,6 +1,8 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PapersDAO {
@@ -110,5 +112,52 @@ public class PapersDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<ScientificPaper> getAllPapers () {
+        ArrayList<ScientificPaper> papers = new ArrayList<>();
+        try {
+            ResultSet resultSet = papersQuery.executeQuery();
+            while (resultSet.next()) {
+                ScientificPaper paper = getPaperFromResultSet(resultSet);
+                papers.add(paper);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return papers;
+    }
+
+    private ScientificPaper getPaperFromResultSet (ResultSet resultSet) throws SQLException {
+        ScientificPaper paper;
+        switch (resultSet.getString(7)) {
+            case "Other":
+                paper = new Other();
+                break;
+            case "BachelorsThesis":
+                paper = new BachelorsThesis();
+                break;
+            case "Doctorate":
+                paper = new Doctorate();
+                break;
+            case "MastersThesis":
+                paper = new MastersThesis();
+                break;
+            case "ScientificArticle":
+                paper = new ScientificArticle();
+                break;
+            case "SeminaryPaper":
+                paper = new SeminaryPaper();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + resultSet.getString(7));
+        }
+
+        paper.setTitle(resultSet.getString(2));
+        Author author = new Author(resultSet.getString(3), resultSet.getString(4));
+        paper.setAuthor(author);
+        paper.setReleaseDate(LocalDate.parse(resultSet.getString(5)));
+        paper.setCategory(resultSet.getString(6));
+        return paper;
     }
 }
