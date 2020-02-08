@@ -60,61 +60,59 @@ public class MainWinController {
         anchorSignUp.toFront();
         fldEmail.setText("");
         fldPass.setText("");
+        fldEmail.getStyleClass().removeAll("invalidField", "validField");
+        fldPass.getStyleClass().removeAll("invalidField", "validField");
     }
 
     public void openSignInAction () {
         anchorSignIn.toFront();
-        fldName.setText("");
+        fldName.setText("");        //pri switchanju, brise se stari tekst
         fldSurname.setText("");
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
         choiceEduDeg.setValue("");
+        fldName.getStyleClass().removeAll("invalidField", "validField");       //brisu se i obrubi
+        fldSurname.getStyleClass().removeAll("invalidField", "validField");
+        fldEmailSignUp.getStyleClass().removeAll("invalidField", "validField");
+        fldPassSignUp.getStyleClass().removeAll("invalidField", "validField");
     }
 
     public void registerAction () {
         if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || choiceEduDeg.getSelectionModel().getSelectedItem() == null) {
             if(fldName.getText().isEmpty()) {
-                fldName.getStyleClass().add("myborderedregion");
                 fldName.getStyleClass().removeAll("validField");
                 fldName.getStyleClass().add("invalidField");
             }
             else {
-                fldName.getStyleClass().remove("myborderedregion");
                 fldName.getStyleClass().removeAll("invalidField");
-                fldName.getStyleClass().add("validField");
+                //fldName.getStyleClass().add("validField");
             }
 
             if(fldSurname.getText().isEmpty()) {
-                fldSurname.getStyleClass().add("myborderedregion");
                 fldSurname.getStyleClass().removeAll("validField");
                 fldSurname.getStyleClass().add("invalidField");
             }
             else {
-                fldSurname.getStyleClass().remove("myborderedregion");
                 fldSurname.getStyleClass().removeAll("invalidField");
-                fldSurname.getStyleClass().add("validField");
+                //fldSurname.getStyleClass().add("validField");
             }
 
             if(fldEmailSignUp.getText().isEmpty()) {
-                fldEmailSignUp.getStyleClass().add("myborderedregion");
                 fldEmailSignUp.getStyleClass().removeAll("validField");
                 fldEmailSignUp.getStyleClass().add("invalidField");
             }
             else {
-                fldEmailSignUp.getStyleClass().remove("myborderedregion");
                 fldEmailSignUp.getStyleClass().removeAll("invalidField");
-                fldEmailSignUp.getStyleClass().add("validField");
+                //fldEmailSignUp.getStyleClass().add("validField");
             }
 
             if(fldPassSignUp.getText().isEmpty()) {
-                fldPassSignUp.getStyleClass().add("myborderedregion");
                 fldPassSignUp.getStyleClass().removeAll("validField");
                 fldPassSignUp.getStyleClass().add("invalidField");
             }
             else {
-                fldPassSignUp.getStyleClass().remove("myborderedregion");
                 fldPassSignUp.getStyleClass().removeAll("invalidField");
-                fldPassSignUp.getStyleClass().add("validField");
+                //fldPassSignUp.getStyleClass().add("validField");
             }
         }
 
@@ -130,28 +128,24 @@ public class MainWinController {
     public void signInAction () throws IOException {
         if(fldEmail.getText().isEmpty() || fldPass.getText().isEmpty()) {
             if (fldEmail.getText().isEmpty()) {
-                fldEmail.getStyleClass().add("myborderedregion");
                 fldEmail.getStyleClass().removeAll("validField");
                 fldEmail.getStyleClass().add("invalidField");
             } else {
-                fldEmail.getStyleClass().remove("myborderedregion");
                 fldEmail.getStyleClass().removeAll("invalidField");
-                fldEmail.getStyleClass().add("validField");
+                //fldEmail.getStyleClass().add("validField");
             }
 
             if (fldPass.getText().isEmpty()) {
-                fldPass.getStyleClass().add("myborderedregion");
                 fldPass.getStyleClass().removeAll("validField");
                 fldPass.getStyleClass().add("invalidField");
             } else {
-                fldPass.getStyleClass().remove("myborderedregion");
                 fldPass.getStyleClass().removeAll("invalidField");
-                fldPass.getStyleClass().add("validField");
+                //fldPass.getStyleClass().add("validField");
             }
         }
         else {
-            fldPass.getStyleClass().remove("myborderedregion"); //uklanja se crveni obrub ukoliko nisu prazna polja
-            fldEmail.getStyleClass().remove("myborderedregion");
+            fldPass.getStyleClass().removeAll("invalidField", "validField"); //uklanja se crveni obrub ukoliko nisu prazna polja
+            fldEmail.getStyleClass().removeAll("invalidField", "validField");
             User user = dao.getUser(fldEmail.getText(), fldPass.getText());
             if(user == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

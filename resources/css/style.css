@@ -1,16 +1,8 @@
 .validField {
-    -fx-control-inner-background: greenyellow;
-}
-.invalidField {
-    -fx-control-inner-background: lightpink;
-}
-
-.myborderedregion {
-    -fx-border-color:red;
-    -fx-border-width:2px
-}
-
-.myborderedregionOk {
     -fx-border-color: greenyellow;
     -fx-border-width: 2px;
+}
+.invalidField {
+    -fx-border-color: salmon;
+    -fx-border-width:2px
 }
