@@ -7,5 +7,10 @@
 
 .myborderedregion {
     -fx-border-color:red;
-    -fx-border-width:3px
+    -fx-border-width:2px
+}
+
+.myborderedregionOk {
+    -fx-border-color: greenyellow;
+    -fx-border-width: 2px;
 }
