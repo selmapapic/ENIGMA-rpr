@@ -53,7 +53,16 @@ public class AdminController {
         stageUpload.show();
     }
 
-    public void overviewAction () {
-
+    public void overviewAction () throws IOException {
+        Stage stageUpload = new Stage();
+        OverviewAdminController controller = new OverviewAdminController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/overviewPapersAdmin.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+        stageUpload.setTitle("Overview");
+        stageUpload.setResizable(true);
+        stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageUpload.setResizable(false);
+        stageUpload.show();
     }
 }

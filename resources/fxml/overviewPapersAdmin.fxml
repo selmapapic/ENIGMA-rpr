@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="469.0" prefWidth="759.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="759.0" style="-fx-background-color: #747474;">
+         <children>
+            <ImageView fitHeight="503.0" fitWidth="759.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/background.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="listViewPapers" layoutX="293.0" layoutY="71.0" prefHeight="394.0" prefWidth="432.0" />
+            <Button fx:id="btnDelete" layoutX="41.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #21ff1a;" text="Delete paper" />
+            <Button fx:id="btnPrint" layoutX="41.0" layoutY="252.0" mnemonicParsing="false" onAction="#printAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #07cc00;" text="Print list of all papers" />
+            <Button fx:id="btnEdit" layoutX="41.0" layoutY="84.0" mnemonicParsing="false" onAction="#editAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #84ff80;" text="Edit paper" />
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="90.0" opacity="0.8">
+               <image>
+                  <Image url="@../images/edit%20glyph.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="174.0">
+               <image>
+                  <Image url="@../images/delete%20glyph.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="258.0">
+               <image>
+                  <Image url="@../images/print%20glyph.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="41.0" layoutY="27.0" text="Papers overview..." textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnExit" layoutX="41.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #059900;" text="Exit" />
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="342.0">
+               <image>
+                  <Image url="@../images/exit%20glyph.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
