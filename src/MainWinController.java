@@ -119,6 +119,7 @@ public class MainWinController {
             fldPass.getStyleClass().removeAll("invalidField", "validField"); //uklanja se crveni obrub ukoliko nisu prazna polja
             fldEmail.getStyleClass().removeAll("invalidField", "validField");
             User user = dao.getUser(fldEmail.getText(), fldPass.getText());
+
             if(user == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

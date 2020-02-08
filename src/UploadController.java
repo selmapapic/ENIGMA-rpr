@@ -19,6 +19,7 @@ public class UploadController {
     public TextArea areaText;
     private AllPapers papers = AllPapers.getInstance();
     public ObservableList<String> type = FXCollections.observableArrayList();
+    public PapersDAO dao = PapersDAO.getInstance();
 
     public UploadController () {
         type.add("Bachelors Thesis");
@@ -116,13 +117,14 @@ public class UploadController {
                 System.out.println(paper);
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
+            paper.setTitle(fldTitle.getText());
             Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
             paper.setAuthor(author);
             paper.setCategory(fldCategory.getText());
             file.createNewFile();
             writeFile(file);
-            papers.addPaper(paper);
-
+            //papers.addPaper(paper);
+            dao.addPaper(paper);
             Stage stage = (Stage) fldTitle.getScene().getWindow();
             stage.close();
         }
