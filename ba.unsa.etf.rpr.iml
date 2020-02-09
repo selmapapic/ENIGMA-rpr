@@ -12,5 +12,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.21.0" level="project" />
     <orderEntry type="library" name="com.github.davidmoten:word-wrap:0.1.6" level="project" />
+    <orderEntry type="library" name="net.sf.jasperreports:jasperreports:6.11.0" level="project" />
   </component>
 </module>

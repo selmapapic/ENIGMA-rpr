@@ -171,4 +171,8 @@ public class PapersDAO {
         }
 
     }
+
+    public Connection getConnection () {
+        return conn;
+    }
 }

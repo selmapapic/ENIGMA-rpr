@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.time.LocalDate;
 
@@ -53,11 +55,12 @@ public class OverviewAdminController {
         }
     }
 
-    public void printAction () {
-
+    public void printAction () throws JRException {
+        new PrintReport().showReport(dao.getConnection());
     }
 
     public void exitAction () {
-
+        Stage cureentStage = (Stage) tableViewPapers.getScene().getWindow();
+        cureentStage.close();
     }
 }
