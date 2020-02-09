@@ -129,7 +129,7 @@ public class MainWinController {
             }
             else {
                 Stage stageMainWin = new Stage();
-                UserPapersOverviewController controller = new UserPapersOverviewController(user);
+                MainUserFormController controller = new MainUserFormController(user);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"));
                 loader.setController(controller);
                 Parent root = loader.load();

@@ -1,98 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.199951171875" minWidth="10.0" prefWidth="275.199951171875" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="141.8" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.39999999999998" minWidth="10.0" prefWidth="165.79999999999995" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="25.200024414062455" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints maxHeight="86.60000839233399" minHeight="10.0" prefHeight="32.4" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="86.60000839233399" minHeight="10.0" prefHeight="31.800018310546875" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="162.20001831054688" minHeight="10.0" prefHeight="56.199981689453125" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="198.2000061035156" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="122.19998168945312" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="87.80000000000001" minHeight="10.0" prefHeight="51.39997558593751" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="87.80000000000001" minHeight="10.0" prefHeight="56.79998779296875" vgrow="SOMETIMES" />
-  </rowConstraints>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="4">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </ListView>
-      <Label text="Tip naucnog rada: " GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label prefHeight="18.0" prefWidth="132.0" text="Kategorija nucnog rada:" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <ButtonBar prefHeight="66.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
-        <buttons>
-          <Button mnemonicParsing="false" text="Otvori" />
-            <Button mnemonicParsing="false" text="Pretrazi" />
-            <Button mnemonicParsing="false" text="Cancel" />
-        </buttons>
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </ButtonBar>
-      <ChoiceBox prefHeight="26.0" prefWidth="188.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets right="10.0" top="5.0" />
-         </GridPane.margin>
-      </ChoiceBox>
-      <ChoiceBox prefHeight="26.0" prefWidth="178.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </ChoiceBox>
-      <Label text="Radovi poslije: " GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </DatePicker>
-      <ImageView fitHeight="507.0" fitWidth="26.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowSpan="8">
-         <image>
-            <Image url="@../images/side.jpg" />
-         </image></ImageView>
-      <Label text="Dobrodosli natrag u ENIGMU. Ispod mozete pronaci spisak svih naucnih radova, te mozete" GridPane.columnSpan="3">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="zadati odredjene filtere za pretragu. " GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="90.0" />
-         </GridPane.margin>
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+      <AnchorPane fx:id="anchorFilterView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="877.0" style="-fx-background-color: #303030;">
+         <children>
+            <MenuBar layoutY="-1.0" prefHeight="30.0" prefWidth="877.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="121.0" layoutY="29.0" stroke="#d4d4d400" strokeType="INSIDE" width="878.0">
+               <fill>
+                  <LinearGradient endX="0.7786259105187336" endY="1.0" startY="0.7786259396385601">
+                     <stops>
+                        <Stop color="#daffda" />
+                        <Stop color="#daffda" offset="0.007633587786259542" />
+                        <Stop color="#0b6110" offset="0.8591707623130814" />
+                        <Stop color="#0b6110" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <TableView fx:id="tableViewPapers1" layoutX="23.0" layoutY="172.0" prefHeight="418.0" prefWidth="569.0">
+               <columns>
+                  <TableColumn fx:id="colId1" prefWidth="38.399993896484375" text="ID" />
+                  <TableColumn fx:id="colTitle1" prefWidth="114.39999008178711" text="Title" />
+                  <TableColumn fx:id="colAuthor1" prefWidth="104.00004577636719" text="Author" />
+                  <TableColumn fx:id="colReleaseDate1" prefWidth="108.79998779296875" text="Release date" />
+                  <TableColumn fx:id="colCategory1" prefWidth="100.79998779296875" text="Category" />
+                  <TableColumn fx:id="colType1" prefWidth="102.4000244140625" text="Type" />
+               </columns>
+            </TableView>
+            <Label layoutX="92.0" layoutY="60.0" text="Welcome back, ">
+               <font>
+                  <Font name="Century Gothic" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName" layoutX="270.0" layoutY="60.0" text="Selma">
+               <font>
+                  <Font name="Century Gothic" size="22.0" />
+               </font>
+            </Label>
+            <MenuButton layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/account%20glyph.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="34.0" layoutY="114.0" text="Find all the scientific papers below. ">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="616.0" layoutY="212.0" prefHeight="34.0" prefWidth="228.0" />
+            <ChoiceBox layoutX="616.0" layoutY="302.0" prefHeight="34.0" prefWidth="228.0" />
+            <Label layoutX="619.0" layoutY="183.0" text="Type:" textFill="WHITE" />
+            <Label layoutX="619.0" layoutY="271.0" text="Category:" textFill="WHITE" />
+            <DatePicker layoutX="619.0" layoutY="389.0" prefHeight="34.0" prefWidth="228.0" />
+            <Label layoutX="619.0" layoutY="356.0" text="Papers from:" textFill="WHITE" />
+            <Button layoutX="737.0" layoutY="465.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="View" />
+            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="820.0" layoutY="472.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/profile_glyph.png" />
+                  <Image url="@../images/view%20glyph.png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
-      <Label text="Uredi nalog:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Circle fill="#5c5c5c30" layoutX="53.0" layoutY="73.0" radius="29.0" stroke="#00000032" strokeType="INSIDE" />
+            <Label fx:id="labelInitial" layoutX="41.0" layoutY="46.0" prefHeight="54.0" prefWidth="29.0" text="S" textAlignment="JUSTIFY" textFill="#444444">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+            <Button layoutX="619.0" layoutY="465.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Search" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorMainView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="877.0" style="-fx-background-color: #303030;">
+         <children>
+            <MenuBar layoutY="-1.0" prefHeight="30.0" prefWidth="877.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="121.0" layoutY="29.0" stroke="#d4d4d400" strokeType="INSIDE" width="878.0">
+               <fill>
+                  <LinearGradient endX="0.7786259105187336" endY="1.0" startY="0.7786259396385601">
+                     <stops>
+                        <Stop color="#daffda" />
+                        <Stop color="#daffda" offset="0.007633587786259542" />
+                        <Stop color="#0b6110" offset="0.8591707623130814" />
+                        <Stop color="#0b6110" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <TableView fx:id="tableViewPapers" layoutX="24.0" layoutY="172.0" prefHeight="418.0" prefWidth="646.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="39.199981689453125" text="ID" />
+                <TableColumn fx:id="colTitle" prefWidth="161.59997177124023" text="Title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="137.6000518798828" text="Author" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="105.60003662109375" text="Release date" />
+                  <TableColumn fx:id="colCategory" prefWidth="107.199951171875" text="Category" />
+                  <TableColumn fx:id="colType" prefWidth="99.20001220703125" text="Type" />
+              </columns>
+            </TableView>
+            <Label layoutX="92.0" layoutY="60.0" text="Welcome back, ">
+               <font>
+                  <Font name="Century Gothic" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName1" layoutX="270.0" layoutY="60.0" text="Selma">
+               <font>
+                  <Font name="Century Gothic" size="22.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="menuAccount" layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="Edit my account" />
+                <MenuItem fx:id="logOutAction" mnemonicParsing="false" text="Log out" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/account%20glyph.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="34.0" layoutY="114.0" text="Find all the scientific papers below. ">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="691.0" layoutY="236.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-radius: 1;" text="View" />
+            <Button fx:id="btnFilter" layoutX="691.0" layoutY="181.0" mnemonicParsing="false" onAction="#filterAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-radius: 1;" text="Filter" />
+            <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="822.0" layoutY="187.0" opacity="0.7">
+               <image>
+                  <Image url="@../images/filter%20glyph.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="823.0" layoutY="242.0">
+               <image>
+                  <Image url="@../images/view%20glyph.png" />
+               </image>
+            </ImageView>
+            <Circle fill="#5e5e5e31" layoutX="53.0" layoutY="73.0" radius="29.0" stroke="#00000032" strokeType="INSIDE" />
+            <Label fx:id="labelInitial1" layoutX="43.0" layoutY="47.0" text="S" textFill="#444444">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
-</GridPane>
+</AnchorPane>

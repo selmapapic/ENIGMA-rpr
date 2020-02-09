@@ -43,4 +43,14 @@ public class User extends Person {
     public void setDegOfEducation(String degOfEducation) {
         this.degOfEducation = degOfEducation;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", mail='" + mail + '\'' +
+                ", degOfEducation='" + degOfEducation + '\'' +
+                '}';
+    }
 }

@@ -151,7 +151,6 @@ public class UploadController {
             }
             else {
                 assert paper != null;
-                //System.out.println(dpDateOfIssue.getValue());
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
             if (forEdit != null) {

@@ -2,13 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="469.0" prefWidth="759.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="469.0" prefWidth="759.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="759.0" style="-fx-background-color: #747474;">
+      <AnchorPane layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="833.0" style="-fx-background-color: #747474;">
          <children>
-            <ImageView fitHeight="503.0" fitWidth="759.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" pickOnBounds="true">
+            <ImageView fitHeight="503.0" fitWidth="834.0" layoutX="-2.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" pickOnBounds="true">
                <image>
                   <Image url="@../images/background.png" />
                </image>
@@ -42,14 +43,14 @@
                   <Image url="@../images/exit%20glyph.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tableViewPapers" layoutX="259.0" layoutY="68.0" prefHeight="378.0" prefWidth="478.0">
+            <TableView fx:id="tableViewPapers" layoutX="260.0" layoutY="68.0" prefHeight="397.0" prefWidth="544.0">
               <columns>
                   <TableColumn fx:id="colId" prefWidth="32.0" text="Id" />
                 <TableColumn fx:id="colTitle" prefWidth="113.60003662109375" text="Title" />
                 <TableColumn fx:id="colAuthor" prefWidth="107.99993896484375" text="Author" />
-                  <TableColumn fx:id="colReleaseDate" prefWidth="74.4000244140625" text="Release date" />
-                  <TableColumn fx:id="colCategory" prefWidth="80.800048828125" text="Category" />
-                  <TableColumn fx:id="colType" prefWidth="71.199951171875" text="Type" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="96.20001220703125" text="Release date" />
+                  <TableColumn fx:id="colCategory" prefWidth="104.5999755859375" text="Category" />
+                  <TableColumn fx:id="colType" prefWidth="88.0" text="Type" />
               </columns>
             </TableView>
          </children>
