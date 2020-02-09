@@ -42,7 +42,7 @@ public class AdminController {
 
     public void uploadAction () throws IOException {
         Stage stageUpload = new Stage();
-        UploadController controller = new UploadController();
+        UploadController controller = new UploadController(null);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/uploadWin.fxml"));
         loader.setController(controller);
         Parent root = loader.load();

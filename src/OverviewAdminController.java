@@ -2,6 +2,9 @@ import com.sun.jdi.ClassType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -9,7 +12,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class OverviewAdminController {
     public Button btnEdit, btnPrint, btnDelete, btnExit;
@@ -19,7 +26,6 @@ public class OverviewAdminController {
     public TableColumn<ScientificPaper, LocalDate> colReleaseDate;
     public TableColumn<ScientificPaper, Author> colAuthor;
     public TableColumn<ScientificPaper, Integer> colId;
-    //public AllPapers papers = new AllPapers();
     public PapersDAO dao = PapersDAO.getInstance();
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper;
@@ -39,17 +45,41 @@ public class OverviewAdminController {
         //colType.setCellValueFactory(papers.getClass().toString());
         tableViewPapers.getSelectionModel().selectedItemProperty().addListener((obs, oldIme, newIme) -> {
             if(tableViewPapers.getSelectionModel().getSelectedItem() == null) currentPaper = null;
-            else currentPaper = tableViewPapers.getSelectionModel().getSelectedItem();
-            System.out.println(currentPaper);
+            else {
+                currentPaper = tableViewPapers.getSelectionModel().getSelectedItem();
+                //oldTitle = currentPaper.getTitle();
+            }
+            //System.out.println(currentPaper);
         });
     }
 
-    public void editAction () {
-
+    public void editAction () throws IOException {
+        Stage stageUpload = new Stage();
+        //System.out.println(currentPaper);
+        UploadController controller = new UploadController(currentPaper);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/uploadWin.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
+        stageUpload.setTitle("Upload");
+        stageUpload.setResizable(true);
+        stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageUpload.setOnHiding(windowEvent -> {
+            if(controller.getForEdit() == null) {
+                //System.out.println("nista");
+            } else {
+                papers.removeAll(dao.getAllPapers());
+                dao.editPaper(controller.getForEdit());
+                tableViewPapers.refresh();
+                papers.addAll(dao.getAllPapers());
+            }
+        });
+        stageUpload.show();
     }
 
     public void deleteAction () {
         if(currentPaper != null) {
+            File file = new File("resources/files", currentPaper.getTitle() + ".txt");
+            file.delete();
             dao.removePaper(currentPaper);
             papers.remove(currentPaper);
         }

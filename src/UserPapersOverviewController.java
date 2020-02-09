@@ -8,6 +8,6 @@ public class UserPapersOverviewController {
     }
 
     public void initialize () {
-        ime.setText(currentUser.getName());
+        //ime.setText(currentUser.getName());
     }
 }

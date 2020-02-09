@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS "scientific_paper";
 CREATE TABLE IF NOT EXISTS "scientific_paper" (
-	"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"id"	INTEGER PRIMARY KEY,
     "title"	TEXT,
     "author_name" TEXT,
     "author_surname" TEXT,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "scientific_paper" (
 );
 DROP TABLE IF EXISTS "user";
 CREATE TABLE IF NOT EXISTS "user" (
-	"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"id"	INTEGER PRIMARY KEY,
 	"name"	TEXT,
 	"surname"	TEXT,
 	"email"	TEXT,

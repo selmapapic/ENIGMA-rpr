@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 import org.davidmoten.text.utils.WordWrap;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class UploadController {
     public TextField fldTitle, fldAuthorName, fldAuthorSurname, fldCategory;
@@ -20,8 +22,11 @@ public class UploadController {
     //private AllPapers papers = AllPapers.getInstance();
     public ObservableList<String> type = FXCollections.observableArrayList();
     public PapersDAO dao = PapersDAO.getInstance();
+    public ScientificPaper forEdit = null;
+    private String oldTitle;
 
-    public UploadController () {
+    public UploadController (ScientificPaper paper) {
+        forEdit = paper;
         type.add("Bachelors Thesis");
         type.add("Doctorate");
         type.add("Masters Thesis");
@@ -31,19 +36,36 @@ public class UploadController {
     }
 
     public void initialize() {
+        fillPlacesForEdit();
+        if(forEdit != null) choiceType.setDisable(true); //onemogucavanje promjene tipa todo
         choiceType.setItems(type);
         choiceType.setValue("Other");
         dpDateOfIssue.setValue(LocalDate.now());
     }
 
-    public void writeFile (File fajl) {
-        if(fajl == null) return;
+    public String readFile (File file) {
+        String paper = "";
+        if(file == null) return "";
         try {
-            FileWriter reader = new FileWriter(fajl);
+            Scanner scanner = new Scanner(file);
+            scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                paper += scanner.nextLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return paper;
+    }
+
+    public void writeFile (File file) {
+        if(file == null) return;
+        try {
+            FileWriter writer = new FileWriter(file);
             String s = fldTitle.getText() + "\n" + areaText.getText();
             String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
-            reader.write(wrapped);
-            reader.close();
+            writer.write(wrapped);
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,7 +76,24 @@ public class UploadController {
         stage.close();
     }
 
+    private void fillPlacesForEdit () {
+        if(forEdit != null) {
+            oldTitle = forEdit.getTitle();
+            fldTitle.setText(forEdit.getTitle());
+            fldAuthorName.setText(forEdit.getAuthor().getName());
+            fldAuthorSurname.setText(forEdit.getAuthor().getSurname());
+            fldCategory.setText(forEdit.getCategory());
+            choiceType.getSelectionModel().select(forEdit.getClass().getName());
+            dpDateOfIssue.setValue(forEdit.getReleaseDate());
+            File file = new File("resources/files", forEdit.getTitle() + ".txt");
+            areaText.setText(readFile(file));
+        }
+    }
+
     public void submitAction () throws IOException {
+
+        //initializeForEdit();
+
         if(fldTitle.getText().isEmpty() || fldAuthorName.getText().isEmpty() || fldAuthorSurname.getText().isEmpty()) {
             if (fldTitle.getText().isEmpty()) {
                 fldTitle.getStyleClass().removeAll("validField");
@@ -83,12 +122,11 @@ public class UploadController {
         else {
 
             //todo dodati da pozelene mjesta
-            String title = fldTitle.getText();
-            title.replace(" ", "");
-            File file = new File("resources/files", title + ".txt");
+
+            File file = new File("resources/files", fldTitle.getText() + ".txt"); //creating new file
             ScientificPaper paper = null;
 
-            if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) {
+            if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) { //default value for type
                 paper = new Other();
             }
             else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelors Thesis")) {
@@ -107,25 +145,41 @@ public class UploadController {
                 paper = new SeminaryPaper();
             }
 
-            if(dpDateOfIssue.getValue() == null) {
+            if(dpDateOfIssue.getValue() == null) { //default value for date
                 assert paper != null;
                 paper.setReleaseDate(LocalDate.now());
             }
             else {
                 assert paper != null;
-                System.out.println(dpDateOfIssue.getValue());
+                //System.out.println(dpDateOfIssue.getValue());
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
-            paper.setTitle(fldTitle.getText());
-            Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
-            paper.setAuthor(author);
-            paper.setCategory(fldCategory.getText());
-            file.createNewFile();
-            writeFile(file);
-            //papers.addPaper(paper);
-            dao.addPaper(paper);
+            if (forEdit != null) {
+                forEdit.setTitle(fldTitle.getText());
+                Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
+                forEdit.setAuthor(author);
+                forEdit.setReleaseDate(dpDateOfIssue.getValue());
+                forEdit.setCategory(fldCategory.getText());
+                File file1 = new File("resources/files", oldTitle + ".txt"); //delete old file
+                file1.delete();
+                File file2 = new File("resources/files", fldTitle.getText() + ".txt");  //create new edited file
+                writeFile(file2);
+            }
+            else {
+                paper.setTitle(fldTitle.getText());
+                Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
+                paper.setAuthor(author);
+                paper.setCategory(fldCategory.getText());
+                file.createNewFile();
+                writeFile(file);
+                dao.addPaper(paper);
+            }
             Stage stage = (Stage) fldTitle.getScene().getWindow();
             stage.close();
         }
+    }
+
+    public ScientificPaper getForEdit() {
+        return forEdit;
     }
 }
