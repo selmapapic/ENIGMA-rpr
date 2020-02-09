@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public class ScientificArticle extends ScientificPaper {
     
-    public ScientificArticle(Author author, LocalDate releaseDate, String category, String title) {
-        super(author, releaseDate, category, title);
+    public ScientificArticle(int id, Author author, LocalDate releaseDate, String category, String title) {
+        super(id, author, releaseDate, category, title);
     }
 
     public ScientificArticle() {
@@ -11,6 +11,6 @@ public class ScientificArticle extends ScientificPaper {
 
     @Override
     public String toString() {
-        return "ScientificArticle: " + super.toString();
+        return "Scientific article: " + super.toString();
     }
 }

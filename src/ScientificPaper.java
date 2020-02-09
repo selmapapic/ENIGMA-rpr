@@ -5,8 +5,10 @@ public abstract class ScientificPaper {
     private LocalDate releaseDate;
     private String category;
     private String title;
+    private int id;
 
-    public ScientificPaper(Author author, LocalDate releaseDate, String category, String title) {
+    public ScientificPaper(int id, Author author, LocalDate releaseDate, String category, String title) {
+        this.id = id;
         this.author = author;
         this.releaseDate = releaseDate;
         this.category = category;
@@ -46,6 +48,14 @@ public abstract class ScientificPaper {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

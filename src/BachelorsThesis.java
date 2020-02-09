@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public class BachelorsThesis extends ScientificPaper {
 
-    public BachelorsThesis(Author author, LocalDate releaseDate, String category, String title) {
-        super(author, releaseDate, category, title);
+    public BachelorsThesis(int id, Author author, LocalDate releaseDate, String category, String title) {
+        super(id, author, releaseDate, category, title);
     }
 
     public BachelorsThesis() {
@@ -11,6 +11,6 @@ public class BachelorsThesis extends ScientificPaper {
 
     @Override
     public String toString() {
-        return "BachelorsThesis: " + super.toString();
+        return "Bachelor's Thesis: " + super.toString();
     }
 }

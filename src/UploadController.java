@@ -114,7 +114,6 @@ public class UploadController {
             else {
                 assert paper != null;
                 System.out.println(dpDateOfIssue.getValue());
-                System.out.println(paper);
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
             paper.setTitle(fldTitle.getText());

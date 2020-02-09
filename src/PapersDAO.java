@@ -9,7 +9,7 @@ public class PapersDAO {
     private static PapersDAO instance;
     private Connection conn;
 
-    private PreparedStatement papersQuery, addPaperQuery, getPaperId;
+    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery;
 
     public static PapersDAO getInstance() {
         if(instance == null) instance = new PapersDAO();
@@ -37,6 +37,7 @@ public class PapersDAO {
         try {
             addPaperQuery = conn.prepareStatement("INSERT INTO scientific_paper VALUES (?,?,?,?,?,?,?)");
             getPaperId = conn.prepareStatement("SELECT MAX (id)+1 FROM scientific_paper");
+            removePaperQuery = conn.prepareStatement("DELETE FROM scientific_paper WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -152,12 +153,22 @@ public class PapersDAO {
             default:
                 throw new IllegalStateException("Unexpected value: " + resultSet.getString(7));
         }
-
+        paper.setId(resultSet.getInt(1));
         paper.setTitle(resultSet.getString(2));
         Author author = new Author(resultSet.getString(3), resultSet.getString(4));
         paper.setAuthor(author);
         paper.setReleaseDate(LocalDate.parse(resultSet.getString(5)));
         paper.setCategory(resultSet.getString(6));
         return paper;
+    }
+
+    public void removePaper (ScientificPaper paper) {
+        try {
+            removePaperQuery.setInt(1, paper.getId());
+            removePaperQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

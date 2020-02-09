@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,36 +13,45 @@
                   <Image url="@../images/background.png" />
                </image>
             </ImageView>
-            <ListView fx:id="listViewPapers" layoutX="293.0" layoutY="71.0" prefHeight="394.0" prefWidth="432.0" />
-            <Button fx:id="btnDelete" layoutX="41.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #21ff1a;" text="Delete paper" />
-            <Button fx:id="btnPrint" layoutX="41.0" layoutY="252.0" mnemonicParsing="false" onAction="#printAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #07cc00;" text="Print list of all papers" />
-            <Button fx:id="btnEdit" layoutX="41.0" layoutY="84.0" mnemonicParsing="false" onAction="#editAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #84ff80;" text="Edit paper" />
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="90.0" opacity="0.8">
+            <Button fx:id="btnDelete" layoutX="24.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #21ff1a;" text="Delete paper" />
+            <Button fx:id="btnPrint" layoutX="24.0" layoutY="252.0" mnemonicParsing="false" onAction="#printAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #07cc00;" text="Print list of all papers" />
+            <Button fx:id="btnEdit" layoutX="24.0" layoutY="84.0" mnemonicParsing="false" onAction="#editAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #84ff80;" text="Edit paper" />
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="90.0" opacity="0.8">
                <image>
                   <Image url="@../images/edit%20glyph.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="174.0">
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="174.0">
                <image>
                   <Image url="@../images/delete%20glyph.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="258.0">
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="258.0">
                <image>
                   <Image url="@../images/print%20glyph.png" />
                </image>
             </ImageView>
-            <Label layoutX="41.0" layoutY="27.0" text="Papers overview..." textFill="WHITE">
+            <Label layoutX="24.0" layoutY="27.0" text="Papers overview..." textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>
             </Label>
-            <Button fx:id="btnExit" layoutX="41.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #059900;" text="Exit" />
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="218.0" layoutY="342.0">
+            <Button fx:id="btnExit" layoutX="24.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #059900;" text="Exit" />
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="342.0">
                <image>
                   <Image url="@../images/exit%20glyph.png" />
                </image>
             </ImageView>
+            <TableView fx:id="tableViewPapers" layoutX="259.0" layoutY="68.0" prefHeight="378.0" prefWidth="478.0">
+              <columns>
+                  <TableColumn fx:id="colId" prefWidth="32.0" text="Id" />
+                <TableColumn fx:id="colTitle" prefWidth="113.60003662109375" text="Title" />
+                <TableColumn fx:id="colAuthor" prefWidth="107.99993896484375" text="Author" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="74.4000244140625" text="Release date" />
+                  <TableColumn fx:id="colCategory" prefWidth="80.800048828125" text="Category" />
+                  <TableColumn fx:id="colType" prefWidth="71.199951171875" text="Type" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>
