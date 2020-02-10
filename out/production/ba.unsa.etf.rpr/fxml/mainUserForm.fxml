@@ -167,7 +167,7 @@
             <Label layoutX="619.0" layoutY="271.0" text="Category:" textFill="WHITE" />
             <DatePicker fx:id="dpReleaseDate" layoutX="619.0" layoutY="389.0" prefHeight="34.0" prefWidth="228.0" />
             <Label layoutX="619.0" layoutY="356.0" text="Papers from:" textFill="WHITE" />
-            <Button fx:id="btnView" layoutX="737.0" layoutY="465.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="View" />
+            <Button fx:id="btnView" layoutX="737.0" layoutY="465.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="109.0" text="View" />
             <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="820.0" layoutY="472.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/view%20glyph.png" />

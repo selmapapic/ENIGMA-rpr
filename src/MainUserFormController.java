@@ -39,11 +39,12 @@ public class MainUserFormController {
     public TableColumn<ScientificPaper, Integer> colId, colId1;
     public PapersDAO dao = PapersDAO.getInstance();
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
-    public ScientificPaper currentPaper;
+    public ScientificPaper currentPaper, currentPaper1;
     public ChoiceBox<String> choiceType, choiceCategory;
     public DatePicker dpReleaseDate;
     private ArrayList<String> categoriesList;
     public ObservableList<String> categoriesObservable = FXCollections.observableArrayList(dao.getAllCategories());
+    private boolean isAnchorFilterOn = false;
 
     private void initializeTableView () {
         choiceCategory.setItems(categoriesObservable);
@@ -89,10 +90,18 @@ public class MainUserFormController {
                 currentPaper = tableViewPapers.getSelectionModel().getSelectedItem();
             }
         });
+
+        tableViewPapers1.getSelectionModel().selectedItemProperty().addListener((obs, oldIme, newIme) -> {
+            if(tableViewPapers1.getSelectionModel().getSelectedItem() == null) currentPaper1 = null;
+            else {
+                currentPaper1 = tableViewPapers1.getSelectionModel().getSelectedItem();
+            }
+        });
     }
 
     public void filterAction () {
         anchorFilterView.toFront();
+        isAnchorFilterOn = true;
     }
 
     public String readFile (File file) throws IOException {
@@ -115,46 +124,11 @@ public class MainUserFormController {
         Desktop.getDesktop().open(new File(pdf));
     }
 
-    private void addMultipleLineText (PDPageContentStream contentStream, String content, PDPage pdPage) throws IOException {
-        int cursorX = 25;
-        int cursorY = 700;
-        PDFont pdFont = PDType1Font.HELVETICA;
-        int fontSize = 12;
-        int margin = 50;
-
-        PDRectangle mediabox = pdPage.getMediaBox();
-        float printableWidth = mediabox.getWidth() - (2 * margin) - cursorX;
-
-        List<String> finalLines = new ArrayList<>();
-        boolean convertContent = true;
-        while (convertContent) {
-            int contentSize = (int) (fontSize * pdFont.getStringWidth(content) / 1000);
-            if (contentSize > printableWidth) {
-
-                int contentLength = content.length();
-                float rem = contentSize / printableWidth;
-                float lenForSubString = contentLength / rem;
-                int lenForSubStringInt = (int) Math.floor(lenForSubString);
-                finalLines.add(content.substring(0, lenForSubStringInt));
-                content = content.substring(lenForSubStringInt);
-            } else {
-                finalLines.add(content);
-                convertContent = false;
-            }
-        }
-
-        contentStream.beginText();
-        contentStream.newLineAtOffset(cursorX, cursorY);
-        contentStream.setFont(pdFont, fontSize);
-        contentStream.setLeading(15f);
-        for (String str : finalLines) {
-            contentStream.showText(str);
-            contentStream.newLine();
-        }
-    }
-
     //copied from stack overflow
     public void viewAction () throws IOException {
+        if(isAnchorFilterOn) {
+            currentPaper = currentPaper1;
+        }
         if(currentPaper == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
