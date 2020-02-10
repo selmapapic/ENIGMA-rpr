@@ -9,7 +9,7 @@ public class PapersDAO {
     private static PapersDAO instance;
     private Connection conn;
 
-    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, editPaperQuery;
+    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, editPaperQuery, getAllCategories;
 
     public static PapersDAO getInstance() {
         if(instance == null) instance = new PapersDAO();
@@ -38,6 +38,7 @@ public class PapersDAO {
             addPaperQuery = conn.prepareStatement("INSERT INTO scientific_paper VALUES (?,?,?,?,?,?,?)");
             getPaperId = conn.prepareStatement("SELECT MAX (id)+1 FROM scientific_paper");
             removePaperQuery = conn.prepareStatement("DELETE FROM scientific_paper WHERE id=?");
+            getAllCategories = conn.prepareStatement("SELECT category FROM scientific_paper");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -188,5 +189,18 @@ public class PapersDAO {
             addPaperQuery.setString(7, "SeminaryPaper");
         }
         addPaperQuery.executeUpdate();
+    }
+
+    public ArrayList<String> getAllCategories () {
+        ArrayList<String> categories = new ArrayList<>();
+        try {
+            ResultSet resultSet = getAllCategories.executeQuery();
+            while (resultSet.next()) {
+                categories.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 }
