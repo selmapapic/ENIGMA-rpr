@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class MainUserFormController {
     private User currentUser;
@@ -154,6 +155,15 @@ public class MainUserFormController {
 
     //copied from stack overflow
     public void viewAction () throws IOException {
+        if(currentPaper == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("You haven't selected any of the papers from the list!");
+            alert.setContentText("Please choose one and then click 'View'.");
+
+            alert.showAndWait();
+            return;
+        }
         PDDocument doc = null;
         try
         {
@@ -240,5 +250,32 @@ public class MainUserFormController {
     public void logOutAction () {
         Stage cureentStage = (Stage) tableViewPapers.getScene().getWindow();
         cureentStage.close();
+    }
+
+    public void aboutAction () {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About ENIGMA");
+        alert.setHeaderText(null);
+        alert.setContentText("ENIGMA is a scientific paper management software. \n" +
+                "It allows you to access the newest scientific papers. \n" +
+                "ENIGMA is a university project made by Selma Celosmanovic. \n" +
+                "Current version: 1.0.0");
+
+        alert.showAndWait();
+    }
+
+    public void searchAction () {
+        List<ScientificPaper> allPapers = dao.getAllPapers();
+        String selectedCategory = choiceCategory.getSelectionModel().getSelectedItem();
+        LocalDate selectedDate = dpReleaseDate.getValue();
+        if(selectedCategory != null) {
+            allPapers = allPapers.stream().filter(paper -> paper.getCategory().equals(selectedCategory)).collect(Collectors.toList());
+        }
+        if(selectedDate != null && selectedDate.compareTo(LocalDate.now()) <= 0) {
+            allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) == 0).collect(Collectors.toList());
+        }
+        ObservableList<ScientificPaper> obsList = FXCollections.observableArrayList(allPapers);
+        papers.removeAll(dao.getAllPapers());
+        papers.addAll(obsList);
     }
 }

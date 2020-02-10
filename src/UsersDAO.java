@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class UsersDAO {
     private static UsersDAO instance;
-    private Connection conn;
+    private static Connection conn;
 
     private PreparedStatement usersQuery, insertUserQuery, getUserId, certainUserQuery;
 
@@ -113,5 +113,7 @@ public class UsersDAO {
         return user;
     }
 
-
+    public static Connection getConn() {
+        return conn;
+    }
 }

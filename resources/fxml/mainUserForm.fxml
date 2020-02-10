@@ -20,7 +20,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -106,7 +106,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
                      </items>
                   </Menu>
                </menus>
@@ -179,7 +179,12 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Button fx:id="btnSearch" layoutX="619.0" layoutY="465.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Search" />
+            <Button fx:id="btnSearch" layoutX="619.0" layoutY="465.0" mnemonicParsing="false" onAction="#searchAction" prefHeight="34.0" prefWidth="109.0" text="Search" />
+            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="701.0" layoutY="472.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/search%20glyph.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
