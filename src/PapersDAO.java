@@ -3,13 +3,14 @@ import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PapersDAO {
     private static PapersDAO instance;
     private Connection conn = UsersDAO.getConn(); //uzimanje konekcije iz UsersDAO
 
-    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes;
+    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes, getAllAuthors;
 
     public static PapersDAO getInstance() {
         if(instance == null) instance = new PapersDAO();
@@ -32,8 +33,9 @@ public class PapersDAO {
             addPaperQuery = conn.prepareStatement("INSERT INTO scientific_paper VALUES (?,?,?,?,?,?,?)");
             getPaperId = conn.prepareStatement("SELECT MAX (id)+1 FROM scientific_paper");
             removePaperQuery = conn.prepareStatement("DELETE FROM scientific_paper WHERE id=?");
-            getAllCategories = conn.prepareStatement("SELECT category FROM scientific_paper");
-            getAllTypes = conn.prepareStatement("SELECT type FROM scientific_paper");
+            getAllCategories = conn.prepareStatement("SELECT DISTINCT category FROM scientific_paper");
+            getAllTypes = conn.prepareStatement("SELECT DISTINCT type FROM scientific_paper");
+            getAllAuthors = conn.prepareStatement("SELECT DISTINCT author_name, author_surname FROM scientific_paper");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -105,19 +107,19 @@ public class PapersDAO {
             case "Other":
                 paper.setType(PaperType.OTHER);
                 break;
-            case "BachelorsThesis":
+            case "Bachelor's Thesis":
                 paper.setType(PaperType.BACHELORS_THESIS);
                 break;
             case "Doctorate":
                 paper.setType(PaperType.DOCTORATE);
                 break;
-            case "MastersThesis":
+            case "Master's Thesis":
                 paper.setType(PaperType.MASTERS_THESIS);
                 break;
-            case "ScientificArticle":
+            case "Scientific Article":
                 paper.setType(PaperType.SCIENTIFIC_ARTICLE);
                 break;
-            case "SeminaryPaper":
+            case "Seminary Paper":
                 paper.setType(PaperType.SEMINARY_PAPER);
                 break;
             default:
@@ -168,20 +170,20 @@ public class PapersDAO {
         addPaperQuery.executeUpdate();
     }
 
-    public ArrayList<String> getAllCategories () {
+    public List<String> getAllCategories () {
         try {
             ResultSet resultSet = getAllCategories.executeQuery();
-            return getStringsFromResultSet(resultSet);
+            return getStringsFromResultSet(resultSet);//.stream().distinct().collect(Collectors.toList()); //removing duplicates
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ArrayList<String> getAllTypes () {
+    public List<String> getAllTypes () {
         try {
             ResultSet resultSet = getAllTypes.executeQuery();
-            return getStringsFromResultSet(resultSet);
+            return getStringsFromResultSet(resultSet);//.stream().distinct().collect(Collectors.toList());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -194,5 +196,19 @@ public class PapersDAO {
             strings.add(resultSet.getString(1));
         }
         return strings;
+    }
+
+    public List<Author> getAllAuthors () {
+        ArrayList<Author> authors = new ArrayList<>();
+        try {
+            ResultSet resultSet = getAllAuthors.executeQuery();
+            while (resultSet.next()) {
+                Author a = new Author(resultSet.getString(1), resultSet.getString(2));
+                authors.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return authors;//.stream().distinct().collect(Collectors.toList());
     }
 }

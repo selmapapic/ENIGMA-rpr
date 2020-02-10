@@ -1,0 +1,6 @@
+Discrete Mathematics
+Teorija brojeva je grana matematike koja pretežno proučava svojstva cijelih brojeva. Iznimno, teorijabrojeva ponekad proučava i svojstva drugih tipova brojeva,
+recimo racionalnih, realnih i kompleksnih,ali samo ona njihova svojstva koja u osnovi ovise o svojstvima cijelih brojeva, ili ona njihova svojstva okojima ovise
+svojstva cijelih brojeva. S obzirom da je diskretna matematika skupina raznovrsnih alimeđusobno povezanih oblasti matematike kojima je zajedničko da proučavaju
+objekte koji su striktnorazdvojeni jedan od drugog (tj. za koje je moguće uspostaviti odnose tipa “prethodni”, “sljedeći”, itd.) ikako se takvi objekti u gotovo
+svim situacijama mogu kodirati cijelim brojevima, može se reći da teorijabrojeva na izvjestan način predstavlja fundament same diskretne matematike.

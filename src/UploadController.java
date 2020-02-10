@@ -1,10 +1,8 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.davidmoten.text.utils.WordWrap;
 
 import java.io.File;
@@ -34,11 +32,30 @@ public class UploadController {
         type.add("Other");
     }
 
+    private Callback<DatePicker, DateCell> disableDP () {
+        return new Callback<>() {
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        // Disable all future date cells
+                        if (item.isAfter(LocalDate.now())) {
+                            this.setDisable(true);
+                        }
+                    }
+                };
+            }
+        };
+    }
+
     public void initialize() {
         fillPlacesForEdit();
         choiceType.setItems(type);
         choiceType.setValue("Other");
         dpDateOfIssue.setValue(LocalDate.now());
+        dpDateOfIssue.setDayCellFactory(disableDP());
     }
 
     public String readFile (File file) {
@@ -88,35 +105,34 @@ public class UploadController {
         }
     }
 
+    public void validateField (TextField field) {
+        field.getStyleClass().removeAll("invalidField");
+        field.getStyleClass().add("validField");
+    }
+
+    public void invalidateField (TextField field) {
+        field.getStyleClass().removeAll("validField");
+        field.getStyleClass().add("invalidField");
+    }
+
     public void submitAction () throws IOException {
         if(fldTitle.getText().isEmpty() || fldAuthorName.getText().isEmpty() || fldAuthorSurname.getText().isEmpty()) {
-            if (fldTitle.getText().isEmpty()) {
-                fldTitle.getStyleClass().removeAll("validField");
-                fldTitle.getStyleClass().add("invalidField");
-            } else {
-                fldTitle.getStyleClass().removeAll("invalidField");
-                fldTitle.getStyleClass().add("validField");
+            if (fldTitle.getText().isEmpty()) invalidateField(fldTitle);
+            else {
+                validateField(fldTitle);
             }
 
-            if (fldAuthorName.getText().isEmpty()) {
-                fldAuthorName.getStyleClass().removeAll("validField");
-                fldAuthorName.getStyleClass().add("invalidField");
-            } else {
-                fldAuthorName.getStyleClass().removeAll("invalidField");
-                fldAuthorName.getStyleClass().add("validField");
+            if (fldAuthorName.getText().isEmpty()) invalidateField(fldAuthorName);
+            else {
+                validateField(fldAuthorName);
             }
 
-            if (fldAuthorSurname.getText().isEmpty()) {
-                fldAuthorSurname.getStyleClass().removeAll("validField");
-                fldAuthorSurname.getStyleClass().add("invalidField");
-            } else {
-                fldAuthorSurname.getStyleClass().removeAll("invalidField");
-                fldAuthorSurname.getStyleClass().add("validField");
+            if (fldAuthorSurname.getText().isEmpty()) invalidateField(fldAuthorSurname);
+            else {
+                validateField(fldAuthorSurname);
             }
         }
         else {
-
-            //todo dodati da pozelene mjesta
 
             File file = new File("resources/files", fldTitle.getText() + ".txt"); //creating new file
             ScientificPaper paper = new ScientificPaper();
@@ -161,7 +177,12 @@ public class UploadController {
                 paper.setTitle(fldTitle.getText());
                 Author author = new Author(fldAuthorName.getText(), fldAuthorSurname.getText());
                 paper.setAuthor(author);
-                paper.setCategory(fldCategory.getText());
+                if(fldCategory.getText().isEmpty()) {
+                    paper.setCategory("Unknown");
+                }
+                else {
+                    paper.setCategory(fldCategory.getText());
+                }
                 file.createNewFile();
                 writeFile(file);
                 dao.addPaper(paper);

@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -41,14 +42,22 @@ public class MainUserFormController {
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper, currentPaper1;
     public ChoiceBox<String> choiceType, choiceCategory;
+    public ChoiceBox<Author> choiceAuthor;
     public DatePicker dpReleaseDate;
     public ObservableList<String> categoriesObservable = FXCollections.observableArrayList(dao.getAllCategories());
     public ObservableList<String> typesObservable = FXCollections.observableArrayList(dao.getAllTypes());
+    public ObservableList<Author> authorObservable = FXCollections.observableArrayList(dao.getAllAuthors());
     private boolean isAnchorFilterOn = false;
 
     private void initializeTableView () {
+        Author a = new Author("All", "authors");
+        categoriesObservable.add(0, "All categories");
+        typesObservable.add(0, "All types");
+        authorObservable.add(0, a);
+
         choiceCategory.setItems(categoriesObservable);
         choiceType.setItems(typesObservable);
+        choiceAuthor.setItems(authorObservable);
 
         colTitle.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Author>("author"));
@@ -66,6 +75,31 @@ public class MainUserFormController {
 
     }
 
+    private void defaultChoiceValues () {
+        Author a = new Author("All", "authors");
+        choiceAuthor.getSelectionModel().select(a);
+        choiceCategory.getSelectionModel().select("All categories");
+        choiceType.getSelectionModel().select("All types");
+    }
+
+    public Callback<DatePicker, DateCell> disableDP () {
+        return new Callback<>() {
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        // Disable all future date cells
+                        if (item.isAfter(LocalDate.now())) {
+                            this.setDisable(true);
+                        }
+                    }
+                };
+            }
+        };
+    }
+
     @FXML
     public void initialize () {
         anchorMainView.toFront();
@@ -77,15 +111,11 @@ public class MainUserFormController {
         papers.addAll(dao.getAllPapers());
         tableViewPapers.setItems(papers);
         tableViewPapers1.setItems(papers);
+
+        defaultChoiceValues();
         initializeTableView();
-        dpReleaseDate.setValue(LocalDate.now());
-        //todo postaviti da se disableuje
-//        dpReleaseDate.setDayCellFactory(picker -> new DateCell() {
-//            public void updateItem(LocalDate date) {
-//                LocalDate today = LocalDate.now();
-//                setDisable(date.compareTo(today) > 0 );
-//            }
-//        });;
+
+        dpReleaseDate.setDayCellFactory(disableDP());
 
         tableViewPapers.getSelectionModel().selectedItemProperty().addListener((obs, oldIme, newIme) -> { //listener for current paper
             if(tableViewPapers.getSelectionModel().getSelectedItem() == null) currentPaper = null;
@@ -246,17 +276,29 @@ public class MainUserFormController {
         String selectedCategory = choiceCategory.getSelectionModel().getSelectedItem();
         LocalDate selectedDate = dpReleaseDate.getValue();
         String selectedType = choiceType.getSelectionModel().getSelectedItem();
+        Author selectedAuthor = choiceAuthor.getSelectionModel().getSelectedItem();
+
+        Author defaultA = new Author("All", "authors");
         if(selectedDate != null && selectedDate.compareTo(LocalDate.now()) <= 0) {
-            allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) == 0).collect(Collectors.toList());
+            allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) >= 0).collect(Collectors.toList());
         }
-        if(selectedCategory != null) {
+        if(selectedCategory != null && !selectedCategory.equals("All categories")) {
             allPapers = allPapers.stream().filter(paper -> paper.getCategory().equals(selectedCategory)).collect(Collectors.toList());
         }
-        if(selectedType != null) {
+        if(selectedType != null && !selectedType.equals("All types")) {
             allPapers = allPapers.stream().filter(paper -> paper.getType().getName().equals(selectedType)).collect(Collectors.toList());
+        }
+        if(selectedAuthor != null && !selectedAuthor.equals(defaultA)) {
+            allPapers = allPapers.stream().filter(paper -> paper.getAuthor().equals(selectedAuthor)).collect(Collectors.toList());
         }
         ObservableList<ScientificPaper> obsList = FXCollections.observableArrayList(allPapers);
         papers.removeAll(dao.getAllPapers());
         papers.addAll(obsList);
+    }
+
+    public void resetFiltersAction () {
+        papers.removeAll(dao.getAllPapers());
+        papers.addAll(dao.getAllPapers());
+        defaultChoiceValues();
     }
 }
