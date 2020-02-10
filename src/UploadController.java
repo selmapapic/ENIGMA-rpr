@@ -19,7 +19,6 @@ public class UploadController {
     public ChoiceBox<String> choiceType;
     public DatePicker dpDateOfIssue;
     public TextArea areaText;
-    //private AllPapers papers = AllPapers.getInstance();
     public ObservableList<String> type = FXCollections.observableArrayList();
     public PapersDAO dao = PapersDAO.getInstance();
     public ScientificPaper forEdit = null;
@@ -27,9 +26,9 @@ public class UploadController {
 
     public UploadController (ScientificPaper paper) {
         forEdit = paper;
-        type.add("Bachelors Thesis");
+        type.add("Bachelor's Thesis");
         type.add("Doctorate");
-        type.add("Masters Thesis");
+        type.add("Master's Thesis");
         type.add("Scientific Article");
         type.add("Seminary Paper");
         type.add("Other");
@@ -37,7 +36,6 @@ public class UploadController {
 
     public void initialize() {
         fillPlacesForEdit();
-        if(forEdit != null) choiceType.setDisable(true); //onemogucavanje promjene tipa todo
         choiceType.setItems(type);
         choiceType.setValue("Other");
         dpDateOfIssue.setValue(LocalDate.now());
@@ -91,9 +89,6 @@ public class UploadController {
     }
 
     public void submitAction () throws IOException {
-
-        //initializeForEdit();
-
         if(fldTitle.getText().isEmpty() || fldAuthorName.getText().isEmpty() || fldAuthorSurname.getText().isEmpty()) {
             if (fldTitle.getText().isEmpty()) {
                 fldTitle.getStyleClass().removeAll("validField");
@@ -124,33 +119,31 @@ public class UploadController {
             //todo dodati da pozelene mjesta
 
             File file = new File("resources/files", fldTitle.getText() + ".txt"); //creating new file
-            ScientificPaper paper = null;
+            ScientificPaper paper = new ScientificPaper();
 
             if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) { //default value for type
-                paper = new Other();
+                paper.setType(PaperType.OTHER);
             }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelors Thesis")) {
-                paper = new BachelorsThesis();
+            else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelor's Thesis")) {
+                paper.setType(PaperType.BACHELORS_THESIS);
             }
             else if (choiceType.getSelectionModel().getSelectedItem().equals("Doctorate")) {
-                paper = new Doctorate();
+                paper.setType(PaperType.DOCTORATE);
             }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Masters Thesis")) {
-                paper = new MastersThesis();
+            else if(choiceType.getSelectionModel().getSelectedItem().equals("Master's Thesis")) {
+                paper.setType(PaperType.MASTERS_THESIS);
             }
             else if(choiceType.getSelectionModel().getSelectedItem().equals("Scientific Article")) {
-                paper = new ScientificArticle();
+                paper.setType(PaperType.SCIENTIFIC_ARTICLE);
             }
             else if(choiceType.getSelectionModel().getSelectedItem().equals("Seminary Paper")) {
-                paper = new SeminaryPaper();
+                paper.setType(PaperType.SEMINARY_PAPER);
             }
 
             if(dpDateOfIssue.getValue() == null) { //default value for date
-                assert paper != null;
                 paper.setReleaseDate(LocalDate.now());
             }
             else {
-                assert paper != null;
                 paper.setReleaseDate(dpDateOfIssue.getValue());
             }
             if (forEdit != null) {

@@ -1,22 +1,31 @@
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class ScientificPaper {
+public class ScientificPaper {
     private Author author;
     private LocalDate releaseDate;
     private String category;
     private String title;
     private int id;
+    private PaperType type;
 
-    public ScientificPaper(int id, Author author, LocalDate releaseDate, String category, String title) {
-        this.id = id;
+    public ScientificPaper(Author author, LocalDate releaseDate, String category, String title, int id, PaperType type) {
         this.author = author;
         this.releaseDate = releaseDate;
         this.category = category;
         this.title = title;
+        this.id = id;
+        this.type = type;
     }
 
-    public ScientificPaper() {
+    public ScientificPaper() { }
+
+    public PaperType getType() {
+        return type;
+    }
+
+    public void setType(PaperType type) {
+        this.type = type;
     }
 
     public Author getAuthor() {
@@ -61,7 +70,7 @@ public abstract class ScientificPaper {
 
     @Override
     public String toString() {
-        return id + ", " + title + ", " + author.getName() + " " + author.getSurname() + ", " + releaseDate + ", " + category;
+        return type + ": " + id + ", " + title + ", " + author.getName() + " " + author.getSurname() + ", " + releaseDate + ", " + category;
     }
 
     @Override

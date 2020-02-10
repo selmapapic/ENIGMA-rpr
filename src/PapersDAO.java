@@ -9,7 +9,7 @@ public class PapersDAO {
     private static PapersDAO instance;
     private Connection conn = UsersDAO.getConn(); //uzimanje konekcije iz UsersDAO
 
-    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, editPaperQuery, getAllCategories;
+    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes;
 
     public static PapersDAO getInstance() {
         if(instance == null) instance = new PapersDAO();
@@ -33,6 +33,7 @@ public class PapersDAO {
             getPaperId = conn.prepareStatement("SELECT MAX (id)+1 FROM scientific_paper");
             removePaperQuery = conn.prepareStatement("DELETE FROM scientific_paper WHERE id=?");
             getAllCategories = conn.prepareStatement("SELECT category FROM scientific_paper");
+            getAllTypes = conn.prepareStatement("SELECT type FROM scientific_paper");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,25 +100,25 @@ public class PapersDAO {
     }
 
     private ScientificPaper getPaperFromResultSet (ResultSet resultSet) throws SQLException {
-        ScientificPaper paper;
+        ScientificPaper paper = new ScientificPaper();
         switch (resultSet.getString(7)) {
             case "Other":
-                paper = new Other();
+                paper.setType(PaperType.OTHER);
                 break;
             case "BachelorsThesis":
-                paper = new BachelorsThesis();
+                paper.setType(PaperType.BACHELORS_THESIS);
                 break;
             case "Doctorate":
-                paper = new Doctorate();
+                paper.setType(PaperType.DOCTORATE);
                 break;
             case "MastersThesis":
-                paper = new MastersThesis();
+                paper.setType(PaperType.MASTERS_THESIS);
                 break;
             case "ScientificArticle":
-                paper = new ScientificArticle();
+                paper.setType(PaperType.SCIENTIFIC_ARTICLE);
                 break;
             case "SeminaryPaper":
-                paper = new SeminaryPaper();
+                paper.setType(PaperType.SEMINARY_PAPER);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + resultSet.getString(7));
@@ -163,38 +164,35 @@ public class PapersDAO {
         addPaperQuery.setString(4, paper.getAuthor().getSurname());
         addPaperQuery.setString(5, paper.getReleaseDate().toString());
         addPaperQuery.setString(6, paper.getCategory());
-
-        if(paper instanceof Other) {
-            addPaperQuery.setString(7, "Other");
-        }
-        else if (paper instanceof BachelorsThesis) {
-            addPaperQuery.setString(7, "BachelorsThesis");
-        }
-        else if (paper instanceof Doctorate) {
-            addPaperQuery.setString(7, "Doctorate");
-        }
-        else if (paper instanceof MastersThesis) {
-            addPaperQuery.setString(7, "MastersThesis");
-        }
-        else if (paper instanceof ScientificArticle) {
-            addPaperQuery.setString(7, "ScientificArticle");
-        }
-        else if (paper instanceof SeminaryPaper) {
-            addPaperQuery.setString(7, "SeminaryPaper");
-        }
+        addPaperQuery.setString(7, paper.getType().getName());
         addPaperQuery.executeUpdate();
     }
 
     public ArrayList<String> getAllCategories () {
-        ArrayList<String> categories = new ArrayList<>();
         try {
             ResultSet resultSet = getAllCategories.executeQuery();
-            while (resultSet.next()) {
-                categories.add(resultSet.getString(1));
-            }
+            return getStringsFromResultSet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return categories;
+        return null;
+    }
+
+    public ArrayList<String> getAllTypes () {
+        try {
+            ResultSet resultSet = getAllTypes.executeQuery();
+            return getStringsFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<String> getStringsFromResultSet (ResultSet resultSet) throws SQLException {
+        ArrayList<String> strings = new ArrayList<>();
+        while (resultSet.next()) {
+            strings.add(resultSet.getString(1));
+        }
+        return strings;
     }
 }

@@ -1,4 +1,4 @@
-import com.sun.jdi.ClassType;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +22,7 @@ public class OverviewAdminController {
     public Button btnEdit, btnPrint, btnDelete, btnExit;
     public TableView<ScientificPaper> tableViewPapers;
     public TableColumn<ScientificPaper, String> colTitle, colCategory;
-    public TableColumn<ScientificPaper, ClassType> colType;
+    public TableColumn<ScientificPaper, String> colType;
     public TableColumn<ScientificPaper, LocalDate> colReleaseDate;
     public TableColumn<ScientificPaper, Author> colAuthor;
     public TableColumn<ScientificPaper, Integer> colId;
@@ -40,16 +40,12 @@ public class OverviewAdminController {
         colReleaseDate.setCellValueFactory(new PropertyValueFactory<ScientificPaper, LocalDate>("releaseDate"));
         colCategory.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("category"));
         colId.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Integer>("id"));
-        //todo
-        //colType.setCellValueFactory(new PropertyValueFactory<>(getClass().toString()));
-        //colType.setCellValueFactory(papers.getClass().toString());
+        colType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().getName()));
         tableViewPapers.getSelectionModel().selectedItemProperty().addListener((obs, oldIme, newIme) -> {
             if(tableViewPapers.getSelectionModel().getSelectedItem() == null) currentPaper = null;
             else {
                 currentPaper = tableViewPapers.getSelectionModel().getSelectedItem();
-                //oldTitle = currentPaper.getTitle();
             }
-            //System.out.println(currentPaper);
         });
     }
 

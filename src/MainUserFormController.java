@@ -1,4 +1,4 @@
-import com.sun.jdi.ClassType;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,7 +33,7 @@ public class MainUserFormController {
     public AnchorPane anchorMainView, anchorFilterView;
     public TableView<ScientificPaper> tableViewPapers, tableViewPapers1;
     public TableColumn<ScientificPaper, String> colTitle, colTitle1, colCategory, colCategory1;
-    public TableColumn<ScientificPaper, ClassType> colType, colType1;
+    public TableColumn<ScientificPaper, String> colType, colType1;
     public TableColumn<ScientificPaper, LocalDate> colReleaseDate, colReleaseDate1;
     public TableColumn<ScientificPaper, Author> colAuthor, colAuthor1;
     public TableColumn<ScientificPaper, Integer> colId, colId1;
@@ -42,29 +42,32 @@ public class MainUserFormController {
     public ScientificPaper currentPaper, currentPaper1;
     public ChoiceBox<String> choiceType, choiceCategory;
     public DatePicker dpReleaseDate;
-    private ArrayList<String> categoriesList;
     public ObservableList<String> categoriesObservable = FXCollections.observableArrayList(dao.getAllCategories());
+    public ObservableList<String> typesObservable = FXCollections.observableArrayList(dao.getAllTypes());
     private boolean isAnchorFilterOn = false;
 
     private void initializeTableView () {
         choiceCategory.setItems(categoriesObservable);
+        choiceType.setItems(typesObservable);
 
         colTitle.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Author>("author"));
         colReleaseDate.setCellValueFactory(new PropertyValueFactory<ScientificPaper, LocalDate>("releaseDate"));
         colCategory.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("category"));
         colId.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Integer>("id"));
+        colType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().getName()));
 
         colTitle1.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("title"));
         colAuthor1.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Author>("author"));
         colReleaseDate1.setCellValueFactory(new PropertyValueFactory<ScientificPaper, LocalDate>("releaseDate"));
         colCategory1.setCellValueFactory(new PropertyValueFactory<ScientificPaper, String>("category"));
         colId1.setCellValueFactory(new PropertyValueFactory<ScientificPaper, Integer>("id"));
+        colType1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().getName()));
+
     }
 
     @FXML
     public void initialize () {
-        //System.out.println(currentUser);
         anchorMainView.toFront();
         labelName.setText(currentUser.getName());
         labelName1.setText(currentUser.getName());
