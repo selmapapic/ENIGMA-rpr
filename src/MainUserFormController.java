@@ -245,11 +245,15 @@ public class MainUserFormController {
         List<ScientificPaper> allPapers = dao.getAllPapers();
         String selectedCategory = choiceCategory.getSelectionModel().getSelectedItem();
         LocalDate selectedDate = dpReleaseDate.getValue();
+        String selectedType = choiceType.getSelectionModel().getSelectedItem();
+        if(selectedDate != null && selectedDate.compareTo(LocalDate.now()) <= 0) {
+            allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) == 0).collect(Collectors.toList());
+        }
         if(selectedCategory != null) {
             allPapers = allPapers.stream().filter(paper -> paper.getCategory().equals(selectedCategory)).collect(Collectors.toList());
         }
-        if(selectedDate != null && selectedDate.compareTo(LocalDate.now()) <= 0) {
-            allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) == 0).collect(Collectors.toList());
+        if(selectedType != null) {
+            allPapers = allPapers.stream().filter(paper -> paper.getType().getName().equals(selectedType)).collect(Collectors.toList());
         }
         ObservableList<ScientificPaper> obsList = FXCollections.observableArrayList(allPapers);
         papers.removeAll(dao.getAllPapers());
