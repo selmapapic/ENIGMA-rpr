@@ -138,6 +138,8 @@ public class MainWinController {
                 stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stageMainWin.setResizable(false);
                 stageMainWin.show();
+                fldPass.setText("");
+                fldEmail.setText("");
             }
         }
 

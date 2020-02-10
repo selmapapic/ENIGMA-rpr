@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="anchorMainView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="877.0" style="-fx-background-color: #303030;">
          <children>
@@ -60,7 +60,7 @@
             <MenuButton fx:id="menuAccount" layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="Edit my account" />
-                <MenuItem fx:id="logOutAction" mnemonicParsing="false" text="Log out" />
+                <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="Log out" />
               </items>
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -145,8 +145,8 @@
             </Label>
             <MenuButton layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="Edit my account" />
+                  <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="Log out" />
                </items>
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
