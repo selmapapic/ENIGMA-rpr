@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="463.0" fitWidth="697.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
+      <ImageView fitHeight="500.0" fitWidth="697.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
          <image>
             <Image url="@../images/background.png" />
          </image>
@@ -52,9 +52,9 @@
       </Label>
       <AnchorPane layoutX="390.0" layoutY="31.0">
          <children>
-            <AnchorPane fx:id="anchorSignUp" prefHeight="404.0" prefWidth="266.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane fx:id="anchorSignUp" prefHeight="432.0" prefWidth="266.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Label layoutX="42.0" layoutY="370.0" style="-fx-text-fill: #058900;" text="%signIn">
+                  <Label layoutX="41.0" layoutY="397.0" style="-fx-text-fill: #058900;" text="%signIn">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -66,36 +66,41 @@
                   </Button>
                   <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="131.0" layoutY="37.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
                   <TextField fx:id="fldName" layoutX="24.0" layoutY="97.0" prefHeight="34.0" prefWidth="211.0" promptText="%name" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <PasswordField fx:id="fldPassSignUp" layoutX="24.0" layoutY="272.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <PasswordField fx:id="fldPassSignUp" layoutX="23.0" layoutY="300.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
                   <Label alignment="CENTER" layoutX="23.0" layoutY="55.0" prefHeight="36.0" prefWidth="211.0" text="%signUp" textAlignment="CENTER">
                      <font>
                         <Font name="Century Gothic Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnOpenSignIn" layoutX="24.0" layoutY="362.0" mnemonicParsing="false" onAction="#openSignInAction" opacity="0.0" prefHeight="34.0" prefWidth="63.0" style="-fx-background-color: #058900;" />
-                  <Button fx:id="btnRegister" layoutX="24.0" layoutY="320.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%register" />
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="212.0" layoutY="280.0" opacity="0.37">
+                  <Button fx:id="btnOpenSignIn" layoutX="23.0" layoutY="389.0" mnemonicParsing="false" onAction="#openSignInAction" opacity="0.0" prefHeight="34.0" prefWidth="63.0" style="-fx-background-color: #058900;" />
+                  <Button fx:id="btnRegister" layoutX="23.0" layoutY="347.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%register" />
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="308.0" opacity="0.37">
                      <image>
                         <Image url="@../images/password%20glyph.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="fldEmailSignUp" layoutX="24.0" layoutY="185.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <ChoiceBox fx:id="choiceEduDeg" layoutX="24.0" layoutY="227.0" prefHeight="34.0" prefWidth="211.0" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" />
-                  <TextField fx:id="fldSurname" layoutX="24.0" layoutY="142.0" prefHeight="34.0" prefWidth="211.0" promptText="%surname" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="212.0" layoutY="193.0" opacity="0.37">
+                  <TextField fx:id="fldEmailSignUp" layoutX="23.0" layoutY="199.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <ChoiceBox fx:id="choiceEduDeg" layoutX="24.0" layoutY="249.0" prefHeight="34.0" prefWidth="211.0" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" />
+                  <TextField fx:id="fldSurname" layoutX="24.0" layoutY="146.0" prefHeight="34.0" prefWidth="211.0" promptText="%surname" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="207.0" opacity="0.37">
                      <image>
                         <Image url="@../images/email%20glyph.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="85.0" layoutY="370.0" prefHeight="18.0" prefWidth="150.0" text="%existAcc">
+                  <Label layoutX="84.0" layoutY="397.0" prefHeight="18.0" prefWidth="150.0" text="%existAcc">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font></Label>
+                  <Label fx:id="labelWrongFormat" layoutX="27.0" layoutY="233.0" text="wrongFormat" textFill="RED">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorSignIn" prefHeight="404.0" prefWidth="266.0" style="-fx-background-color: #FFFFFF;">
+            <AnchorPane fx:id="anchorSignIn" prefHeight="432.0" prefWidth="266.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="124.0" layoutY="324.0" prefHeight="18.0" prefWidth="125.0" style="-fx-text-fill: #058900;" text="%createAcc">
+                  <Label layoutX="125.0" layoutY="345.0" prefHeight="18.0" prefWidth="125.0" style="-fx-text-fill: #058900;" text="%createAcc">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -106,31 +111,31 @@
                      </padding>
                   </Button>
                   <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="131.0" layoutY="37.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
-                  <TextField fx:id="fldEmail" layoutX="25.0" layoutY="132.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <PasswordField fx:id="fldPass" layoutX="25.0" layoutY="186.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <TextField fx:id="fldEmail" layoutX="24.0" layoutY="138.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <PasswordField fx:id="fldPass" layoutX="24.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
                   <Label layoutX="87.0" layoutY="71.0" prefHeight="36.0" prefWidth="109.0" text="%signIn" textAlignment="CENTER">
                      <font>
                         <Font name="Century Gothic Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnSignIn" layoutX="25.0" layoutY="266.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%signIn" />
-                  <Button fx:id="btnOpenRegister" layoutX="121.0" layoutY="315.0" mnemonicParsing="false" onAction="#openRegisterAction" opacity="0.0" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #058900;" text="Register" />
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="212.0" layoutY="194.0" opacity="0.37">
+                  <Button fx:id="btnSignIn" layoutX="25.0" layoutY="294.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%signIn" />
+                  <Button fx:id="btnOpenRegister" layoutX="122.0" layoutY="337.0" mnemonicParsing="false" onAction="#openRegisterAction" opacity="0.0" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #058900;" text="Register" />
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="208.0" opacity="0.37">
                      <image>
                         <Image url="@../images/password%20glyph.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="212.0" layoutY="140.0" opacity="0.37">
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="146.0" opacity="0.37">
                      <image>
                         <Image url="@../images/email%20glyph.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="32.0" layoutY="323.0" prefHeight="18.0" prefWidth="100.0" text="%newEnigma">
+                  <Label layoutX="33.0" layoutY="345.0" prefHeight="18.0" prefWidth="100.0" text="%newEnigma">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="wrongPass" layoutX="25.0" layoutY="227.0" text="wrongPass" textFill="RED" />
+                  <Label fx:id="labelWrongPass" layoutX="24.0" layoutY="241.0" text="wrongPass" textFill="RED" />
                </children>
             </AnchorPane>
          </children>

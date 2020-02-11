@@ -12,6 +12,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -21,7 +22,7 @@ public class MainWinController {
     public PasswordField fldPass;
     public UsersDAO dao = UsersDAO.getInstance();
     public AnchorPane anchorSignUp, anchorSignIn;
-    public Label labelWrongPass;
+    public Label labelWrongPass, labelWrongFormat;
     //register
     public TextField fldName, fldSurname, fldEmailSignUp;
     public PasswordField fldPassSignUp;
@@ -53,10 +54,12 @@ public class MainWinController {
     @FXML
     public void initialize () {
         labelWrongPass.setText("");
+        labelWrongFormat.setText("");
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
-        choiceEduDeg.getSelectionModel().select("0");
+        if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
+        else choiceEduDeg.setValue("Academic degree");
     }
 
     private void invalidateField (TextField textField) {
@@ -86,8 +89,8 @@ public class MainWinController {
         anchorSignUp.toFront();
         fldEmail.setText("");
         fldPass.setText("");
-        invalidateField(fldEmail);
-        invalidateField(fldPass);
+        removeCssField(fldEmail);
+        removeCssField(fldPass);
     }
 
     public void openSignInAction () {
@@ -97,13 +100,11 @@ public class MainWinController {
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
         choiceEduDeg.getSelectionModel().clearSelection();
-        invalidateField(fldName);       //brisu se obrubi
-        invalidateField(fldSurname);
-        invalidateField(fldEmailSignUp);
-        invalidateField(fldPassSignUp);
+        removeCssField(fldName);       //brisu se obrubi
+        removeCssField(fldSurname);
+        removeCssField(fldEmailSignUp);
+        removeCssField(fldPassSignUp);
     }
-
-
 
     private void fieldsValidationCheck(TextField fldName, TextField fldSurname) {
         if(fldName.getText().isEmpty()) {
@@ -129,18 +130,47 @@ public class MainWinController {
         return BCrypt.checkpw(plainPassword, hashedPassword);
     }
 
+    private boolean isValidEmail (String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
     public void registerAction () {
-        if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || (choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") && choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
+        if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmailSignUp.getText().isEmpty() || fldPassSignUp.getText().isEmpty() || (choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") && choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             fieldsValidationCheck(fldName, fldSurname);
             fieldsValidationCheck(fldEmailSignUp, fldPassSignUp);
+            if(!fldEmailSignUp.getText().isEmpty() && !isValidEmail(fldEmailSignUp.getText())) {
+                if(Locale.getDefault().getCountry().equals("BS")) labelWrongFormat.setText("Pogrešan format email adrese");
+                else labelWrongFormat.setText("Wrong email format");
+                invalidateField(fldEmailSignUp);
+            }
+            else {
+                labelWrongFormat.setText("");
+            }
         }
 
         if(!isTheStyleClassInvalid(fldName.getStyleClass().toString()) && !isTheStyleClassInvalid(fldSurname.getStyleClass().toString()) //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
                 && !isTheStyleClassInvalid(fldEmailSignUp.getStyleClass().toString()) && !isTheStyleClassInvalid(fldPassSignUp.getStyleClass().toString()) && !(choiceEduDeg.getSelectionModel().getSelectedItem() == null)) {
+            if(!isValidEmail(fldEmailSignUp.getText())) {
+                if(Locale.getDefault().getCountry().equals("BS")) labelWrongFormat.setText("Pogrešan format email adrese");
+                else labelWrongFormat.setText("Wrong email format");
+                invalidateField(fldEmailSignUp);
+            }
+            else {
+            removeCssField(fldEmailSignUp);
+            labelWrongFormat.setText("");
             User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
             dao.insertNewUser(user);
 
             openSignInAction();
+            }
         }
     }
 
