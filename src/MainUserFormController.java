@@ -22,12 +22,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class MainUserFormController {
     private User currentUser;
-    public Label labelName, labelName1, labelInitial, labelInitial1;
+    public Label labelGreeting, labelGreeting1, labelInitial, labelInitial1;
     public MainUserFormController(User user) {
         currentUser = user;
     }
@@ -50,10 +51,18 @@ public class MainUserFormController {
     private boolean isAnchorFilterOn = false;
 
     private void initializeTableView () {
-        Author a = new Author("All", "authors");
-        categoriesObservable.add(0, "All categories");
-        typesObservable.add(0, "All types");
-        authorObservable.add(0, a);
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            Author a = new Author("Svi", "autori");
+            categoriesObservable.add(0, "Sve kategorije");
+            typesObservable.add(0, "Svi tipovi");
+            authorObservable.add(0, a);
+        }
+        else {
+            Author a = new Author("All", "authors");
+            categoriesObservable.add(0, "All categories");
+            typesObservable.add(0, "All types");
+            authorObservable.add(0, a);
+        }
 
         choiceCategory.setItems(categoriesObservable);
         choiceType.setItems(typesObservable);
@@ -76,10 +85,18 @@ public class MainUserFormController {
     }
 
     private void defaultChoiceValues () {
-        Author a = new Author("All", "authors");
-        choiceAuthor.getSelectionModel().select(a);
-        choiceCategory.getSelectionModel().select("All categories");
-        choiceType.getSelectionModel().select("All types");
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            Author a = new Author("Svi", "autori");
+            choiceAuthor.getSelectionModel().select(a);
+            choiceCategory.getSelectionModel().select("Sve kategorije");
+            choiceType.getSelectionModel().select("Svi tipovi");
+        }
+        else {
+            Author a = new Author("All", "authors");
+            choiceAuthor.getSelectionModel().select(a);
+            choiceCategory.getSelectionModel().select("All categories");
+            choiceType.getSelectionModel().select("All types");
+        }
     }
 
     public Callback<DatePicker, DateCell> disableDP () {
@@ -103,8 +120,15 @@ public class MainUserFormController {
     @FXML
     public void initialize () {
         anchorMainView.toFront();
-        labelName.setText(currentUser.getName());
-        labelName1.setText(currentUser.getName());
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            labelGreeting.setText("Pozdrav, " + currentUser.getName());
+            labelGreeting1.setText("Pozdrav, " + currentUser.getName());
+        }
+        else {
+            labelGreeting.setText("Welcome back, " + currentUser.getName());
+            labelGreeting1.setText("Welcome back, " + currentUser.getName());
+        }
+
         labelInitial.setText(String.valueOf(currentUser.getName().charAt(0)));
         labelInitial1.setText(String.valueOf(currentUser.getName().charAt(0)));
 
@@ -164,10 +188,16 @@ public class MainUserFormController {
         }
         if(currentPaper == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("You haven't selected any of the papers from the list!");
-            alert.setContentText("Please choose one and then click 'View'.");
-
+            if(Locale.getDefault().getCountry().equals("BS")) {
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText("Niste izabrali nijedan rad sa liste!");
+                alert.setContentText("Molimo prvo izaberite rad, a potom kliknite 'Pogledaj'.");
+            }
+            else {
+                alert.setTitle("Warning");
+                alert.setHeaderText("You haven't selected any of the papers from the list!");
+                alert.setContentText("Please choose one and then click 'View'.");
+            }
             alert.showAndWait();
             return;
         }
@@ -263,11 +293,18 @@ public class MainUserFormController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About ENIGMA");
         alert.setHeaderText(null);
-        alert.setContentText("ENIGMA is a scientific paper management software. \n" +
-                "It allows you to access the newest scientific papers. \n" +
-                "ENIGMA is a university project made by Selma Celosmanovic. \n" +
-                "Current version: 1.0.0");
-
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            alert.setContentText("ENIGMA je softver koji se bavi uredjenjem naucnih radova. \n" +
+                    "Omogucava vam da pristupite najnovijim naucnim radovima \n" +
+                    "ENIGMA je kreirana od strane Selme Celosmanovic kao fakultetski projekat. \n" +
+                    "Trenutna verzija: 1.0.1");
+        }
+        else {
+            alert.setContentText("ENIGMA is a scientific paper management software. \n" +
+                    "It allows you to access the newest scientific papers. \n" +
+                    "ENIGMA is a university project made by Selma Celosmanovic. \n" +
+                    "Current version: 1.0.1");
+        }
         alert.showAndWait();
     }
 
@@ -279,16 +316,17 @@ public class MainUserFormController {
         Author selectedAuthor = choiceAuthor.getSelectionModel().getSelectedItem();
 
         Author defaultA = new Author("All", "authors");
+        Author defaultB = new Author("Svi", "autori");
         if(selectedDate != null && selectedDate.compareTo(LocalDate.now()) <= 0) {
             allPapers = allPapers.stream().filter(paper -> paper.getReleaseDate().compareTo(selectedDate) >= 0).collect(Collectors.toList());
         }
-        if(selectedCategory != null && !selectedCategory.equals("All categories")) {
+        if(selectedCategory != null && !selectedCategory.equals("All categories") && !selectedCategory.equals("Sve kategorije")) {
             allPapers = allPapers.stream().filter(paper -> paper.getCategory().equals(selectedCategory)).collect(Collectors.toList());
         }
-        if(selectedType != null && !selectedType.equals("All types")) {
+        if(selectedType != null && !selectedType.equals("All types") && !selectedType.equals("Svi tipovi")) {
             allPapers = allPapers.stream().filter(paper -> paper.getType().getName().equals(selectedType)).collect(Collectors.toList());
         }
-        if(selectedAuthor != null && !selectedAuthor.equals(defaultA)) {
+        if(selectedAuthor != null && !selectedAuthor.equals(defaultA) && !selectedAuthor.equals(defaultB)) {
             allPapers = allPapers.stream().filter(paper -> paper.getAuthor().equals(selectedAuthor)).collect(Collectors.toList());
         }
         ObservableList<ScientificPaper> obsList = FXCollections.observableArrayList(allPapers);

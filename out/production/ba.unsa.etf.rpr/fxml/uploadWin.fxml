@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
@@ -32,22 +41,22 @@
             <Image url="@../images/background.png" />
          </image>
       </ImageView>
-      <DatePicker fx:id="dpDateOfIssue" prefHeight="26.0" prefWidth="273.0" promptText="Date of issue" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="4">
+      <DatePicker fx:id="dpDateOfIssue" prefHeight="26.0" prefWidth="273.0" promptText="%releaseDate" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </DatePicker>
-      <TextField fx:id="fldTitle" promptText="Title" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="1">
+      <TextField fx:id="fldTitle" promptText="%title" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="fldAuthorName" promptText="Author name" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="2">
+      <TextField fx:id="fldAuthorName" promptText="%authName" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="fldAuthorSurname" promptText="Author surname" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="3">
+      <TextField fx:id="fldAuthorSurname" promptText="%authSurname" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
@@ -57,15 +66,15 @@
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <TextField fx:id="fldCategory" promptText="Category" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="6">
+      <TextField fx:id="fldCategory" promptText="%category" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </TextField>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
         <buttons>
-          <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submitAction" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #0aab35;" text="Submit" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" prefWidth="137.0" style="-fx-background-color: #0aab35;" text="Cancel" />
+          <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submitAction" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #0aab35;" text="%submit" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" prefWidth="137.0" style="-fx-background-color: #0aab35;" text="%cancel" />
         </buttons>
          <GridPane.margin>
             <Insets right="20.0" />
@@ -76,7 +85,7 @@
             <Insets left="20.0" right="20.0" top="10.0" />
          </GridPane.margin>
       </TextArea>
-      <Label text="Unesite podatke o naucnom radu ispod, a u prozor pored unesite tekst naucnog rada." textFill="WHITE" GridPane.columnSpan="2">
+      <Label text="%info" textFill="WHITE" GridPane.columnSpan="2">
          <font>
             <Font name="Century Gothic" size="13.0" />
          </font>

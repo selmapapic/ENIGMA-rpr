@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1537.0" y="1755.0">com</node>
+    <node x="1048.0" y="1755.0">fxml</node>
+    <node x="1710.0" y="1657.0">reports</node>
+    <node x="1693.0" y="1755.0">css</node>
+    <node x="1326.0" y="1657.0">netscape</node>
+    <node x="356.0" y="1275.0">User</node>
+    <node x="1452.0" y="0.0">ScientificPaper</node>
+    <node x="408.0" y="0.0">PapersDAO</node>
+    <node x="543.0" y="1657.0">toolbarButtonGraphics</node>
+    <node x="1849.0" y="1755.0">sun</node>
+    <node x="1020.0" y="1108.0">UsersDAO</node>
+    <node x="618.0" y="1108.0">OverviewAdminController</node>
+    <node x="1084.0" y="1657.0">groovyjarjarasm</node>
+    <node x="1211.0" y="1755.0">java</node>
+    <node x="195.0" y="1429.0">Administrator</node>
+    <node x="708.0" y="1755.0">javax</node>
+    <node x="0.0" y="1755.0">javafx</node>
+    <node x="0.0" y="1829.0">net</node>
+    <node x="783.0" y="0.0">MainWinController</node>
+    <node x="1126.0" y="0.0">UploadController</node>
+    <node x="177.0" y="1755.0">images</node>
+    <node x="0.0" y="1657.0">PrintReport</node>
+    <node x="0.0" y="0.0">MainUserFormController</node>
+    <node x="354.0" y="1755.0">oracle</node>
+    <node x="156.0" y="1829.0">org</node>
+    <node x="1518.0" y="1657.0">META-INF</node>
+    <node x="312.0" y="1829.0">jdk</node>
+    <node x="1562.0" y="1108.0">PaperType</node>
+    <node x="531.0" y="1755.0">groovy</node>
+    <node x="1374.0" y="1755.0">pdfs</node>
+    <node x="878.0" y="1755.0">files</node>
+    <node x="0.0" y="1319.0">Author</node>
+    <node x="251.0" y="1657.0">groovyjarjarcommonscli</node>
+    <node x="828.0" y="1657.0">groovyjarjarantlr</node>
+    <node x="176.0" y="1108.0">Person</node>
+    <node x="1747.0" y="1108.0">Main</node>
+    <node x="1309.0" y="1108.0">AdminController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Author" target="Person">
+      <point x="0.0" y="-124.5" />
+      <point x="87.5" y="1250.0" />
+      <point x="205.83333333333334" y="1250.0" />
+      <point x="-59.66666666666666" y="58.5" />
+    </edge>
+    <edge source="User" target="Person">
+      <point x="0.0" y="-168.5" />
+      <point x="464.5" y="1250.0" />
+      <point x="325.16666666666663" y="1250.0" />
+      <point x="59.66666666666663" y="58.5" />
+    </edge>
+    <edge source="Administrator" target="Person">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5438287153652394" x="514.2918017600739" y="1244.0027790643817" />
+  <SelectedNodes>
+    <node>com</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

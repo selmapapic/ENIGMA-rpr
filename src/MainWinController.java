@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -30,10 +32,20 @@ public class MainWinController {
     }
 
     public MainWinController() {
-        academicDegree.add("Srednja skola");
-        academicDegree.add("Bachelor");
-        academicDegree.add("Master");
-        academicDegree.add("Doktorat");
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            academicDegree.add("Stepen obrazovanja");
+            academicDegree.add("Srednja skola");
+            academicDegree.add("Bachelor");
+            academicDegree.add("Master");
+            academicDegree.add("Doktorat");
+        }
+        else {
+            academicDegree.add("Academic degree");
+            academicDegree.add("High school");
+            academicDegree.add("Bachelor");
+            academicDegree.add("Master");
+            academicDegree.add("Doctorate");
+        }
     }
 
     @FXML
@@ -41,12 +53,14 @@ public class MainWinController {
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
+        choiceEduDeg.getSelectionModel().select("0");
     }
 
     public void adminAction () throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("translation");
         Stage stageAdmin = new Stage();
         AdminController controller = new AdminController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminWin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminWin.fxml"), bundle);
         loader.setController(controller);
         Parent root = loader.load();
         stageAdmin.setTitle("Administrator");
@@ -96,7 +110,7 @@ public class MainWinController {
     }
 
     public void registerAction () {
-        if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || choiceEduDeg.getSelectionModel().getSelectedItem() == null) {
+        if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || (choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") && choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             fieldsValidationCheck(fldName, fldSurname);
 
             fieldsValidationCheck(fldEmailSignUp, fldPassSignUp);
@@ -122,18 +136,28 @@ public class MainWinController {
 
             if(user == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Incorrect email and password.");
-                alert.setContentText("Try again!");
-                alert.showAndWait();
+                if(Locale.getDefault().getCountry().equals("BS")) {
+                    alert.setTitle("Greška");
+                    alert.setHeaderText("Pogrešan email i šifra!");
+                    alert.setContentText("Pokušajte ponovo!");
+                    alert.showAndWait();
+                }
+                else {
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Incorrect email and password!");
+                    alert.setContentText("Try again!");
+                    alert.showAndWait();
+                }
             }
             else {
+                ResourceBundle bundle = ResourceBundle.getBundle("translation");
                 Stage stageMainWin = new Stage();
                 MainUserFormController controller = new MainUserFormController(user);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), bundle);
                 loader.setController(controller);
                 Parent root = loader.load();
-                stageMainWin.setTitle("Scientific papers");
+                if(Locale.getDefault().getCountry().equals("BS")) stageMainWin.setTitle("Naučni radovi");
+                else stageMainWin.setTitle("Scientific papers");
                 stageMainWin.setResizable(true);
                 stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stageMainWin.setResizable(false);

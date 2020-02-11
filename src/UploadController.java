@@ -19,7 +19,7 @@ public class UploadController {
     public TextArea areaText;
     public ObservableList<String> type = FXCollections.observableArrayList();
     public PapersDAO dao = PapersDAO.getInstance();
-    public ScientificPaper forEdit = null;
+    public ScientificPaper forEdit;
     private String oldTitle;
 
     public UploadController (ScientificPaper paper) {

@@ -7,6 +7,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -41,28 +43,31 @@ public class AdminController {
     }
 
     public void uploadAction () throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("translation");
         Stage stageUpload = new Stage();
         UploadController controller = new UploadController(null);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/uploadWin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/uploadWin.fxml"), bundle);
         loader.setController(controller);
         Parent root = loader.load();
-        stageUpload.setTitle("Upload");
+        if(Locale.getDefault().getCountry().equals("BS")) stageUpload.setTitle("Učitaj");
+        else stageUpload.setTitle("Upload");
         stageUpload.setResizable(true);
-        stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        //stageUpload.setResizable(false);
+        stageUpload.setScene(new Scene(root, 645, USE_COMPUTED_SIZE));
         stageUpload.show();
     }
 
     public void overviewAction () throws IOException {
-        Stage stageUpload = new Stage();
+        ResourceBundle bundle = ResourceBundle.getBundle("translation");
+        Stage stageOverview= new Stage();
         OverviewAdminController controller = new OverviewAdminController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/overviewPapersAdmin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/overviewPapersAdmin.fxml"), bundle);
         loader.setController(controller);
         Parent root = loader.load();
-        stageUpload.setTitle("Overview");
-        stageUpload.setResizable(true);
-        stageUpload.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stageUpload.setResizable(false);
-        stageUpload.show();
+        if (Locale.getDefault().getCountry().equals("BS")) stageOverview.setTitle("Pregled");
+        else stageOverview.setTitle("Overview");
+        stageOverview.setResizable(true);
+        stageOverview.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageOverview.setResizable(false);
+        stageOverview.show();
     }
 }

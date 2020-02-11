@@ -40,24 +40,19 @@
             <TableView fx:id="tableViewPapers" layoutX="24.0" layoutY="172.0" prefHeight="418.0" prefWidth="646.0">
               <columns>
                 <TableColumn fx:id="colId" prefWidth="39.199981689453125" text="ID" />
-                <TableColumn fx:id="colTitle" prefWidth="161.59997177124023" text="Title" />
-                  <TableColumn fx:id="colAuthor" prefWidth="137.6000518798828" text="Author" />
-                  <TableColumn fx:id="colReleaseDate" prefWidth="105.60003662109375" text="Release date" />
-                  <TableColumn fx:id="colCategory" prefWidth="107.199951171875" text="Category" />
-                  <TableColumn fx:id="colType" prefWidth="99.20001220703125" text="Type" />
+                <TableColumn fx:id="colTitle" prefWidth="161.59997177124023" text="%title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="137.6000518798828" text="%author" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="105.60003662109375" text="%releaseDate" />
+                  <TableColumn fx:id="colCategory" prefWidth="107.199951171875" text="%category" />
+                  <TableColumn fx:id="colType" prefWidth="99.20001220703125" text="%type" />
               </columns>
             </TableView>
-            <Label layoutX="92.0" layoutY="60.0" text="Welcome back, ">
+            <Label fx:id="labelGreeting" layoutX="92.0" layoutY="60.0" text="greeting">
                <font>
                   <Font name="Century Gothic" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="labelName1" layoutX="270.0" layoutY="60.0" text="Selma">
-               <font>
-                  <Font name="Century Gothic" size="22.0" />
-               </font>
-            </Label>
-            <MenuButton fx:id="menuAccount" layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
+            <MenuButton fx:id="menuAccount" layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="%accSettings">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="Edit my account" />
                 <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="Log out" />
@@ -70,12 +65,12 @@
                   </ImageView>
                </graphic>
             </MenuButton>
-            <Label layoutX="34.0" layoutY="114.0" text="Find all the scientific papers below. ">
+            <Label layoutX="34.0" layoutY="114.0" text="%find">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Label>
-            <Button layoutX="691.0" layoutY="236.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-radius: 1;" text="View" />
+            <Button layoutX="691.0" layoutY="236.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-radius: 1;" text="%view" />
             <Button fx:id="btnFilter" layoutX="691.0" layoutY="181.0" mnemonicParsing="false" onAction="#filterAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-radius: 1;" text="Filter" />
             <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="822.0" layoutY="187.0" opacity="0.7">
                <image>
@@ -126,24 +121,19 @@
             <TableView fx:id="tableViewPapers1" layoutX="23.0" layoutY="172.0" prefHeight="418.0" prefWidth="569.0">
                <columns>
                   <TableColumn fx:id="colId1" prefWidth="38.399993896484375" text="ID" />
-                  <TableColumn fx:id="colTitle1" prefWidth="114.39999008178711" text="Title" />
-                  <TableColumn fx:id="colAuthor1" prefWidth="104.00004577636719" text="Author" />
-                  <TableColumn fx:id="colReleaseDate1" prefWidth="108.79998779296875" text="Release date" />
-                  <TableColumn fx:id="colCategory1" prefWidth="100.79998779296875" text="Category" />
-                  <TableColumn fx:id="colType1" prefWidth="102.4000244140625" text="Type" />
+                  <TableColumn fx:id="colTitle1" prefWidth="114.39999008178711" text="%title" />
+                  <TableColumn fx:id="colAuthor1" prefWidth="104.00004577636719" text="%author" />
+                  <TableColumn fx:id="colReleaseDate1" prefWidth="108.79998779296875" text="%releaseDate" />
+                  <TableColumn fx:id="colCategory1" prefWidth="100.79998779296875" text="%category" />
+                  <TableColumn fx:id="colType1" prefWidth="102.4000244140625" text="%type" />
                </columns>
             </TableView>
-            <Label layoutX="92.0" layoutY="60.0" text="Welcome back, ">
+            <Label fx:id="labelGreeting1" layoutX="92.0" layoutY="60.0" text="greeting">
                <font>
                   <Font name="Century Gothic" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="labelName" layoutX="270.0" layoutY="60.0" text="Selma">
-               <font>
-                  <Font name="Century Gothic" size="22.0" />
-               </font>
-            </Label>
-            <MenuButton layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="Account settings">
+            <MenuButton layoutX="693.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="%accSettings">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="Edit my account" />
                   <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="Log out" />
@@ -156,18 +146,18 @@
                   </ImageView>
                </graphic>
             </MenuButton>
-            <Label layoutX="34.0" layoutY="114.0" text="Find all the scientific papers below. ">
+            <Label layoutX="34.0" layoutY="114.0" text="%find">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="choiceType" layoutX="620.0" layoutY="381.0" prefHeight="34.0" prefWidth="228.0" />
             <ChoiceBox fx:id="choiceCategory" layoutX="620.0" layoutY="292.0" prefHeight="34.0" prefWidth="228.0" />
-            <Label layoutX="623.0" layoutY="172.0" text="Papers from:" textFill="WHITE" />
-            <Label layoutX="623.0" layoutY="260.0" text="Category:" textFill="WHITE" />
+            <Label layoutX="623.0" layoutY="172.0" text="%papersFrom" textFill="WHITE" />
+            <Label layoutX="623.0" layoutY="260.0" text="%categLabel" textFill="WHITE" />
             <DatePicker fx:id="dpReleaseDate" layoutX="620.0" layoutY="201.0" prefHeight="34.0" prefWidth="228.0" />
-            <Label layoutX="623.0" layoutY="349.0" text="Type:" textFill="WHITE" />
-            <Button fx:id="btnView" layoutX="741.0" layoutY="529.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="109.0" text="View" />
+            <Label layoutX="623.0" layoutY="349.0" text="%typeLabel" textFill="WHITE" />
+            <Button fx:id="btnView" layoutX="741.0" layoutY="529.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="109.0" text="%view" />
             <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="824.0" layoutY="536.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/view%20glyph.png" />
@@ -179,16 +169,16 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Button fx:id="btnSearch" layoutX="623.0" layoutY="529.0" mnemonicParsing="false" onAction="#searchAction" prefHeight="34.0" prefWidth="109.0" text="Search" />
+            <Button fx:id="btnSearch" layoutX="623.0" layoutY="529.0" mnemonicParsing="false" onAction="#searchAction" prefHeight="34.0" prefWidth="109.0" text="%search" />
             <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="705.0" layoutY="536.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/search%20glyph.png" />
                </image>
             </ImageView>
             <ChoiceBox fx:id="choiceAuthor" layoutX="620.0" layoutY="462.0" prefHeight="34.0" prefWidth="228.0" />
-            <Label layoutX="623.0" layoutY="429.0" text="Author:" textFill="WHITE" />
+            <Label layoutX="623.0" layoutY="429.0" text="%authorLabel" textFill="WHITE" />
             <Button layoutX="730.0" layoutY="142.0" mnemonicParsing="false" onAction="#resetFiltersAction" opacity="0.0" prefHeight="42.0" prefWidth="146.0" />
-            <Label layoutX="787.0" layoutY="154.0" prefHeight="18.0" prefWidth="82.0" text="Reset all filters" textFill="#a7a7a7" />
+            <Label layoutX="787.0" layoutY="154.0" prefHeight="18.0" prefWidth="82.0" text="%reset" textFill="#a7a7a7" />
             <Button layoutX="740.0" layoutY="152.0" mnemonicParsing="false" onAction="#resetFiltersAction" opacity="0.0" prefHeight="42.0" prefWidth="146.0" />
          </children>
       </AnchorPane>

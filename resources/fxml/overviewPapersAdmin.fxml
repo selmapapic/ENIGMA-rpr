@@ -13,9 +13,9 @@
                   <Image url="@../images/background.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnDelete" layoutX="24.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #21ff1a;" text="Delete paper" />
-            <Button fx:id="btnPrint" layoutX="24.0" layoutY="252.0" mnemonicParsing="false" onAction="#printAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #07cc00;" text="Print list of all papers" />
-            <Button fx:id="btnEdit" layoutX="24.0" layoutY="84.0" mnemonicParsing="false" onAction="#editAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #84ff80;" text="Edit paper" />
+            <Button fx:id="btnDelete" layoutX="24.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #21ff1a;" text="%delete" />
+            <Button fx:id="btnPrint" layoutX="24.0" layoutY="252.0" mnemonicParsing="false" onAction="#printAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #07cc00;" text="%print" />
+            <Button fx:id="btnEdit" layoutX="24.0" layoutY="84.0" mnemonicParsing="false" onAction="#editAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #84ff80;" text="%edit" />
             <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="90.0" opacity="0.8">
                <image>
                   <Image url="@../images/edit%20glyph.png" />
@@ -31,12 +31,12 @@
                   <Image url="@../images/print%20glyph.png" />
                </image>
             </ImageView>
-            <Label layoutX="24.0" layoutY="27.0" text="Papers overview..." textFill="WHITE">
+            <Label layoutX="24.0" layoutY="27.0" text="%paperOverview" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="21.0" />
                </font>
             </Label>
-            <Button fx:id="btnExit" layoutX="24.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #059900;" text="Exit" />
+            <Button fx:id="btnExit" layoutX="24.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #059900;" text="%exit" />
             <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="201.0" layoutY="342.0">
                <image>
                   <Image url="@../images/exit%20glyph.png" />
@@ -44,12 +44,12 @@
             </ImageView>
             <TableView fx:id="tableViewPapers" layoutX="260.0" layoutY="68.0" prefHeight="398.0" prefWidth="611.0">
               <columns>
-                  <TableColumn fx:id="colId" prefWidth="32.0" text="Id" />
-                <TableColumn fx:id="colTitle" prefWidth="131.99993896484375" text="Title" />
-                <TableColumn fx:id="colAuthor" prefWidth="135.20004272460938" text="Author" />
-                  <TableColumn fx:id="colReleaseDate" prefWidth="102.40005493164062" text="Release date" />
-                  <TableColumn fx:id="colCategory" prefWidth="96.7999267578125" text="Category" />
-                  <TableColumn fx:id="colType" prefWidth="114.39990234375" text="Type" />
+                  <TableColumn fx:id="colId" prefWidth="32.0" text="ID" />
+                <TableColumn fx:id="colTitle" prefWidth="131.99993896484375" text="%title" />
+                <TableColumn fx:id="colAuthor" prefWidth="135.20004272460938" text="%author" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="102.40005493164062" text="%releaseDate" />
+                  <TableColumn fx:id="colCategory" prefWidth="96.7999267578125" text="%category" />
+                  <TableColumn fx:id="colType" prefWidth="114.39990234375" text="%type" />
               </columns>
             </TableView>
          </children>
