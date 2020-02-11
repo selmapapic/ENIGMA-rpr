@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -20,6 +21,7 @@ public class MainWinController {
     public PasswordField fldPass;
     public UsersDAO dao = UsersDAO.getInstance();
     public AnchorPane anchorSignUp, anchorSignIn;
+    public Label labelWrongPass;
     //register
     public TextField fldName, fldSurname, fldEmailSignUp;
     public PasswordField fldPassSignUp;
@@ -50,10 +52,20 @@ public class MainWinController {
 
     @FXML
     public void initialize () {
+        labelWrongPass.setText("");
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
         choiceEduDeg.getSelectionModel().select("0");
+    }
+
+    private void invalidateField (TextField textField) {
+        textField.getStyleClass().removeAll("validField");
+        textField.getStyleClass().add("invalidField");
+    }
+
+    private void removeCssField (TextField textField) {
+        textField.getStyleClass().removeAll("invalidField", "validField");
     }
 
     public void adminAction () throws IOException {
@@ -74,8 +86,8 @@ public class MainWinController {
         anchorSignUp.toFront();
         fldEmail.setText("");
         fldPass.setText("");
-        fldEmail.getStyleClass().removeAll("invalidField", "validField");
-        fldPass.getStyleClass().removeAll("invalidField", "validField");
+        invalidateField(fldEmail);
+        invalidateField(fldPass);
     }
 
     public void openSignInAction () {
@@ -85,44 +97,66 @@ public class MainWinController {
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
         choiceEduDeg.getSelectionModel().clearSelection();
-        fldName.getStyleClass().removeAll("invalidField", "validField");       //brisu se i obrubi
-        fldSurname.getStyleClass().removeAll("invalidField", "validField");
-        fldEmailSignUp.getStyleClass().removeAll("invalidField", "validField");
-        fldPassSignUp.getStyleClass().removeAll("invalidField", "validField");
+        invalidateField(fldName);       //brisu se obrubi
+        invalidateField(fldSurname);
+        invalidateField(fldEmailSignUp);
+        invalidateField(fldPassSignUp);
     }
+
+
 
     private void fieldsValidationCheck(TextField fldName, TextField fldSurname) {
         if(fldName.getText().isEmpty()) {
-            fldName.getStyleClass().removeAll("validField");
-            fldName.getStyleClass().add("invalidField");
+            invalidateField(fldName);
         }
         else {
             fldName.getStyleClass().removeAll("invalidField");
         }
 
         if(fldSurname.getText().isEmpty()) {
-            fldSurname.getStyleClass().removeAll("validField");
-            fldSurname.getStyleClass().add("invalidField");
+            invalidateField(fldSurname);
         }
         else {
             fldSurname.getStyleClass().removeAll("invalidField");
         }
     }
 
+    private String hashPassword(String plainTextPassword) {     //hesiranje passworda
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+    }
+
+    private boolean checkPass(String plainPassword, String hashedPassword) {    //provjera hesiranog i obicnog teksta
+        return BCrypt.checkpw(plainPassword, hashedPassword);
+    }
+
     public void registerAction () {
         if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmail.getText().isEmpty() || fldPass.getText().isEmpty() || (choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") && choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             fieldsValidationCheck(fldName, fldSurname);
-
             fieldsValidationCheck(fldEmailSignUp, fldPassSignUp);
         }
 
         if(!isTheStyleClassInvalid(fldName.getStyleClass().toString()) && !isTheStyleClassInvalid(fldSurname.getStyleClass().toString()) //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
                 && !isTheStyleClassInvalid(fldEmailSignUp.getStyleClass().toString()) && !isTheStyleClassInvalid(fldPassSignUp.getStyleClass().toString()) && !(choiceEduDeg.getSelectionModel().getSelectedItem() == null)) {
-            User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), fldPassSignUp.getText());
+            User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
             dao.insertNewUser(user);
 
             openSignInAction();
         }
+    }
+
+    public void showAlertWrongInfo () {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            alert.setTitle("Greška");
+            alert.setHeaderText("Pogrešni pristupni podaci!");
+            alert.setContentText("Pokušajte ponovo!");
+        }
+        else {
+            alert.setTitle("Error");
+            alert.setHeaderText("Incorrect email and password!");
+            alert.setContentText("Try again!");
+        }
+        alert.showAndWait();
     }
 
     public void signInAction () throws IOException {
@@ -130,40 +164,38 @@ public class MainWinController {
             fieldsValidationCheck(fldEmail, fldPass);
         }
         else {
-            fldPass.getStyleClass().removeAll("invalidField", "validField"); //uklanja se crveni obrub ukoliko nisu prazna polja
-            fldEmail.getStyleClass().removeAll("invalidField", "validField");
-            User user = dao.getUser(fldEmail.getText(), fldPass.getText());
+            removeCssField(fldPass); //uklanja se crveni obrub ukoliko nisu prazna polja
+            removeCssField(fldEmail);
+
+            User user = dao.getUser(fldEmail.getText());
 
             if(user == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                if(Locale.getDefault().getCountry().equals("BS")) {
-                    alert.setTitle("Greška");
-                    alert.setHeaderText("Pogrešan email i šifra!");
-                    alert.setContentText("Pokušajte ponovo!");
-                    alert.showAndWait();
-                }
-                else {
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Incorrect email and password!");
-                    alert.setContentText("Try again!");
-                    alert.showAndWait();
-                }
+                showAlertWrongInfo();
             }
             else {
-                ResourceBundle bundle = ResourceBundle.getBundle("translation");
-                Stage stageMainWin = new Stage();
-                MainUserFormController controller = new MainUserFormController(user);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), bundle);
-                loader.setController(controller);
-                Parent root = loader.load();
-                if(Locale.getDefault().getCountry().equals("BS")) stageMainWin.setTitle("Naučni radovi");
-                else stageMainWin.setTitle("Scientific papers");
-                stageMainWin.setResizable(true);
-                stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                stageMainWin.setResizable(false);
-                stageMainWin.show();
-                fldPass.setText("");
-                fldEmail.setText("");
+                boolean checkPassowrd = checkPass(fldPass.getText(), user.getPassword());       //provjera hesiranog i unesenog passworda
+                if(!checkPassowrd) {
+                    if(Locale.getDefault().getCountry().equals("BS")) labelWrongPass.setText("Pogrešna šifra");
+                    else labelWrongPass.setText("Incorrect password");
+                }
+                else {
+                    labelWrongPass.setText(""); //brise se labela za "wrong pass"
+
+                    ResourceBundle bundle = ResourceBundle.getBundle("translation");
+                    Stage stageMainWin = new Stage();
+                    MainUserFormController controller = new MainUserFormController(user);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), bundle);
+                    loader.setController(controller);
+                    Parent root = loader.load();
+                    if (Locale.getDefault().getCountry().equals("BS")) stageMainWin.setTitle("Naučni radovi");
+                    else stageMainWin.setTitle("Scientific papers");
+                    stageMainWin.setResizable(true);
+                    stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    stageMainWin.setResizable(false);
+                    stageMainWin.show();
+                    fldPass.setText("");
+                    fldEmail.setText("");
+                }
             }
         }
 

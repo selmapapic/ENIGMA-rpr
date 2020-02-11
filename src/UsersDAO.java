@@ -35,7 +35,7 @@ public class UsersDAO {
         try {
             insertUserQuery = conn.prepareStatement("INSERT INTO user VALUES (?,?,?,?,?,?)");
             getUserId = conn.prepareStatement("SELECT MAX (id)+1 FROM user");
-            certainUserQuery = conn.prepareStatement("SELECT * FROM user WHERE email=? AND password=?");
+            certainUserQuery = conn.prepareStatement("SELECT * FROM user WHERE email=? /*AND password=?*/");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,11 +92,11 @@ public class UsersDAO {
         }
     }
 
-    public User getUser (String email, String password) {
+    public User getUser (String email) {
         User user = null;
         try {
             certainUserQuery.setString(1, email);
-            certainUserQuery.setString(2, password);
+            //certainUserQuery.setString(2, password);
             ResultSet rs = certainUserQuery.executeQuery();
 
             if(rs.next()) {

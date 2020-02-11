@@ -14,5 +14,6 @@
     <orderEntry type="library" name="com.github.davidmoten:word-wrap:0.1.6" level="project" />
     <orderEntry type="library" name="net.sf.jasperreports:jasperreports:6.11.0" level="project" />
     <orderEntry type="library" name="org.apache.pdfbox:pdfbox:2.0.4" level="project" />
+    <orderEntry type="library" name="org.mindrot:jbcrypt:0.3m" level="project" />
   </component>
 </module>
