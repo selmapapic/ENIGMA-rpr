@@ -72,6 +72,16 @@ public class PapersDAO {
         }
     }
 
+    private void addPaperHelp(ScientificPaper paper) throws SQLException {
+        addPaperQuery.setString(2, paper.getTitle());
+        addPaperQuery.setString(3, paper.getAuthor().getName());
+        addPaperQuery.setString(4, paper.getAuthor().getSurname());
+        addPaperQuery.setString(5, paper.getReleaseDate().toString());
+        addPaperQuery.setString(6, paper.getCategory());
+        addPaperQuery.setString(7, paper.getType().getName());
+        addPaperQuery.executeUpdate();
+    }
+
     public void addPaper (ScientificPaper paper) {
         try {
             ResultSet rs = getPaperId.executeQuery();
@@ -158,16 +168,6 @@ public class PapersDAO {
             e.printStackTrace();
         }
 
-    }
-
-    private void addPaperHelp(ScientificPaper paper) throws SQLException {
-        addPaperQuery.setString(2, paper.getTitle());
-        addPaperQuery.setString(3, paper.getAuthor().getName());
-        addPaperQuery.setString(4, paper.getAuthor().getSurname());
-        addPaperQuery.setString(5, paper.getReleaseDate().toString());
-        addPaperQuery.setString(6, paper.getCategory());
-        addPaperQuery.setString(7, paper.getType().getName());
-        addPaperQuery.executeUpdate();
     }
 
     public List<String> getAllCategories () {

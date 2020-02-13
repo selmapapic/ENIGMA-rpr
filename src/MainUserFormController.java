@@ -84,7 +84,7 @@ public class MainUserFormController {
 
     }
 
-    private void defaultChoiceValues () {
+    private void defaultChoiceValues () {   //postavljamo cb-ove na default vrijednosti
         if(Locale.getDefault().getCountry().equals("BS")) {
             Author a = new Author("Svi", "autori");
             choiceAuthor.getSelectionModel().select(a);
@@ -99,7 +99,7 @@ public class MainUserFormController {
         }
     }
 
-    public Callback<DatePicker, DateCell> disableDP () {
+    private Callback<DatePicker, DateCell> disableFutureDates() {
         return new Callback<>() {
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -117,12 +117,32 @@ public class MainUserFormController {
         };
     }
 
+    private String readFile (File file) throws IOException {
+        String paper = "";
+        if(file == null) return "";
+        try {
+            Scanner scanner = new Scanner(file);
+            scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                paper += scanner.nextLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return paper;
+    }
+
+    private void openPdf(String pdf) throws IOException {
+        Desktop.getDesktop().open(new File(pdf));
+    }
+
     @FXML
     public void initialize () {
         anchorMainView.toFront();
         if(Locale.getDefault().getCountry().equals("BS")) {
-            labelGreeting.setText("Pozdrav, " + currentUser.getName());
-            labelGreeting1.setText("Pozdrav, " + currentUser.getName());
+            labelGreeting.setText("Zdravo, " + currentUser.getName());
+            labelGreeting1.setText("Zdravo, " + currentUser.getName());
         }
         else {
             labelGreeting.setText("Welcome back, " + currentUser.getName());
@@ -139,7 +159,7 @@ public class MainUserFormController {
         defaultChoiceValues();
         initializeTableView();
 
-        dpReleaseDate.setDayCellFactory(disableDP());
+        dpReleaseDate.setDayCellFactory(disableFutureDates());
 
         tableViewPapers.getSelectionModel().selectedItemProperty().addListener((obs, oldIme, newIme) -> { //listener for current paper
             if(tableViewPapers.getSelectionModel().getSelectedItem() == null) currentPaper = null;
@@ -161,45 +181,14 @@ public class MainUserFormController {
         isAnchorFilterOn = true;
     }
 
-    public String readFile (File file) throws IOException {
-        String paper = "";
-        if(file == null) return "";
-        try {
-            Scanner scanner = new Scanner(file);
-            scanner.nextLine();
-            while (scanner.hasNextLine()) {
-                paper += scanner.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return paper;
-    }
-
-    private void openPdf(String pdf) throws IOException {
-        Desktop.getDesktop().open(new File(pdf));
-    }
-
-    //copied from stack overflow
-    public void viewAction () throws IOException {
+    //za pdf copied from stack overflow
+    public void viewAction () throws IOException, NoPaperSelectedException {
         if(isAnchorFilterOn) {
             currentPaper = currentPaper1;
         }
+
         if(currentPaper == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            if(Locale.getDefault().getCountry().equals("BS")) {
-                alert.setTitle("Upozorenje");
-                alert.setHeaderText("Niste izabrali nijedan rad sa liste!");
-                alert.setContentText("Molimo prvo izaberite rad, a potom kliknite 'Pogledaj'.");
-            }
-            else {
-                alert.setTitle("Warning");
-                alert.setHeaderText("You haven't selected any of the papers from the list!");
-                alert.setContentText("Please choose one and then click 'View'.");
-            }
-            alert.showAndWait();
-            return;
+            throw new NoPaperSelectedException("Nothing selected");
         }
         PDDocument doc = null;
         try
@@ -273,6 +262,10 @@ public class MainUserFormController {
 
             doc.save("resources/pdfs/" + currentPaper.getTitle() + ".pdf");
             doc.close();
+
+
+
+
 
             openPdf("resources/pdfs/"  + currentPaper.getTitle() + ".pdf");
         } catch (IOException e) {

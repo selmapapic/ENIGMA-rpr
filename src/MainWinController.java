@@ -22,7 +22,7 @@ public class MainWinController {
     public PasswordField fldPass;
     public UsersDAO dao = UsersDAO.getInstance();
     public AnchorPane anchorSignUp, anchorSignIn;
-    public Label labelWrongPass, labelWrongFormat;
+    public Label labelWrongPass, labelWrongFormat, labelAcDegree;
     //register
     public TextField fldName, fldSurname, fldEmailSignUp;
     public PasswordField fldPassSignUp;
@@ -30,8 +30,53 @@ public class MainWinController {
     public ChoiceBox<String> choiceEduDeg;
     public ObservableList<String> academicDegree = FXCollections.observableArrayList();
 
-    private boolean isTheStyleClassInvalid (String s) {
-        return s.contains("invalidField");
+    private boolean isTheStyleClassInvalid () {
+        return fldName.getStyleClass().toString().contains("invalidField") && fldSurname.getStyleClass().toString().contains("invalidField") &&
+                fldEmailSignUp.getStyleClass().toString().contains("invalidField") && fldPassSignUp.getStyleClass().toString().contains("invalidField");
+    }
+
+    private void invalidateField (TextField textField) {
+        textField.getStyleClass().removeAll("validField");
+        textField.getStyleClass().add("invalidField");
+    }
+
+    private void removeCssField (TextField textField) {
+        textField.getStyleClass().removeAll("invalidField", "validField");
+    }
+
+    private String hashPassword(String plainTextPassword) {     //hesiranje passworda
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+    }
+
+    private boolean checkPass(String plainPassword, String hashedPassword) {    //provjera hesiranog i obicnog teksta
+        return BCrypt.checkpw(plainPassword, hashedPassword);
+    }
+
+    private boolean isValidEmail (String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+
+    private void showAlertWrongInfo () {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            alert.setTitle("Greška");
+            alert.setHeaderText("Pogrešni pristupni podaci!");
+            alert.setContentText("Pokušajte ponovo!");
+        }
+        else {
+            alert.setTitle("Error");
+            alert.setHeaderText("Incorrect email and password!");
+            alert.setContentText("Try again!");
+        }
+        alert.showAndWait();
     }
 
     public MainWinController() {
@@ -55,20 +100,12 @@ public class MainWinController {
     public void initialize () {
         labelWrongPass.setText("");
         labelWrongFormat.setText("");
+        labelAcDegree.setText("");
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
         if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
         else choiceEduDeg.setValue("Academic degree");
-    }
-
-    private void invalidateField (TextField textField) {
-        textField.getStyleClass().removeAll("validField");
-        textField.getStyleClass().add("invalidField");
-    }
-
-    private void removeCssField (TextField textField) {
-        textField.getStyleClass().removeAll("invalidField", "validField");
     }
 
     public void adminAction () throws IOException {
@@ -99,99 +136,61 @@ public class MainWinController {
         fldSurname.setText("");
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
-        choiceEduDeg.getSelectionModel().clearSelection();
+        if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
+        else choiceEduDeg.setValue("Academic degree");
         removeCssField(fldName);       //brisu se obrubi
         removeCssField(fldSurname);
         removeCssField(fldEmailSignUp);
         removeCssField(fldPassSignUp);
     }
 
-    private void fieldsValidationCheck(TextField fldName, TextField fldSurname) {
-        if(fldName.getText().isEmpty()) {
-            invalidateField(fldName);
-        }
-        else {
-            fldName.getStyleClass().removeAll("invalidField");
-        }
-
-        if(fldSurname.getText().isEmpty()) {
-            invalidateField(fldSurname);
-        }
-        else {
-            fldSurname.getStyleClass().removeAll("invalidField");
-        }
-    }
-
-    private String hashPassword(String plainTextPassword) {     //hesiranje passworda
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-    }
-
-    private boolean checkPass(String plainPassword, String hashedPassword) {    //provjera hesiranog i obicnog teksta
-        return BCrypt.checkpw(plainPassword, hashedPassword);
-    }
-
-    private boolean isValidEmail (String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
-
     public void registerAction () {
-        if(fldName.getText().isEmpty() || fldSurname.getText().isEmpty() || fldEmailSignUp.getText().isEmpty() || fldPassSignUp.getText().isEmpty() || (choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") && choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
-            fieldsValidationCheck(fldName, fldSurname);
-            fieldsValidationCheck(fldEmailSignUp, fldPassSignUp);
+        if(fldName.getText().isEmpty()) invalidateField(fldName);
+        else removeCssField(fldName);
+        if(fldSurname.getText().isEmpty()) invalidateField(fldSurname);
+        else removeCssField(fldSurname);
+        if(fldEmailSignUp.getText().isEmpty() || (!fldEmailSignUp.getText().isEmpty() && !isValidEmail(fldEmailSignUp.getText()))) {
+            invalidateField(fldEmailSignUp);
             if(!fldEmailSignUp.getText().isEmpty() && !isValidEmail(fldEmailSignUp.getText())) {
                 if(Locale.getDefault().getCountry().equals("BS")) labelWrongFormat.setText("Pogrešan format email adrese");
                 else labelWrongFormat.setText("Wrong email format");
-                invalidateField(fldEmailSignUp);
             }
             else {
                 labelWrongFormat.setText("");
             }
         }
-
-        if(!isTheStyleClassInvalid(fldName.getStyleClass().toString()) && !isTheStyleClassInvalid(fldSurname.getStyleClass().toString()) //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
-                && !isTheStyleClassInvalid(fldEmailSignUp.getStyleClass().toString()) && !isTheStyleClassInvalid(fldPassSignUp.getStyleClass().toString()) && !(choiceEduDeg.getSelectionModel().getSelectedItem() == null)) {
-            if(!isValidEmail(fldEmailSignUp.getText())) {
-                if(Locale.getDefault().getCountry().equals("BS")) labelWrongFormat.setText("Pogrešan format email adrese");
-                else labelWrongFormat.setText("Wrong email format");
-                invalidateField(fldEmailSignUp);
-            }
-            else {
+        else {
             removeCssField(fldEmailSignUp);
             labelWrongFormat.setText("");
+        }
+        if(fldPassSignUp.getText().isEmpty()) invalidateField(fldPassSignUp);
+        else removeCssField(fldPassSignUp);
+        System.out.println(choiceEduDeg.getSelectionModel().getSelectedItem());
+        if(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree")) {
+            choiceEduDeg.getStyleClass().add("invalidField");
+            if(Locale.getDefault().getCountry().equals("BS")) labelAcDegree.setText("Niste odabrali stepen obrazovanja");
+            else labelAcDegree.setText("Academic degree not selected");
+        }
+        else {
+            choiceEduDeg.getStyleClass().removeAll("invalidField");
+            labelAcDegree.setText("");
+        }
+        //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
+        if(!isTheStyleClassInvalid() && !(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
             dao.insertNewUser(user);
 
             openSignInAction();
-            }
-        }
-    }
 
-    public void showAlertWrongInfo () {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        if(Locale.getDefault().getCountry().equals("BS")) {
-            alert.setTitle("Greška");
-            alert.setHeaderText("Pogrešni pristupni podaci!");
-            alert.setContentText("Pokušajte ponovo!");
         }
-        else {
-            alert.setTitle("Error");
-            alert.setHeaderText("Incorrect email and password!");
-            alert.setContentText("Try again!");
-        }
-        alert.showAndWait();
     }
 
     public void signInAction () throws IOException {
         if(fldEmail.getText().isEmpty() || fldPass.getText().isEmpty()) {
-            fieldsValidationCheck(fldEmail, fldPass);
+            if(fldEmail.getText().isEmpty()) invalidateField(fldEmail);
+            else removeCssField(fldEmail);
+            if(fldPass.getText().isEmpty()) invalidateField(fldPass);
+            else removeCssField(fldPass);
         }
         else {
             removeCssField(fldPass); //uklanja se crveni obrub ukoliko nisu prazna polja
@@ -228,6 +227,5 @@ public class MainWinController {
                 }
             }
         }
-
     }
 }

@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,7 +15,6 @@ import net.sf.jasperreports.engine.JRException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -32,6 +30,21 @@ public class OverviewAdminController {
     public PapersDAO dao = PapersDAO.getInstance();
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper;
+
+//    private void showAlert () {
+//        Alert alert = new Alert(Alert.AlertType.WARNING);
+//        if(Locale.getDefault().getCountry().equals("BS")) {
+//            alert.setTitle("Upozorenje");
+//            alert.setHeaderText("Niste izabrali nijedan rad sa liste.");
+//            alert.setContentText("Molimo izaberite rad pa pokušajte ponovo!");
+//        }
+//        else {
+//            alert.setTitle("Warning");
+//            alert.setHeaderText("You haven't selected any of the papers from the list!");
+//            alert.setContentText("Please choose one and then try again!");
+//        }
+//        alert.showAndWait();
+//    }
 
     @FXML
     public void initialize () {
@@ -52,23 +65,8 @@ public class OverviewAdminController {
         });
     }
 
-    public void showAlert () {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        if(Locale.getDefault().getCountry().equals("BS")) {
-            alert.setTitle("Upozorenje");
-            alert.setHeaderText("Niste izabrali nijedan rad sa liste.");
-            alert.setContentText("Molimo izaberite rad pa pokušajte ponovo!");
-        }
-        else {
-            alert.setTitle("Warning");
-            alert.setHeaderText("You haven't selected any of the papers from the list!");
-            alert.setContentText("Please choose one and then try again!");
-        }
-        alert.showAndWait();
-    }
-
-    public void editAction () throws IOException {
-        if(currentPaper == null) showAlert();
+    public void editAction () throws IOException, NoPaperSelectedException {
+        if(currentPaper == null) throw new NoPaperSelectedException("Nothing selected");
         else {
             ResourceBundle bundle = ResourceBundle.getBundle("translation");
             Stage stageUpload = new Stage();
@@ -93,8 +91,8 @@ public class OverviewAdminController {
         }
     }
 
-    public void deleteAction () {
-        if(currentPaper == null) showAlert();
+    public void deleteAction () throws NoPaperSelectedException {
+        if(currentPaper == null) throw new NoPaperSelectedException("Nothing selected");
         else {
             File file = new File("resources/files", currentPaper.getTitle() + ".txt");
             file.delete();

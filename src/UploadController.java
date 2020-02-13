@@ -1,5 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -22,17 +23,7 @@ public class UploadController {
     public ScientificPaper forEdit;
     private String oldTitle;
 
-    public UploadController (ScientificPaper paper) {
-        forEdit = paper;
-        type.add("Bachelor's Thesis");
-        type.add("Doctorate");
-        type.add("Master's Thesis");
-        type.add("Scientific Article");
-        type.add("Seminary Paper");
-        type.add("Other");
-    }
-
-    private Callback<DatePicker, DateCell> disableDP () {
+    private Callback<DatePicker, DateCell> disableFutureDates() {
         return new Callback<>() {
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -50,15 +41,7 @@ public class UploadController {
         };
     }
 
-    public void initialize() {
-        fillPlacesForEdit();
-        choiceType.setItems(type);
-        choiceType.setValue("Other");
-        dpDateOfIssue.setValue(LocalDate.now());
-        dpDateOfIssue.setDayCellFactory(disableDP());
-    }
-
-    public String readFile (File file) {
+    private String readFile (File file) {
         String paper = "";
         if(file == null) return "";
         try {
@@ -71,24 +54,6 @@ public class UploadController {
             e.printStackTrace();
         }
         return paper;
-    }
-
-    public void writeFile (File file) {
-        if(file == null) return;
-        try {
-            FileWriter writer = new FileWriter(file);
-            String s = fldTitle.getText() + "\n" + areaText.getText();
-            String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
-            writer.write(wrapped);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void cancelAction () {
-        Stage stage = (Stage) fldTitle.getScene().getWindow();
-        stage.close();
     }
 
     private void fillPlacesForEdit () {
@@ -105,32 +70,63 @@ public class UploadController {
         }
     }
 
-    public void validateField (TextField field) {
+    private void writeFile (File file) {
+        if(file == null) return;
+        try {
+            FileWriter writer = new FileWriter(file);
+            String s = fldTitle.getText() + "\n" + areaText.getText();
+            String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
+            writer.write(wrapped);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void validateField (TextField field) {
         field.getStyleClass().removeAll("invalidField");
         field.getStyleClass().add("validField");
     }
 
-    public void invalidateField (TextField field) {
+    private void invalidateField (TextField field) {
         field.getStyleClass().removeAll("validField");
         field.getStyleClass().add("invalidField");
+    }
+
+    public UploadController (ScientificPaper paper) {
+        forEdit = paper;
+        type.add("Bachelor's Thesis");
+        type.add("Doctorate");
+        type.add("Master's Thesis");
+        type.add("Scientific Article");
+        type.add("Seminary Paper");
+        type.add("Other");
+    }
+
+    @FXML
+    public void initialize() {
+        fillPlacesForEdit();
+        choiceType.setItems(type);
+        choiceType.setValue("Other");
+        dpDateOfIssue.setValue(LocalDate.now());
+        dpDateOfIssue.setDayCellFactory(disableFutureDates());
+    }
+
+    public void cancelAction () {
+        Stage stage = (Stage) fldTitle.getScene().getWindow();
+        stage.close();
     }
 
     public void submitAction () throws IOException {
         if(fldTitle.getText().isEmpty() || fldAuthorName.getText().isEmpty() || fldAuthorSurname.getText().isEmpty()) {
             if (fldTitle.getText().isEmpty()) invalidateField(fldTitle);
-            else {
-                validateField(fldTitle);
-            }
+            else validateField(fldTitle);
 
             if (fldAuthorName.getText().isEmpty()) invalidateField(fldAuthorName);
-            else {
-                validateField(fldAuthorName);
-            }
+            else validateField(fldAuthorName);
 
             if (fldAuthorSurname.getText().isEmpty()) invalidateField(fldAuthorSurname);
-            else {
-                validateField(fldAuthorSurname);
-            }
+            else validateField(fldAuthorSurname);
         }
         else {
 

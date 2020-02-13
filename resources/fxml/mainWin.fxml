@@ -46,6 +46,46 @@
       </Label>
       <AnchorPane layoutX="390.0" layoutY="31.0">
          <children>
+            <AnchorPane fx:id="anchorSignIn" prefHeight="432.0" prefWidth="266.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label layoutX="125.0" layoutY="345.0" prefHeight="18.0" prefWidth="125.0" style="-fx-text-fill: #058900;" text="%createAcc">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAdmin" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#adminAction" prefHeight="26.0" prefWidth="232.0" style="-fx-opacity: 0.9; -fx-background-color: e8ffe3;" text="Administrator" AnchorPane.rightAnchor="20.600000000000023">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Button>
+                  <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="131.0" layoutY="37.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
+                  <TextField fx:id="fldEmail" layoutX="24.0" layoutY="138.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <PasswordField fx:id="fldPass" layoutX="24.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <Label layoutX="87.0" layoutY="71.0" prefHeight="36.0" prefWidth="109.0" text="%signIn" textAlignment="CENTER">
+                     <font>
+                        <Font name="Century Gothic Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnSignIn" layoutX="25.0" layoutY="294.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%signIn" />
+                  <Button fx:id="btnOpenRegister" layoutX="122.0" layoutY="337.0" mnemonicParsing="false" onAction="#openRegisterAction" opacity="0.0" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #058900;" text="Register" />
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="208.0" opacity="0.37">
+                     <image>
+                        <Image url="@../images/password%20glyph.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="146.0" opacity="0.37">
+                     <image>
+                        <Image url="@../images/email%20glyph.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="33.0" layoutY="345.0" prefHeight="18.0" prefWidth="100.0" text="%newEnigma">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelWrongPass" layoutX="24.0" layoutY="241.0" text="wrongPass" textFill="RED" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="anchorSignUp" prefHeight="432.0" prefWidth="266.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Label layoutX="41.0" layoutY="397.0" style="-fx-text-fill: #058900;" text="%signIn">
@@ -90,46 +130,11 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="anchorSignIn" prefHeight="432.0" prefWidth="266.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <Label layoutX="125.0" layoutY="345.0" prefHeight="18.0" prefWidth="125.0" style="-fx-text-fill: #058900;" text="%createAcc">
+                  <Label fx:id="labelAcDegree" layoutX="25.0" layoutY="283.0" text="wrongFormat" textFill="RED">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font size="10.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnAdmin" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#adminAction" prefHeight="26.0" prefWidth="232.0" style="-fx-opacity: 0.9; -fx-background-color: e8ffe3;" text="Administrator" AnchorPane.rightAnchor="20.600000000000023">
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                  </Button>
-                  <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="131.0" layoutY="37.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
-                  <TextField fx:id="fldEmail" layoutX="24.0" layoutY="138.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <PasswordField fx:id="fldPass" layoutX="24.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <Label layoutX="87.0" layoutY="71.0" prefHeight="36.0" prefWidth="109.0" text="%signIn" textAlignment="CENTER">
-                     <font>
-                        <Font name="Century Gothic Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnSignIn" layoutX="25.0" layoutY="294.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%signIn" />
-                  <Button fx:id="btnOpenRegister" layoutX="122.0" layoutY="337.0" mnemonicParsing="false" onAction="#openRegisterAction" opacity="0.0" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #058900;" text="Register" />
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="208.0" opacity="0.37">
-                     <image>
-                        <Image url="@../images/password%20glyph.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="146.0" opacity="0.37">
-                     <image>
-                        <Image url="@../images/email%20glyph.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="33.0" layoutY="345.0" prefHeight="18.0" prefWidth="100.0" text="%newEnigma">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelWrongPass" layoutX="24.0" layoutY="241.0" text="wrongPass" textFill="RED" />
                </children>
             </AnchorPane>
          </children>
