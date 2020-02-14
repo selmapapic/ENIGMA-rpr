@@ -75,6 +75,7 @@ public class UploadController {
         try {
             FileWriter writer = new FileWriter(file);
             String s = fldTitle.getText() + "\n" + areaText.getText();
+            System.out.println(s);
             String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
             writer.write(wrapped);
             writer.close();

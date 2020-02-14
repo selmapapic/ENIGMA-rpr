@@ -137,6 +137,15 @@ public class MainUserFormController {
         Desktop.getDesktop().open(new File(pdf));
     }
 
+    private String removeIllegalCharacters (String s) {
+        s = s.replace('č','c');
+        s = s.replace('ž', 'z');
+        s = s.replace('ć', 'c');
+        s = s.replace('š', 's');
+        s = s.replace("đ", "dj");
+        return s;
+    }
+
     @FXML
     public void initialize () {
         anchorMainView.toFront();
@@ -182,13 +191,16 @@ public class MainUserFormController {
     }
 
     //za pdf copied from stack overflow
-    public void viewAction () throws IOException, NoPaperSelectedException {
+    public void viewAction () throws IOException {
         if(isAnchorFilterOn) {
             currentPaper = currentPaper1;
         }
-
-        if(currentPaper == null) {
-            throw new NoPaperSelectedException("Nothing selected");
+        try {
+            if (currentPaper == null) {
+                throw new NoPaperSelectedException("Nothing selected");
+            }
+        } catch (NoPaperSelectedException e) {
+            return;
         }
         PDDocument doc = null;
         try
@@ -210,6 +222,7 @@ public class MainUserFormController {
 
             File file = new File("resources/files", currentPaper.getTitle() + ".txt");
             String text = readFile(file);
+            text = removeIllegalCharacters(text); //uklanjam karaktere koji se ne mogu prikazati u pdf
             List<String> lines = new ArrayList<>();
 
             for (String t : text.split("\n"))
@@ -263,8 +276,31 @@ public class MainUserFormController {
             doc.save("resources/pdfs/" + currentPaper.getTitle() + ".pdf");
             doc.close();
 
-
-
+//            new Thread(() -> {
+//                try {
+//                    Thread.sleep(4000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Platform.runLater(() -> {
+//                    ResourceBundle bundle = ResourceBundle.getBundle("translation");
+//                    Stage stageMainWin = new Stage();
+//                    //MainUserFormController controller = new MainUserFormController(user);
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), bundle);
+//                    //loader.setController(controller);
+//                    Parent root = null;
+//                    try {
+//                        root = loader.load();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    stageMainWin.setResizable(true);
+//                    stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//                    stageMainWin.setResizable(false);
+//                    stageMainWin.show();
+//                });
+//
+//            }).start();
 
 
             openPdf("resources/pdfs/"  + currentPaper.getTitle() + ".pdf");

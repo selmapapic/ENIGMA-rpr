@@ -218,7 +218,6 @@ public class MainWinController {
                     Parent root = loader.load();
                     if (Locale.getDefault().getCountry().equals("BS")) stageMainWin.setTitle("Naučni radovi");
                     else stageMainWin.setTitle("Scientific papers");
-                    stageMainWin.setResizable(true);
                     stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                     stageMainWin.setResizable(false);
                     stageMainWin.show();

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<?import java.net.URL?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #747474;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
@@ -32,40 +32,40 @@
             <Image url="@../images/background.png" />
          </image>
       </ImageView>
-      <DatePicker fx:id="dpDateOfIssue" focusTraversable="false" prefHeight="26.0" prefWidth="273.0" promptText="%releaseDate" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="4">
+      <TextField fx:id="fldTitle" focusTraversable="false" prefHeight="30.0" promptText="%title" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="fldAuthorName" focusTraversable="false" prefHeight="30.0" promptText="%authName" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="fldAuthorSurname" focusTraversable="false" prefHeight="30.0" promptText="%authSurname" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="20.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <DatePicker fx:id="dpDateOfIssue" focusTraversable="false" prefHeight="30.0" prefWidth="273.0" promptText="%releaseDate" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </DatePicker>
-      <TextField fx:id="fldTitle" focusTraversable="false" promptText="%title" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="20.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <TextField fx:id="fldAuthorName" focusTraversable="false" promptText="%authName" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="20.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <TextField fx:id="fldAuthorSurname" focusTraversable="false" promptText="%authSurname" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="20.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <ChoiceBox fx:id="choiceType" focusTraversable="false" prefHeight="26.0" prefWidth="291.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="5">
+      <ChoiceBox fx:id="choiceType" focusTraversable="false" prefHeight="30.0" prefWidth="291.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <TextField fx:id="fldCategory" focusTraversable="false" promptText="%category" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="6">
+      <TextField fx:id="fldCategory" focusTraversable="false" prefHeight="30.0" promptText="%category" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="20.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </TextField>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
         <buttons>
-          <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submitAction" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #0aab35;" text="%submit" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" prefWidth="137.0" style="-fx-background-color: #0aab35;" text="%cancel" />
+          <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submitAction" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #0aab35;" text="%submit" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #0aab35;" text="%cancel" />
         </buttons>
          <GridPane.margin>
             <Insets right="20.0" />

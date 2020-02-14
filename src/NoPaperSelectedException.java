@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class NoPaperSelectedException extends Exception {
     public NoPaperSelectedException (String message) {
-        super(message);
+        //super(message);
         Alert alert = new Alert(Alert.AlertType.WARNING);
         if(Locale.getDefault().getCountry().equals("BS")) {
             alert.setTitle("Upozorenje");

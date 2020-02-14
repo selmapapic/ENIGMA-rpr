@@ -65,8 +65,12 @@ public class OverviewAdminController {
         });
     }
 
-    public void editAction () throws IOException, NoPaperSelectedException {
-        if(currentPaper == null) throw new NoPaperSelectedException("Nothing selected");
+    public void editAction () throws IOException {
+        if(currentPaper == null) try {
+            throw new NoPaperSelectedException("Nothing selected");
+        } catch (NoPaperSelectedException e) {
+            return;
+        }
         else {
             ResourceBundle bundle = ResourceBundle.getBundle("translation");
             Stage stageUpload = new Stage();

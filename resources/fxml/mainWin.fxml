@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="500.0" fitWidth="697.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
          <image>
@@ -100,6 +100,9 @@
                   </Button>
                   <Line endX="103.4000244140625" endY="9.999984741210938" layoutX="131.0" layoutY="37.0" startX="-106.19998168945312" startY="9.999984741210938" style="-fx-opacity: 0.2;" />
                   <TextField fx:id="fldName" layoutX="24.0" layoutY="97.0" prefHeight="34.0" prefWidth="211.0" promptText="%name" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <TextField fx:id="fldSurname" layoutX="24.0" layoutY="146.0" prefHeight="34.0" prefWidth="211.0" promptText="%surname" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <TextField fx:id="fldEmailSignUp" layoutX="23.0" layoutY="199.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+                  <ChoiceBox fx:id="choiceEduDeg" layoutX="24.0" layoutY="249.0" prefHeight="34.0" prefWidth="211.0" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" />
                   <PasswordField fx:id="fldPassSignUp" layoutX="23.0" layoutY="300.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
                   <Label alignment="CENTER" layoutX="23.0" layoutY="55.0" prefHeight="36.0" prefWidth="211.0" text="%signUp" textAlignment="CENTER">
                      <font>
@@ -113,9 +116,6 @@
                         <Image url="@../images/password%20glyph.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="fldEmailSignUp" layoutX="23.0" layoutY="199.0" prefHeight="34.0" prefWidth="211.0" promptText="%email" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-                  <ChoiceBox fx:id="choiceEduDeg" layoutX="24.0" layoutY="249.0" prefHeight="34.0" prefWidth="211.0" style="-fx-background-radius: 1; -fx-border-radius: 1; -fx-background-color: #e3e3e3;" />
-                  <TextField fx:id="fldSurname" layoutX="24.0" layoutY="146.0" prefHeight="34.0" prefWidth="211.0" promptText="%surname" style="-fx-border-radius: 1; -fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
                   <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="211.0" layoutY="207.0" opacity="0.37">
                      <image>
                         <Image url="@../images/email%20glyph.png" />
