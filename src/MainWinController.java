@@ -31,8 +31,8 @@ public class MainWinController {
     public ObservableList<String> academicDegree = FXCollections.observableArrayList();
 
     private boolean isTheStyleClassInvalid () {
-        return fldName.getStyleClass().toString().contains("invalidField") && fldSurname.getStyleClass().toString().contains("invalidField") &&
-                fldEmailSignUp.getStyleClass().toString().contains("invalidField") && fldPassSignUp.getStyleClass().toString().contains("invalidField");
+        return fldName.getStyleClass().toString().contains("invalidField") || fldSurname.getStyleClass().toString().contains("invalidField") ||
+                fldEmailSignUp.getStyleClass().toString().contains("invalidField") || fldPassSignUp.getStyleClass().toString().contains("invalidField");
     }
 
     private void invalidateField (TextField textField) {
@@ -126,6 +126,7 @@ public class MainWinController {
         anchorSignUp.toFront();
         fldEmail.setText("");
         fldPass.setText("");
+        labelWrongPass.setText("");
         removeCssField(fldEmail);
         removeCssField(fldPass);
     }
@@ -136,6 +137,8 @@ public class MainWinController {
         fldSurname.setText("");
         fldEmailSignUp.setText("");
         fldPassSignUp.setText("");
+        labelAcDegree.setText("");
+        labelWrongFormat.setText("");
         if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
         else choiceEduDeg.setValue("Academic degree");
         removeCssField(fldName);       //brisu se obrubi
@@ -175,6 +178,8 @@ public class MainWinController {
             choiceEduDeg.getStyleClass().removeAll("invalidField");
             labelAcDegree.setText("");
         }
+        System.out.println(fldEmailSignUp.getStyleClass());
+        System.out.println(!isTheStyleClassInvalid());
         //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
         if(!isTheStyleClassInvalid() && !(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
