@@ -164,7 +164,7 @@ public class MainUserFormController {
 
         labelInitial.setText(String.valueOf(currentUser.getName().charAt(0)));
         labelInitial1.setText(String.valueOf(currentUser.getName().charAt(0)));
-
+        if(papers.size() != 0) papers.removeAll(dao.getAllPapers());    //pri promjeni jezika, prazni cijelu tabelu pa ponovo postavi
         papers.addAll(dao.getAllPapers());
         tableViewPapers.setItems(papers);
         tableViewPapers1.setItems(papers);
