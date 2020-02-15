@@ -360,8 +360,8 @@ public class MainUserFormController {
 
     public void bosanskiAction () {
         Locale.setDefault(new Locale("bs", "BS"));
-        System.out.println(Locale.getDefault());
-        System.out.println(Locale.getDefault().getCountry());
+       // System.out.println(Locale.getDefault());
+        //System.out.println(Locale.getDefault().getCountry());
         changeLanguage();
     }
 

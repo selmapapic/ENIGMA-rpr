@@ -104,7 +104,7 @@ public class MainWinController {
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
-        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("         a uz nas je taj put kraci.");
+        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("kako biste vi sutra promijenili svijet.");
         else labelImpact.setText("so you can make an impact on tomrrow.");
         if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
         else choiceEduDeg.setValue("Academic degree");
@@ -243,7 +243,7 @@ public class MainWinController {
     }
 
     private void changeLanguage () {
-        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("         a uz nas je taj put kraci.");
+        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("kako biste vi sutra promijenili svijet.");
         else labelImpact.setText("so you can make an impact on tomrrow.");
         Stage scene = (Stage) fldPass.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWin.fxml"), ResourceBundle.getBundle("translation"));
