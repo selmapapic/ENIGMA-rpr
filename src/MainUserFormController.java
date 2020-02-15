@@ -2,6 +2,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,11 +23,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class MainUserFormController {
     private User currentUser;
@@ -309,8 +312,18 @@ public class MainUserFormController {
         }
     }
 
-    public void editAccountAction () {
-
+    public void editAccountAction () throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("translation");
+        Stage stageEditAccount = new Stage();
+        EditAccountController controller = new EditAccountController(currentUser);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editAccount.fxml"), bundle);
+        loader.setController(controller);
+        Parent root = loader.load();
+        if (Locale.getDefault().getCountry().equals("BS")) stageEditAccount.setTitle("Uredi moj račun");
+        else stageEditAccount.setTitle("Edit my account");
+        stageEditAccount.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stageEditAccount.setResizable(false);
+        stageEditAccount.show();
     }
 
     public void logOutAction () {

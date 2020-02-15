@@ -1,8 +1,10 @@
 public class User extends Person {
     private String name, surname, mail, degOfEducation;
+    private int id;
 
-    public User(String name, String surname, String mail, String degOfEducation, String password) {
+    public User(int id, String name, String surname, String mail, String degOfEducation, String password) {
         super(password);
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
@@ -10,6 +12,14 @@ public class User extends Person {
     }
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

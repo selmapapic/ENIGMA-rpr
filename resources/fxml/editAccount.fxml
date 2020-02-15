@@ -8,7 +8,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.EditAccount">
+<?import java.net.URL?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@/css/style.css" />
+   </stylesheets>
    <children>
       <Rectangle arcWidth="5.0" height="121.0" stroke="#ffffff00" strokeType="INSIDE" width="600.0">
          <fill>
@@ -22,9 +26,9 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="btnChgPassword" layoutX="6.0" layoutY="159.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change password" />
-      <Button fx:id="btnChgEmail" layoutX="7.0" layoutY="207.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="137.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change email" />
-      <Button fx:id="btnDelAccount" layoutX="6.0" layoutY="255.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Delete account" />
+      <Button fx:id="btnChgPassword" layoutX="6.0" layoutY="159.0" mnemonicParsing="false" onAction="#chgPasswordAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change password" />
+      <Button fx:id="btnChgEmail" layoutX="7.0" layoutY="207.0" mnemonicParsing="false" onAction="#chgEmailAction" prefHeight="34.0" prefWidth="137.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change email" />
+      <Button fx:id="btnDelAccount" layoutX="6.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteAccountAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Delete account" />
       <Label layoutX="24.0" layoutY="47.0" text="Account settings">
          <font>
             <Font name="Century Gothic" size="22.0" />

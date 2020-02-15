@@ -168,7 +168,6 @@ public class MainWinController {
         }
         if(fldPassSignUp.getText().isEmpty()) invalidateField(fldPassSignUp);
         else removeCssField(fldPassSignUp);
-        //System.out.println(choiceEduDeg.getSelectionModel().getSelectedItem());
         if(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree")) {
             choiceEduDeg.getStyleClass().add("invalidField");
             if(Locale.getDefault().getCountry().equals("BS")) labelAcDegree.setText("Niste odabrali stepen obrazovanja");
@@ -178,11 +177,9 @@ public class MainWinController {
             choiceEduDeg.getStyleClass().removeAll("invalidField");
             labelAcDegree.setText("");
         }
-        //System.out.println(fldEmailSignUp.getStyleClass());
-        //System.out.println(!isTheStyleClassInvalid());
         //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
         if(!isTheStyleClassInvalid() && !(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
-            User user = new User(fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
+            User user = new User(0, fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
             dao.insertNewUser(user);
 
             openSignInAction();
