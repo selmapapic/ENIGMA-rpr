@@ -318,7 +318,7 @@ public class MainUserFormController {
         else {
             alert.setTitle("About ENIGMA");
             alert.setContentText("ENIGMA is a scientific paper management software. \n" +
-                    "It allows you to access the newest scientific papers and filter them to improve the search. \n \n" +
+                    "It allows you to access the newest scientific papers and filter them to improve your search. \n \n" +
                     "ENIGMA is a university project made by Selma Celosmanovic. \n \n" +
                     "Current version: 1.0.2");
         }

@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
@@ -15,6 +13,8 @@ import net.sf.jasperreports.engine.JRException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -98,10 +98,27 @@ public class OverviewAdminController {
     public void deleteAction () throws NoPaperSelectedException {
         if(currentPaper == null) throw new NoPaperSelectedException("Nothing selected");
         else {
-            File file = new File("resources/files", currentPaper.getTitle() + ".txt");
-            file.delete();
-            dao.removePaper(currentPaper);
-            papers.remove(currentPaper);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            if(Locale.getDefault().getCountry().equals("BS")) {
+                alert.setTitle("Brisanje");
+                alert.setHeaderText("Odabrali ste brisanje rada '" + currentPaper.getTitle() + "'.");
+                alert.setContentText("Želite li nastaviti?");
+            }
+            else {
+                alert.setTitle("Deletion");
+                alert.setHeaderText("You chose to delete '" + currentPaper.getTitle() + "'.");
+                alert.setContentText("Do you wish to proceed? ");
+            }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                File file = new File("resources/files", currentPaper.getTitle() + ".txt");
+                file.delete();
+                dao.removePaper(currentPaper);
+                papers.remove(currentPaper);
+            } else {
+                return;
+            }
+
         }
     }
 

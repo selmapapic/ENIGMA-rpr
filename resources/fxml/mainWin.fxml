@@ -24,22 +24,22 @@
          </image>
       </ImageView>
       <Line endX="132.49996948242188" endY="-1.52587890625E-5" layoutX="184.0" layoutY="256.0" startX="-139.60000610351562" startY="-1.52587890625E-5" stroke="WHITE" />
-      <Label layoutX="37.0" layoutY="79.0" text="We bring research papers to life," textFill="WHITE">
+      <Label layoutX="37.0" layoutY="79.0" text="%bringToLife" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="205.0" text="Always stay up-to-date with the newest scientific" textFill="WHITE">
+      <Label layoutX="44.0" layoutY="205.0" text="%upToDate" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="232.0" text="paper management software." textFill="WHITE">
+      <Label layoutX="44.0" layoutY="232.0" text="%paperManSoftw" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="131.0" prefHeight="20.0" prefWidth="326.0" text="so you can make an impact on tomorrow." textFill="WHITE">
+      <Label fx:id="labelImpact" layoutX="69.0" layoutY="131.0" prefHeight="20.0" prefWidth="315.0" text="so you can make an impact on tomorrow." textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="15.0" />
          </font>

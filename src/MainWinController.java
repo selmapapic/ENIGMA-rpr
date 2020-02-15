@@ -22,7 +22,7 @@ public class MainWinController {
     public PasswordField fldPass;
     public UsersDAO dao = UsersDAO.getInstance();
     public AnchorPane anchorSignUp, anchorSignIn;
-    public Label labelWrongPass, labelWrongFormat, labelAcDegree;
+    public Label labelWrongPass, labelWrongFormat, labelAcDegree, labelImpact;
     //register
     public TextField fldName, fldSurname, fldEmailSignUp;
     public PasswordField fldPassSignUp;
@@ -104,6 +104,8 @@ public class MainWinController {
         anchorSignUp.toBack();
         anchorSignIn.toFront();
         choiceEduDeg.setItems(academicDegree);
+        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("         a uz nas je taj put kraci.");
+        else labelImpact.setText("so you can make an impact on tomrrow.");
         if(Locale.getDefault().getCountry().equals("BS")) choiceEduDeg.setValue("Stepen obrazovanja");
         else choiceEduDeg.setValue("Academic degree");
     }
@@ -241,6 +243,8 @@ public class MainWinController {
     }
 
     private void changeLanguage () {
+        if(Locale.getDefault().getCountry().equals("BS")) labelImpact.setText("         a uz nas je taj put kraci.");
+        else labelImpact.setText("so you can make an impact on tomrrow.");
         Stage scene = (Stage) fldPass.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWin.fxml"), ResourceBundle.getBundle("translation"));
         loader.setController(this);
