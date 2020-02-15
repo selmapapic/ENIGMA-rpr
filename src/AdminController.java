@@ -52,7 +52,7 @@ public class AdminController {
         if(Locale.getDefault().getCountry().equals("BS")) stageUpload.setTitle("Učitaj");
         else stageUpload.setTitle("Upload");
         stageUpload.setResizable(true);
-        stageUpload.setScene(new Scene(root, 645, USE_COMPUTED_SIZE));
+        stageUpload.setScene(new Scene(root, 850, 600));
         stageUpload.show();
     }
 

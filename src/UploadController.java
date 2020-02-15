@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UploadController {
@@ -75,7 +76,6 @@ public class UploadController {
         try {
             FileWriter writer = new FileWriter(file);
             String s = fldTitle.getText() + "\n" + areaText.getText();
-            System.out.println(s);
             String wrapped = WordWrap.from(s).maxWidth(160).insertHyphens(true).wrap();
             writer.write(wrapped);
             writer.close();
@@ -95,6 +95,8 @@ public class UploadController {
     }
 
     public UploadController (ScientificPaper paper) {
+        if(Locale.getDefault().getCountry().equals("BS")) type.add("Tip");
+        else type.add("Type");
         forEdit = paper;
         type.add("Bachelor's Thesis");
         type.add("Doctorate");
@@ -108,7 +110,8 @@ public class UploadController {
     public void initialize() {
         fillPlacesForEdit();
         choiceType.setItems(type);
-        choiceType.setValue("Other");
+        if(Locale.getDefault().getCountry().equals("BS")) choiceType.setValue("Tip");
+        else choiceType.setValue("Type");
         dpDateOfIssue.setValue(LocalDate.now());
         dpDateOfIssue.setDayCellFactory(disableFutureDates());
     }
@@ -134,23 +137,27 @@ public class UploadController {
             File file = new File("resources/files", fldTitle.getText() + ".txt"); //creating new file
             ScientificPaper paper = new ScientificPaper();
 
-            if(choiceType.getSelectionModel().getSelectedItem() == null || choiceType.getSelectionModel().getSelectedItem().equals("Other")) { //default value for type
-                paper.setType(PaperType.OTHER);
-            }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Bachelor's Thesis")) {
-                paper.setType(PaperType.BACHELORS_THESIS);
-            }
-            else if (choiceType.getSelectionModel().getSelectedItem().equals("Doctorate")) {
-                paper.setType(PaperType.DOCTORATE);
-            }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Master's Thesis")) {
-                paper.setType(PaperType.MASTERS_THESIS);
-            }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Scientific Article")) {
-                paper.setType(PaperType.SCIENTIFIC_ARTICLE);
-            }
-            else if(choiceType.getSelectionModel().getSelectedItem().equals("Seminary Paper")) {
-                paper.setType(PaperType.SEMINARY_PAPER);
+            switch (choiceType.getSelectionModel().getSelectedItem()) {
+                case "Other":
+                case "Type":
+                case "Tip":  //default value for type
+                    paper.setType(PaperType.OTHER);
+                    break;
+                case "Bachelor's Thesis":
+                    paper.setType(PaperType.BACHELORS_THESIS);
+                    break;
+                case "Doctorate":
+                    paper.setType(PaperType.DOCTORATE);
+                    break;
+                case "Master's Thesis":
+                    paper.setType(PaperType.MASTERS_THESIS);
+                    break;
+                case "Scientific Article":
+                    paper.setType(PaperType.SCIENTIFIC_ARTICLE);
+                    break;
+                case "Seminary Paper":
+                    paper.setType(PaperType.SEMINARY_PAPER);
+                    break;
             }
 
             if(dpDateOfIssue.getValue() == null) { //default value for date
