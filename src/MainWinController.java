@@ -229,4 +229,25 @@ public class MainWinController {
             }
         }
     }
+
+    public void bosanskiAction () {
+        Locale.setDefault(new Locale("bs", "BS"));
+        changeLanguage();
+    }
+
+    public void englishAction () {
+        Locale.setDefault(new Locale("US", "US"));
+        changeLanguage();
+    }
+
+    private void changeLanguage () {
+        Stage scene = (Stage) fldPass.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWin.fxml"), ResourceBundle.getBundle("translation"));
+        loader.setController(this);
+        try {
+            scene.setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

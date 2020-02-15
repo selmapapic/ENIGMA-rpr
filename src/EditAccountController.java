@@ -49,7 +49,7 @@ public class EditAccountController {
 
     @FXML
     public void initialize () {
-        System.out.println(currentUser.getPassword());
+        //System.out.println(currentUser.getPassword());
         anchorCurrentInfo.toFront();
         labelName.setText(currentUser.getName());
         labelSurname.setText(currentUser.getSurname());
@@ -119,7 +119,7 @@ public class EditAccountController {
         if(!fldOldPassword.getStyleClass().contains("invalidField") && !fldNewPassword.getStyleClass().contains("invalidField") && !fldConfirmPassword.getStyleClass().contains("invalidField")) {
             fldNewPassword.getText();
             currentUser.setPassword(hashPassword(fldNewPassword.getText()));
-            System.out.println(currentUser);
+            //System.out.println(currentUser);
             dao.editUser(currentUser);
             anchorCurrentInfo.toFront();
         }

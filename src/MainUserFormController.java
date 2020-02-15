@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -279,33 +280,6 @@ public class MainUserFormController {
             doc.save("resources/pdfs/" + currentPaper.getTitle() + ".pdf");
             doc.close();
 
-//            new Thread(() -> {
-//                try {
-//                    Thread.sleep(4000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                Platform.runLater(() -> {
-//                    ResourceBundle bundle = ResourceBundle.getBundle("translation");
-//                    Stage stageMainWin = new Stage();
-//                    //MainUserFormController controller = new MainUserFormController(user);
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), bundle);
-//                    //loader.setController(controller);
-//                    Parent root = null;
-//                    try {
-//                        root = loader.load();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    stageMainWin.setResizable(true);
-//                    stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//                    stageMainWin.setResizable(false);
-//                    stageMainWin.show();
-//                });
-//
-//            }).start();
-
-
             openPdf("resources/pdfs/"  + currentPaper.getTitle() + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
@@ -333,20 +307,22 @@ public class MainUserFormController {
 
     public void aboutAction () {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About ENIGMA");
         alert.setHeaderText(null);
         if(Locale.getDefault().getCountry().equals("BS")) {
+            alert.setTitle("Informacije o ENIGMA");
             alert.setContentText("ENIGMA je softver koji se bavi uredjenjem naucnih radova. \n" +
-                    "Omogucava vam da pristupite najnovijim naucnim radovima \n" +
-                    "ENIGMA je kreirana od strane Selme Celosmanovic kao fakultetski projekat. \n" +
-                    "Trenutna verzija: 1.0.1");
+                    "Omogucava vam da pristupite najnovijim naucnim radovima, te da pretrazujete po odabranim filterima.\n \n" +
+                    "ENIGMA je kreirana od strane Selme Celosmanovic kao fakultetski projekat. \n \n" +
+                    "Trenutna verzija: 1.0.2");
         }
         else {
+            alert.setTitle("About ENIGMA");
             alert.setContentText("ENIGMA is a scientific paper management software. \n" +
-                    "It allows you to access the newest scientific papers. \n" +
-                    "ENIGMA is a university project made by Selma Celosmanovic. \n" +
-                    "Current version: 1.0.1");
+                    "It allows you to access the newest scientific papers and filter them to improve the search. \n \n" +
+                    "ENIGMA is a university project made by Selma Celosmanovic. \n \n" +
+                    "Current version: 1.0.2");
         }
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }
 
@@ -380,5 +356,36 @@ public class MainUserFormController {
         papers.removeAll(dao.getAllPapers());
         papers.addAll(dao.getAllPapers());
         defaultChoiceValues();
+    }
+
+    public void bosanskiAction () {
+        Locale.setDefault(new Locale("bs", "BS"));
+        System.out.println(Locale.getDefault());
+        System.out.println(Locale.getDefault().getCountry());
+        changeLanguage();
+    }
+
+    public void englishAction () {
+        Locale.setDefault(new Locale("US", "US"));
+        changeLanguage();
+    }
+
+    private void changeLanguage () {
+        if(Locale.getDefault().getCountry().equals("BS")) {
+            labelGreeting.setText("Zdravo, " + currentUser.getName());
+            labelGreeting1.setText("Zdravo, " + currentUser.getName());
+        }
+        else {
+            labelGreeting.setText("Welcome back, " + currentUser.getName());
+            labelGreeting1.setText("Welcome back, " + currentUser.getName());
+        }
+        Stage scene = (Stage) choiceType.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainUserForm.fxml"), ResourceBundle.getBundle("translation"));
+        loader.setController(this);
+        try {
+            scene.setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

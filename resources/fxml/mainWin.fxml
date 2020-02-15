@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="500.0" fitWidth="697.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.9">
          <image>
@@ -139,5 +139,25 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <Label layoutX="625.0" layoutY="6.0" text="BOS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="590.0" layoutY="6.0" text="ENG">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="618.0" layoutY="1.0" mnemonicParsing="false" onAction="#bosanskiAction" opacity="0.0" prefHeight="26.0" prefWidth="37.0" text="Button">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="583.0" layoutY="1.0" mnemonicParsing="false" onAction="#englishAction" opacity="0.0" prefHeight="26.0" prefWidth="38.0" text="Button">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
