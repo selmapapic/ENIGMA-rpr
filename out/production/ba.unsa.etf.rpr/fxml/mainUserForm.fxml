@@ -1,32 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <AnchorPane fx:id="anchorMainView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="942.0" style="-fx-background-color: #303030;">
+         <children>
+            <MenuBar prefHeight="30.0" prefWidth="942.0">
+               <menus>
+                  <Menu text="%file">
+                     <items>
+                        <Menu text="%language">
+                           <items>
+                              <MenuItem onAction="#englishAction" mnemonicParsing="true" text="_English" />
+                              <MenuItem onAction="#bosanskiAction" mnemonicParsing="true" text="_Bosanski" />
+                           </items>
+                        </Menu>
+                        <MenuItem onAction="#logOutAction" mnemonicParsing="true" text="%close" />
+                     </items>
+                  </Menu>
+                  <Menu text="%help">
+                     <items>
+                        <MenuItem onAction="#aboutAction" mnemonicParsing="true" text="%about" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="121.0" layoutY="29.0" stroke="#d4d4d400" strokeType="INSIDE" width="942.0">
+               <fill>
+                  <LinearGradient endX="0.7786259105187336" endY="1.0" startY="0.7786259396385601">
+                     <stops>
+                        <Stop color="#daffda" />
+                        <Stop color="#daffda" offset="0.007633587786259542" />
+                        <Stop color="#0b6110" offset="0.8591707623130814" />
+                        <Stop color="#0b6110" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <TableView fx:id="tableViewPapers" layoutX="24.0" layoutY="172.0" prefHeight="418.0" prefWidth="704.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="39.199981689453125" text="ID" />
+                <TableColumn fx:id="colTitle" prefWidth="161.59997177124023" text="%title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="137.6000518798828" text="%author" />
+                  <TableColumn fx:id="colReleaseDate" prefWidth="103.2000732421875" text="%releaseDate" />
+                  <TableColumn fx:id="colCategory" prefWidth="143.199951171875" text="%category" />
+                  <TableColumn fx:id="colType" prefWidth="118.4000244140625" text="%type" />
+              </columns>
+            </TableView>
+            <Label fx:id="labelGreeting" layoutX="92.0" layoutY="60.0" text="greeting">
+               <font>
+                  <Font name="Century Gothic" size="22.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="menuAccount" layoutX="750.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="%accSettings">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="%editAccount" />
+                <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="%logOut" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/account%20glyph.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="34.0" layoutY="114.0" text="%find">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="750.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: #e3e3e3;" text="%view" />
+            <Button fx:id="btnFilter" layoutX="750.0" layoutY="172.0" mnemonicParsing="false" onAction="#filterAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: #e3e3e3;" text="Filter" />
+            <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="881.0" layoutY="178.0" opacity="0.7">
+               <image>
+                  <Image url="@../images/filter%20glyph.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="882.0" layoutY="233.0">
+               <image>
+                  <Image url="@../images/view%20glyph.png" />
+               </image>
+            </ImageView>
+            <Circle fill="#5e5e5e31" layoutX="53.0" layoutY="73.0" radius="29.0" stroke="#00000032" strokeType="INSIDE" />
+            <Label fx:id="labelInitial1" layoutX="43.0" layoutY="47.0" text="S" textFill="#444444">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="anchorFilterView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="942.0" style="-fx-background-color: #303030;">
          <children>
             <MenuBar layoutY="-1.0" prefHeight="30.0" prefWidth="942.0">
                <menus>
-                  <Menu mnemonicParsing="false" text="%file">
+                  <Menu text="%file">
                      <items>
-                        <Menu mnemonicParsing="false" text="%language">
+                        <Menu text="%language">
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#englishAction" text="English" />
-                              <MenuItem mnemonicParsing="false" onAction="#bosanskiAction" text="Bosanski" />
+                            <MenuItem onAction="#englishAction" text="_English" />
+                              <MenuItem onAction="#bosanskiAction" text="_Bosanski" />
                           </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="%close" />
+                        <MenuItem onAction="#logOutAction" text="%close" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="%help">
+                  <Menu text="%help">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="%about" />
+                        <MenuItem onAction="#aboutAction" text="%about" />
                      </items>
                   </Menu>
                </menus>
@@ -105,93 +204,6 @@
             <Button layoutX="730.0" layoutY="142.0" mnemonicParsing="false" onAction="#resetFiltersAction" opacity="0.0" prefHeight="42.0" prefWidth="146.0" />
             <Label layoutX="831.0" layoutY="153.0" prefHeight="18.0" prefWidth="82.0" text="%reset" textFill="#a7a7a7" />
             <Button layoutX="784.0" layoutY="151.0" mnemonicParsing="false" onAction="#resetFiltersAction" opacity="0.0" prefHeight="42.0" prefWidth="146.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorMainView" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="942.0" style="-fx-background-color: #303030;">
-         <children>
-            <MenuBar prefHeight="30.0" prefWidth="942.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="%file">
-                     <items>
-                        <Menu mnemonicParsing="false" text="%language">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#englishAction" text="English" />
-                              <MenuItem mnemonicParsing="false" onAction="#bosanskiAction" text="Bosanski" />
-                           </items>
-                        </Menu>
-                        <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="%close" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="%help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="%about" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="121.0" layoutY="29.0" stroke="#d4d4d400" strokeType="INSIDE" width="942.0">
-               <fill>
-                  <LinearGradient endX="0.7786259105187336" endY="1.0" startY="0.7786259396385601">
-                     <stops>
-                        <Stop color="#daffda" />
-                        <Stop color="#daffda" offset="0.007633587786259542" />
-                        <Stop color="#0b6110" offset="0.8591707623130814" />
-                        <Stop color="#0b6110" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <TableView fx:id="tableViewPapers" layoutX="24.0" layoutY="172.0" prefHeight="418.0" prefWidth="704.0">
-              <columns>
-                <TableColumn fx:id="colId" prefWidth="39.199981689453125" text="ID" />
-                <TableColumn fx:id="colTitle" prefWidth="161.59997177124023" text="%title" />
-                  <TableColumn fx:id="colAuthor" prefWidth="137.6000518798828" text="%author" />
-                  <TableColumn fx:id="colReleaseDate" prefWidth="103.2000732421875" text="%releaseDate" />
-                  <TableColumn fx:id="colCategory" prefWidth="143.199951171875" text="%category" />
-                  <TableColumn fx:id="colType" prefWidth="118.4000244140625" text="%type" />
-              </columns>
-            </TableView>
-            <Label fx:id="labelGreeting" layoutX="92.0" layoutY="60.0" text="greeting">
-               <font>
-                  <Font name="Century Gothic" size="22.0" />
-               </font>
-            </Label>
-            <MenuButton fx:id="menuAccount" layoutX="750.0" layoutY="104.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" text="%accSettings">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#editAccountAction" text="%editAccount" />
-                <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="%logOut" />
-              </items>
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/account%20glyph.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MenuButton>
-            <Label layoutX="34.0" layoutY="114.0" text="%find">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-            </Label>
-            <Button layoutX="750.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: #e3e3e3;" text="%view" />
-            <Button fx:id="btnFilter" layoutX="750.0" layoutY="172.0" mnemonicParsing="false" onAction="#filterAction" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: #e3e3e3;" text="Filter" />
-            <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="881.0" layoutY="178.0" opacity="0.7">
-               <image>
-                  <Image url="@../images/filter%20glyph.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="882.0" layoutY="233.0">
-               <image>
-                  <Image url="@../images/view%20glyph.png" />
-               </image>
-            </ImageView>
-            <Circle fill="#5e5e5e31" layoutX="53.0" layoutY="73.0" radius="29.0" stroke="#00000032" strokeType="INSIDE" />
-            <Label fx:id="labelInitial1" layoutX="43.0" layoutY="47.0" text="S" textFill="#444444">
-               <font>
-                  <Font size="37.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </children>
