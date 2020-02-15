@@ -8,13 +8,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets>
-      <URL value="@/css/style.css" />
-   </stylesheets>
    <children>
-      <Rectangle arcWidth="5.0" height="121.0" stroke="#ffffff00" strokeType="INSIDE" width="600.0">
+      <Rectangle arcWidth="5.0" height="121.0" stroke="#ffffff00" strokeType="INSIDE" width="602.0">
          <fill>
             <LinearGradient endX="0.8015266884374255" endY="1.0" startY="0.7061068884288992">
                <stops>
@@ -26,21 +22,21 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="btnChgPassword" layoutX="6.0" layoutY="159.0" mnemonicParsing="false" onAction="#chgPasswordAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change password" />
-      <Button fx:id="btnChgEmail" layoutX="7.0" layoutY="207.0" mnemonicParsing="false" onAction="#chgEmailAction" prefHeight="34.0" prefWidth="137.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Change email" />
-      <Button fx:id="btnDelAccount" layoutX="6.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteAccountAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="Delete account" />
-      <Label layoutX="24.0" layoutY="47.0" text="Account settings">
+      <Button fx:id="btnChgPassword" layoutX="6.0" layoutY="159.0" mnemonicParsing="false" onAction="#chgPasswordAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="%chgPass" />
+      <Button fx:id="btnChgEmail" layoutX="7.0" layoutY="207.0" mnemonicParsing="false" onAction="#chgEmailAction" prefHeight="34.0" prefWidth="137.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="%chgEmail" />
+      <Button fx:id="btnDelAccount" layoutX="6.0" layoutY="255.0" mnemonicParsing="false" onAction="#deleteAccountAction" prefHeight="34.0" prefWidth="138.0" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" text="%deleteAcc" />
+      <Label layoutX="24.0" layoutY="47.0" text="%accSettings">
          <font>
             <Font name="Century Gothic" size="22.0" />
          </font>
       </Label>
       <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="213.0" layoutY="47.0" opacity="0.8" preserveRatio="true">
          <image>
-            <Image url="@../../../../AppData/Local/Temp/icons8_settings_30px.png" />
+            <Image url="@../images/settings%20glyph.png" />
          </image>
       </ImageView>
-      <Separator layoutX="144.0" layoutY="122.0" orientation="VERTICAL" prefHeight="280.0" prefWidth="22.0" />
-      <Label layoutX="14.0" layoutY="134.0" prefHeight="18.0" prefWidth="113.0" text="Settings" textFill="WHITE">
+      <Separator layoutX="147.0" layoutY="122.0" orientation="VERTICAL" prefHeight="280.0" prefWidth="22.0" />
+      <Label layoutX="14.0" layoutY="134.0" prefHeight="18.0" prefWidth="113.0" text="%settings" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
@@ -49,82 +45,96 @@
          <children>
             <AnchorPane fx:id="anchorCurrentInfo" prefHeight="279.4" prefWidth="441.0" style="-fx-background-color: #303030;">
                <children>
-                  <Label layoutX="45.0" layoutY="70.0" text="Name: " textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="45.0" layoutY="185.0" text="Academic degree:" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelName" layoutX="98.0" layoutY="69.0" text="name" textFill="WHITE" />
-                  <Label fx:id="labelSurname" layoutX="113.0" layoutY="108.0" text="surname" textFill="WHITE" />
-                  <Label layoutX="45.0" layoutY="109.0" text="Surname:" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="45.0" layoutY="148.0" text="Email:" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelEmail" layoutX="88.0" layoutY="147.0" text="email" textFill="WHITE" />
-                  <Label fx:id="labelAcDegree" layoutX="167.0" layoutY="184.0" text="Label" textFill="WHITE" />
-                  <Label layoutX="39.0" layoutY="14.0" text="Current info" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Line endX="100.0" layoutX="136.0" layoutY="40.0" startX="-100.0" stroke="#ffffff3d" />
+                  <AnchorPane prefHeight="279.4" prefWidth="441.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Label layoutX="23.0" layoutY="64.0" text="%currName">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="179.0" text="%currAcDegree">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelName" layoutX="76.0" layoutY="63.0" text="name" />
+                        <Label fx:id="labelSurname" layoutX="91.0" layoutY="102.0" text="surname" />
+                        <Label layoutX="23.0" layoutY="103.0" text="%currSurname">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="142.0" text="Email:">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelEmail" layoutX="66.0" layoutY="141.0" text="email" />
+                        <Label fx:id="labelAcDegree" layoutX="151.0" layoutY="178.0" text="Label" />
+                        <Label layoutX="16.0" layoutY="14.0" text="%currInfo">
+                           <font>
+                              <Font name="Century Gothic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="113.0" layoutY="40.0" startX="-100.0" stroke="#0000003d" />
+                        <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="101.0" layoutY="10.0" opacity="0.7" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/info%20glyph.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPassword" prefHeight="279.4" prefWidth="441.0" style="-fx-background-color: #303030;">
+            <AnchorPane fx:id="anchorPassword" prefHeight="279.4" prefWidth="441.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <PasswordField fx:id="fldOldPassword" layoutX="40.0" layoutY="41.0" prefHeight="34.0" prefWidth="211.0" />
-                  <PasswordField fx:id="fldNewPassword" layoutX="40.0" layoutY="112.0" prefHeight="34.0" prefWidth="211.0" />
-                  <PasswordField fx:id="fldConfirmPassword" layoutX="40.0" layoutY="179.0" prefHeight="34.0" prefWidth="211.0" />
-                  <Label layoutX="40.0" layoutY="14.0" text="Old password:" textFill="WHITE" />
-                  <Label layoutX="40.0" layoutY="88.0" text="New password:" textFill="WHITE" />
-                  <Label layoutX="40.0" layoutY="155.0" text="Confirm new password:" textFill="WHITE" />
-                  <Button fx:id="btnConfirmAP" layoutX="310.0" layoutY="226.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" text="Confirm" />
+                  <PasswordField fx:id="fldOldPassword" layoutX="40.0" layoutY="41.0" prefHeight="34.0" prefWidth="211.0" promptText="%oldPass" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" stylesheets="@../css/style.css" />
+                  <PasswordField fx:id="fldNewPassword" layoutX="40.0" layoutY="112.0" prefHeight="34.0" prefWidth="211.0" promptText="%newPass" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" stylesheets="@../css/style.css" />
+                  <PasswordField fx:id="fldConfirmPassword" layoutX="40.0" layoutY="179.0" prefHeight="34.0" prefWidth="211.0" promptText="%confirmPass" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" stylesheets="@../css/style.css" />
+                  <Label layoutX="40.0" layoutY="14.0" text="%oldPassLabel" />
+                  <Label layoutX="40.0" layoutY="88.0" text="%newPassLabel" />
+                  <Label layoutX="40.0" layoutY="155.0" text="%confirmPassLabel" />
+                  <Button fx:id="btnConfirmAP" layoutX="310.0" layoutY="226.0" mnemonicParsing="false" onAction="#confirmAPAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #08ea00;" text="%confirm" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorDeleteAcc" prefHeight="280.0" prefWidth="442.0" style="-fx-background-color: #303030;">
+            <AnchorPane fx:id="anchorEmail" prefHeight="280.0" prefWidth="442.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Label layoutX="7.0" layoutY="14.0" text="Once you delete your account, there is no going back. Please be certain." textFill="WHITE">
+                  <Label layoutX="45.0" layoutY="44.0" text="%currEmail">
                      <font>
                         <Font name="Century Gothic" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnDeleteAcc" layoutX="60.0" layoutY="72.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="211.0" text="Delete my account" textFill="RED" />
-                  <PasswordField fx:id="fldPassForDelete" layoutX="60.0" layoutY="159.0" prefHeight="34.0" prefWidth="211.0" promptText="Password" />
-                  <Label layoutX="60.0" layoutY="132.0" text="Confirm your password:" textFill="WHITE" />
-                  <Button fx:id="btnConfirmADA" layoutX="310.0" layoutY="226.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" text="Confirm" />
+                  <Label fx:id="labelEmailChange" layoutX="142.0" layoutY="43.0" text="email" />
+                  <TextField fx:id="fldEmailChange" layoutX="45.0" layoutY="123.0" prefHeight="34.0" prefWidth="211.0" promptText="%newEmail" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" stylesheets="@../css/style.css" />
+                  <Button fx:id="btnConfirmAE" layoutX="310.0" layoutY="226.0" mnemonicParsing="false" onAction="#confirmAEAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #08ea00;" text="%confirm" />
+                  <Label layoutX="45.0" layoutY="94.0" text="%newEmailLabel" />
+                  <Label fx:id="labelWrongFormat" layoutX="45.0" layoutY="168.0" text="wrongFormat" textFill="RED" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorEmail" prefHeight="280.0" prefWidth="442.0" style="-fx-background-color: #303030;">
+            <AnchorPane fx:id="anchorDeleteAcc" prefHeight="280.0" prefWidth="442.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Label layoutX="45.0" layoutY="44.0" text="Current email: " textFill="WHITE">
+                  <Label fx:id="labelAreYouSure" layoutX="6.0" layoutY="8.0" prefHeight="18.0" prefWidth="379.0" text="Once you delete your account, there is no going back. " textFill="#ff0000">
                      <font>
                         <Font name="Century Gothic" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelEmailChange" layoutX="136.0" layoutY="43.0" text="email" textFill="WHITE" />
-                  <TextField fx:id="fldEmailChange" layoutX="45.0" layoutY="123.0" prefHeight="34.0" prefWidth="211.0" promptText="New email" />
-                  <Button fx:id="btnConfirmAE" layoutX="310.0" layoutY="226.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="100.0" text="Confirm" />
-                  <Label layoutX="45.0" layoutY="94.0" text="New email:" textFill="WHITE" />
+                  <Button fx:id="btnDeleteAcc" layoutX="116.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteAccountBtnAction" prefHeight="34.0" prefWidth="211.0" style="-fx-background-color: #08ea00;" text="%delMyAcc" />
+                  <PasswordField fx:id="fldPassForDelete" layoutX="115.0" layoutY="105.0" prefHeight="34.0" prefWidth="211.0" promptText="%password" style="-fx-background-color: #e3e3e3; -fx-background-radius: 1;" stylesheets="@../css/style.css" />
+                  <Label layoutX="115.0" layoutY="72.0" text="%confirmYourPassLabel" />
+                  <Label fx:id="labelAreYouSure2" layoutX="6.0" layoutY="26.0" text="Please be certain." textFill="RED">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Button fx:id="btnExit" layoutX="521.0" layoutY="1.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="78.0" text="Exit" />
-      <Label layoutX="572.0" layoutY="5.0" prefHeight="18.0" prefWidth="30.0" text="Exit" textFill="WHITE">
+      <Label layoutX="560.0" layoutY="5.0" prefHeight="18.0" prefWidth="30.0" text="%exit" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="btnExit" layoutX="541.0" layoutY="1.0" mnemonicParsing="false" onAction="#exitAction" opacity="0.0" prefHeight="28.0" prefWidth="58.0" />
    </children>
 </AnchorPane>

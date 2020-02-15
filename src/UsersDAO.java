@@ -7,7 +7,7 @@ public class UsersDAO {
     private static UsersDAO instance;
     private static Connection conn;
 
-    private PreparedStatement usersQuery, insertUserQuery, getUserId, certainUserQuery, editUserQuery;
+    private PreparedStatement usersQuery, insertUserQuery, getUserId, certainUserQuery, editUserQuery, deleteUserQuery;
 
     public static UsersDAO getInstance() {
         if(instance == null) instance = new UsersDAO();
@@ -37,6 +37,7 @@ public class UsersDAO {
             getUserId = conn.prepareStatement("SELECT MAX (id)+1 FROM user");
             certainUserQuery = conn.prepareStatement("SELECT * FROM user WHERE email=? /*AND password=?*/");
             editUserQuery = conn.prepareStatement("UPDATE user SET name=?, surname=?, email=?, password=? WHERE id=?");
+            deleteUserQuery = conn.prepareStatement("DELETE FROM user WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,6 +128,15 @@ public class UsersDAO {
             editUserQuery.setString(4, user.getPassword());
             editUserQuery.setInt(5, user.getId());
             editUserQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser (User user) {
+        try {
+            deleteUserQuery.setInt(1, user.getId());
+            deleteUserQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

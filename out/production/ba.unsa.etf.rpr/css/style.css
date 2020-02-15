@@ -1,8 +1,8 @@
 .validField {
     -fx-border-color: greenyellow;
-    -fx-border-width: 2px;
+    -fx-border-width: 3px;
 }
 .invalidField {
-    -fx-border-color: salmon;
-    -fx-border-width:2px
+    -fx-border-color: crimson;
+    -fx-border-width: 3px;
 }

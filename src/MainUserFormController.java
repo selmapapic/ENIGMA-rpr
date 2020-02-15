@@ -315,7 +315,7 @@ public class MainUserFormController {
     public void editAccountAction () throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("translation");
         Stage stageEditAccount = new Stage();
-        EditAccountController controller = new EditAccountController(currentUser);
+        EditAccountController controller = new EditAccountController(currentUser, labelGreeting);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editAccount.fxml"), bundle);
         loader.setController(controller);
         Parent root = loader.load();
