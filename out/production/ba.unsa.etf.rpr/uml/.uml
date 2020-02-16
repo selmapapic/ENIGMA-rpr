@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="816.9634703196347" y="912.7077625570773">com</node>
+    <node x="164.96347031963467" y="912.7077625570773">fxml</node>
+    <node x="790.9634703196347" y="838.7077625570773">reports</node>
+    <node x="972.9634703196347" y="912.7077625570773">css</node>
+    <node x="406.96347031963467" y="838.7077625570773">netscape</node>
+    <node x="758.0730593607304" y="1182.027397260274">User</node>
+    <node x="1436.3150684931509" y="499.3607305936073">ScientificPaper</node>
+    <node x="724.269406392694" y="5.438356164383549">PapersDAO</node>
+    <node x="476.6575342465752" y="981.4977168949772">toolbarButtonGraphics</node>
+    <node x="1128.9634703196348" y="912.7077625570773">sun</node>
+    <node x="198.96803652968038" y="1040.406392694064">UsersDAO</node>
+    <node x="1433.9132420091323" y="16.88127853881292">OverviewAdminController</node>
+    <node x="164.96347031963467" y="838.7077625570773">groovyjarjarasm</node>
+    <node x="327.96347031963467" y="912.7077625570773">java</node>
+    <node x="1058.0730593607304" y="1279.027397260274">Administrator</node>
+    <node x="1284.9634703196348" y="912.7077625570773">uml</node>
+    <node x="1682.9634703196348" y="838.7077625570773">javax</node>
+    <node x="974.9634703196347" y="838.7077625570773">javafx</node>
+    <node x="1440.9634703196348" y="912.7077625570773">net</node>
+    <node x="175.96347031963467" y="0.0">MainWinController</node>
+    <node x="1081.1415525114155" y="12.689497716894948">UploadController</node>
+    <node x="1151.9634703196348" y="838.7077625570773">images</node>
+    <node x="-206.65753424657538" y="-3.6255707762556995">MainUserFormController</node>
+    <node x="734.9086757990867" y="693.5433789954336">PrintReport</node>
+    <node x="1328.9634703196348" y="838.7077625570773">oracle</node>
+    <node x="1596.9634703196348" y="912.7077625570773">org</node>
+    <node x="653.9634703196347" y="912.7077625570773">uml2</node>
+    <node x="598.9634703196347" y="838.7077625570773">META-INF</node>
+    <node x="1752.9634703196348" y="912.7077625570773">jdk</node>
+    <node x="1151.1187214611873" y="577.2465753424656">PaperType</node>
+    <node x="1505.9634703196348" y="838.7077625570773">groovy</node>
+    <node x="490.96347031963467" y="912.7077625570773">pdfs</node>
+    <node x="732.2648401826484" y="621.0319634703196">NoPaperSelectedException</node>
+    <node x="1833.0228310502284" y="838.7077625570773">files</node>
+    <node x="1242.0730593607304" y="1193.027397260274">Author</node>
+    <node x="184.6575342465752" y="981.4977168949772">groovyjarjarcommonscli</node>
+    <node x="467.0228310502283" y="5.438356164383549">EditAccountController</node>
+    <node x="761.6575342465752" y="981.4977168949772">groovyjarjarantlr</node>
+    <node x="977.958904109589" y="682.6666666666667">Main</node>
+    <node x="1077.0730593607304" y="1015.027397260274">Person</node>
+    <node x="1662.1689497716898" y="968.8767123287671">AdminController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Author" target="Person">
+      <point x="0.0" y="-112.5" />
+      <point x="1342.0730593607304" y="1157.027397260274" />
+      <point x="1182.0730593607304" y="1157.027397260274" />
+      <point x="42.0" y="58.5" />
+    </edge>
+    <edge source="User" target="Person">
+      <point x="0.0" y="-123.5" />
+      <point x="898.0730593607304" y="1157.027397260274" />
+      <point x="1098.0730593607304" y="1157.027397260274" />
+      <point x="-42.0" y="58.5" />
+    </edge>
+    <edge source="Administrator" target="Person">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5516372795969773" x="884.488584474886" y="587.2831050228311" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
