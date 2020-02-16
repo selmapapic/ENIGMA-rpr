@@ -4,10 +4,18 @@
     <file url="file://$PROJECT_DIR$/resources/resources/translation.properties" />
     <file url="file://$PROJECT_DIR$/resources/resources/translation_BS.properties" />
     <file url="file://$PROJECT_DIR$/resources/resources/translation_US.properties" />
+    <file url="file://$PROJECT_DIR$/resources/translation.properties" />
+    <file url="file://$PROJECT_DIR$/resources/translation_bs.properties" />
     <custom-resource-bundle>
       <file value="file://$PROJECT_DIR$/resources/resources/translation.properties" />
       <file value="file://$PROJECT_DIR$/resources/resources/translation_BS.properties" />
       <file value="file://$PROJECT_DIR$/resources/resources/translation_US.properties" />
+      <base-name>translation</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/resources/translation.properties" />
+      <file value="file://$PROJECT_DIR$/resources/translation_US.properties" />
+      <file value="file://$PROJECT_DIR$/resources/translation_bs.properties" />
       <base-name>translation</base-name>
     </custom-resource-bundle>
   </component>

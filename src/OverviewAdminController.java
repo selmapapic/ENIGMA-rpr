@@ -31,21 +31,6 @@ public class OverviewAdminController {
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper;
 
-//    private void showAlert () {
-//        Alert alert = new Alert(Alert.AlertType.WARNING);
-//        if(Locale.getDefault().getCountry().equals("BS")) {
-//            alert.setTitle("Upozorenje");
-//            alert.setHeaderText("Niste izabrali nijedan rad sa liste.");
-//            alert.setContentText("Molimo izaberite rad pa pokušajte ponovo!");
-//        }
-//        else {
-//            alert.setTitle("Warning");
-//            alert.setHeaderText("You haven't selected any of the papers from the list!");
-//            alert.setContentText("Please choose one and then try again!");
-//        }
-//        alert.showAndWait();
-//    }
-
     @FXML
     public void initialize () {
         papers.addAll(dao.getAllPapers());
@@ -95,8 +80,12 @@ public class OverviewAdminController {
         }
     }
 
-    public void deleteAction () throws NoPaperSelectedException {
-        if(currentPaper == null) throw new NoPaperSelectedException("Nothing selected");
+    public void deleteAction ()  {
+        if(currentPaper == null) try {
+            throw new NoPaperSelectedException("Nothing selected");
+        } catch (NoPaperSelectedException e) {
+            return;
+        }
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             if(Locale.getDefault().getCountry().equals("BS")) {

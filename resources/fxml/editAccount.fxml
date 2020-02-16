@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcWidth="5.0" height="121.0" stroke="#ffffff00" strokeType="INSIDE" width="602.0">
          <fill>
@@ -35,7 +35,6 @@
             <Image url="@../images/settings%20glyph.png" />
          </image>
       </ImageView>
-      <Separator layoutX="147.0" layoutY="122.0" orientation="VERTICAL" prefHeight="280.0" prefWidth="22.0" />
       <Label layoutX="14.0" layoutY="134.0" prefHeight="18.0" prefWidth="113.0" text="%settings" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="14.0" />

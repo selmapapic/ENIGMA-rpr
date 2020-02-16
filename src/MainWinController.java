@@ -79,7 +79,8 @@ public class MainWinController {
         alert.showAndWait();
     }
 
-    public MainWinController() {
+    public void defaultAcDegree() {
+        academicDegree.clear();
         if(Locale.getDefault().getCountry().equals("BS")) {
             academicDegree.add("Stepen obrazovanja");
             academicDegree.add("Srednja skola");
@@ -98,6 +99,7 @@ public class MainWinController {
 
     @FXML
     public void initialize () {
+        defaultAcDegree();
         labelWrongPass.setText("");
         labelWrongFormat.setText("");
         labelAcDegree.setText("");

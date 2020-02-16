@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,12 +61,24 @@ public class MainUserFormController {
             categoriesObservable.add(0, "Sve kategorije");
             typesObservable.add(0, "Svi tipovi");
             authorObservable.add(0, a);
+
+            //brisanje defaultnih vrijednosti na drugom jeziku... da nema ovog uslova, svaka promjena jezika bi dodavala nove defaultne vrijednosti
+            categoriesObservable.remove("All categories");
+            typesObservable.remove("All types");
+            Author del = new Author("All", "authors");
+            authorObservable.remove(del);
         }
         else {
             Author a = new Author("All", "authors");
             categoriesObservable.add(0, "All categories");
             typesObservable.add(0, "All types");
             authorObservable.add(0, a);
+
+            //brisanje defaultnih vrijednosti na drugom jeziku... da nema ovog uslova, svaka promjena jezika bi dodavala nove defaultne vrijednosti
+            categoriesObservable.remove("Sve kategorije");
+            typesObservable.remove("Svi tipovi");
+            Author del = new Author("Svi", "autori");
+            authorObservable.remove(del);
         }
 
         choiceCategory.setItems(categoriesObservable);
@@ -280,7 +293,36 @@ public class MainUserFormController {
             doc.save("resources/pdfs/" + currentPaper.getTitle() + ".pdf");
             doc.close();
 
-            openPdf("resources/pdfs/"  + currentPaper.getTitle() + ".pdf");
+            Stage stageMainWin = new Stage();
+            new Thread(() -> {
+                Platform.runLater(() -> {
+                    ResourceBundle bundle = ResourceBundle.getBundle("translation");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/loading.fxml"), bundle);
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if(Locale.getDefault().getCountry().equals("BS")) stageMainWin.setTitle("Učitava se");
+                    else stageMainWin.setTitle("Loading");
+                    stageMainWin.setResizable(true);
+                    stageMainWin.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    stageMainWin.setResizable(false);
+                    stageMainWin.show();
+                });
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    openPdf("resources/pdfs/"  + currentPaper.getTitle() + ".pdf");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(stageMainWin::close);
+            }).start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -360,8 +402,6 @@ public class MainUserFormController {
 
     public void bosanskiAction () {
         Locale.setDefault(new Locale("bs", "BS"));
-       // System.out.println(Locale.getDefault());
-        //System.out.println(Locale.getDefault().getCountry());
         changeLanguage();
     }
 
@@ -387,5 +427,10 @@ public class MainUserFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void backAction () {
+        anchorMainView.toFront();
+        isAnchorFilterOn = false;
     }
 }
