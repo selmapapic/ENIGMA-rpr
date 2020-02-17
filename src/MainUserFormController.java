@@ -44,7 +44,7 @@ public class MainUserFormController {
     public TableColumn<ScientificPaper, LocalDate> colReleaseDate, colReleaseDate1;
     public TableColumn<ScientificPaper, Author> colAuthor, colAuthor1;
     public TableColumn<ScientificPaper, Integer> colId, colId1;
-    public PapersDAO dao = PapersDAO.getInstance();
+    public PapersUsersDAO dao = PapersUsersDAO.getInstance();
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper, currentPaper1;
     public ChoiceBox<String> choiceType, choiceCategory;

@@ -20,7 +20,7 @@ public class UploadController {
     public DatePicker dpDateOfIssue;
     public TextArea areaText;
     public ObservableList<String> type = FXCollections.observableArrayList();
-    public PapersDAO dao = PapersDAO.getInstance();
+    public PapersUsersDAO dao = PapersUsersDAO.getInstance();
     public ScientificPaper forEdit;
     private String oldTitle;
 

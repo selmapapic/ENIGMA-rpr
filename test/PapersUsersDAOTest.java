@@ -4,15 +4,72 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class PapersDAOTest {
+public class PapersUsersDAOTest {
+    @Test
+    public void addUser () {
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        dao.insertNewUser(new User(1, "Selma", "Celosmanovic", "scelosmano1@etf.unsa.ba", "Bachelor", "sel"));
+
+        assertEquals(dao.getUser("scelosmano1@etf.unsa.ba").getSurname(), "Celosmanovic");
+    }
+
+    @Test
+    public void noUser () {
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        dao.insertNewUser(new User(1, "Selma", "Celosmanovic", "scelosmano1@etf.unsa.ba", "Bachelor", "sel"));
+
+        assertNull(dao.getUser("kdokic1@etf.unsa.ba"));
+    }
+
+    @Test
+    public void editUser () {
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        dao.insertNewUser(new User(1, "Selma", "Celosmanovic", "scelosmano1@etf.unsa.ba", "Bachelor", "sel"));
+
+        User user = dao.getUser("scelosmano1@etf.unsa.ba");
+        user.setName("Lejla");
+
+        dao.editUser(user);
+
+        assertEquals(dao.getUser("scelosmano1@etf.unsa.ba").getName(), "Lejla");
+    }
+
+    @Test
+    public void removeUser () {
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+        User user = new User(1, "Selma", "Celosmanovic", "scelosmano1@etf.unsa.ba", "Bachelor", "sel");
+        dao.insertNewUser(user);
+
+        assertNotNull(dao.getUser("scelosmano1@etf.unsa.ba"));
+
+        dao.deleteUser(user);
+
+        assertNull(dao.getUser("scelosmano1@etf.unsa.ba"));
+    }
+
     @Test
     public void addPaper () {
         File dbfile = new File("scientificPapers.db");
         dbfile.delete();
-        PapersDAO.removeInstance();
-        PapersDAO dao = PapersDAO.getInstance();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
 
         Author a = new Author("Selma", "Celosmanovic");
         ScientificPaper paper = new ScientificPaper(a, LocalDate.now(), "Architecture", "Arhitektura bla bla", 9, PaperType.DOCTORATE);
@@ -28,8 +85,8 @@ public class PapersDAOTest {
     public void removePaper () {
         File dbfile = new File("scientificPapers.db");
         dbfile.delete();
-        PapersDAO.removeInstance();
-        PapersDAO dao = PapersDAO.getInstance();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
 
         Author a = new Author("Selma", "Celosmanovic");
         ScientificPaper paper = new ScientificPaper(a, LocalDate.now(), "Architecture", "Arhitektura bla bla", 9, PaperType.DOCTORATE);
@@ -52,8 +109,8 @@ public class PapersDAOTest {
     public void editPaper() {
         File dbfile = new File("scientificPapers.db");
         dbfile.delete();
-        PapersDAO.removeInstance();
-        PapersDAO dao = PapersDAO.getInstance();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
 
         ArrayList<ScientificPaper> papers = dao.getAllPapers();
         ScientificPaper paper = papers.get(4);
@@ -71,8 +128,8 @@ public class PapersDAOTest {
     public void mix () {
         File dbfile = new File("scientificPapers.db");
         dbfile.delete();
-        PapersDAO.removeInstance();
-        PapersDAO dao = PapersDAO.getInstance();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
 
         Author a = new Author("Selma", "Celosmanovic");
         ScientificPaper paper = new ScientificPaper(a, LocalDate.now(), "Architecture", "Arhitektura bla bla", 9, PaperType.MASTERS_THESIS);

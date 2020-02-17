@@ -27,7 +27,7 @@ public class OverviewAdminController {
     public TableColumn<ScientificPaper, LocalDate> colReleaseDate;
     public TableColumn<ScientificPaper, Author> colAuthor;
     public TableColumn<ScientificPaper, Integer> colId;
-    public PapersDAO dao = PapersDAO.getInstance();
+    public PapersUsersDAO dao = PapersUsersDAO.getInstance();
     public ObservableList<ScientificPaper> papers = FXCollections.observableArrayList();
     public ScientificPaper currentPaper;
 

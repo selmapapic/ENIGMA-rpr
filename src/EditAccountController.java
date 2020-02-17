@@ -17,7 +17,7 @@ public class EditAccountController {
     public TextField fldEmailChange;
     public PasswordField fldPassForDelete;
     public User currentUser;
-    public UsersDAO dao = UsersDAO.getInstance();
+    public PapersUsersDAO dao = PapersUsersDAO.getInstance();
     public Label closeOldForm, labelAreYouSure, labelAreYouSure2;
 
     private String hashPassword(String plainTextPassword) {     //hesiranje passworda

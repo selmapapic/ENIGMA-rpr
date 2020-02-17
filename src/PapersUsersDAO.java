@@ -6,14 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PapersDAO {
-    private static PapersDAO instance;
-    private Connection conn; //uzimanje konekcije iz UsersDAO
+public class PapersUsersDAO {
+    private static PapersUsersDAO instance;
+    private static Connection conn;
 
-    private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes, getAllAuthors;
+    private PreparedStatement usersQuery, insertUserQuery, getUserId, certainUserQuery, editUserQuery, deleteUserQuery,
+            papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes, getAllAuthors/*, deleteAllUsersQuery*/;
 
-    public static PapersDAO getInstance() {
-        if(instance == null) instance = new PapersDAO();
+    public static PapersUsersDAO getInstance() {
+        if(instance == null) instance = new PapersUsersDAO();
         return instance;
     }
 
@@ -28,30 +29,38 @@ public class PapersDAO {
         instance = null;
     }
 
-    public PapersDAO() {
+    private PapersUsersDAO() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:scientificPapers.db");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         try {
-            papersQuery = conn.prepareStatement("SELECT * from scientific_paper");
+            usersQuery = conn.prepareStatement("SELECT * from user");
         } catch (SQLException e) {
             regenerateBase();
             try {
-                papersQuery = conn.prepareStatement("SELECT * from scientific_paper");
+                usersQuery = conn.prepareStatement("SELECT * from user");
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
 
         try {
+            insertUserQuery = conn.prepareStatement("INSERT INTO user VALUES (?,?,?,?,?,?)");
+            getUserId = conn.prepareStatement("SELECT MAX (id)+1 FROM user");
+            certainUserQuery = conn.prepareStatement("SELECT * FROM user WHERE email=? /*AND password=?*/");
+            editUserQuery = conn.prepareStatement("UPDATE user SET name=?, surname=?, email=?, password=? WHERE id=?");
+            deleteUserQuery = conn.prepareStatement("DELETE FROM user WHERE id=?");
+            //deleteAllUsersQuery = conn.prepareStatement("DELETE FROM user ");
             addPaperQuery = conn.prepareStatement("INSERT INTO scientific_paper VALUES (?,?,?,?,?,?,?)");
             getPaperId = conn.prepareStatement("SELECT MAX (id)+1 FROM scientific_paper");
             removePaperQuery = conn.prepareStatement("DELETE FROM scientific_paper WHERE id=?");
             getAllCategories = conn.prepareStatement("SELECT DISTINCT category FROM scientific_paper");
             getAllTypes = conn.prepareStatement("SELECT DISTINCT type FROM scientific_paper");
             getAllAuthors = conn.prepareStatement("SELECT DISTINCT author_name, author_surname FROM scientific_paper");
+            papersQuery = conn.prepareStatement("SELECT * FROM scientific_paper");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +96,82 @@ public class PapersDAO {
             e.printStackTrace();
         }
     }
+
+    public void insertNewUser (User user) {
+        try {
+            ResultSet rs = getUserId.executeQuery();
+            int id = 1;
+            if(rs.next()) {
+                id = rs.getInt(1);
+            }
+            if(id == 0) id = 1;
+            insertUserQuery.setInt(1, id);
+            insertUserQuery.setString(2, user.getName());
+            insertUserQuery.setString(3, user.getSurname());
+            insertUserQuery.setString(4, user.getMail());
+            insertUserQuery.setString(5, user.getDegOfEducation());
+            insertUserQuery.setString(6, user.getPassword());
+            insertUserQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public User getUser (String email) {
+        User user = null;
+        try {
+            certainUserQuery.setString(1, email);
+            //certainUserQuery.setString(2, password);
+            ResultSet rs = certainUserQuery.executeQuery();
+
+            if(rs.next()) {
+                user = new User();
+                user.setId(rs.getInt(1));
+                user.setName(rs.getString(2));
+                user.setSurname(rs.getString(3));
+                user.setMail(rs.getString(4));
+                user.setDegOfEducation(rs.getString(5));
+                user.setPassword(rs.getString(6));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public static Connection getConn() {
+        return conn;
+    }
+
+    public void editUser (User user) {
+        try {
+            editUserQuery.setString(1, user.getName());
+            editUserQuery.setString(2, user.getSurname());
+            editUserQuery.setString(3, user.getMail());
+            editUserQuery.setString(4, user.getPassword());
+            editUserQuery.setInt(5, user.getId());
+            editUserQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser (User user) {
+        try {
+            deleteUserQuery.setInt(1, user.getId());
+            deleteUserQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void deleteAllUsers () {
+//        try {
+//            deleteAllUsersQuery.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void addPaperHelp(ScientificPaper paper) throws SQLException {
         addPaperQuery.setString(2, paper.getTitle());

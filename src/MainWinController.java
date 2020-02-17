@@ -20,7 +20,7 @@ public class MainWinController {
     public Button btnSignIn;
     public TextField fldEmail;
     public PasswordField fldPass;
-    public UsersDAO dao = UsersDAO.getInstance();
+    public PapersUsersDAO dao = PapersUsersDAO.getInstance();
     public AnchorPane anchorSignUp, anchorSignIn;
     public Label labelWrongPass, labelWrongFormat, labelAcDegree, labelImpact;
     //register
