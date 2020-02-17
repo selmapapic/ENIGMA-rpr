@@ -56,11 +56,6 @@ public class User extends Person {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", mail='" + mail + '\'' +
-                ", degOfEducation='" + degOfEducation + '\'' +
-                '}';
+        return name + " " + surname + ", " + mail + ", " + degOfEducation;
     }
 }

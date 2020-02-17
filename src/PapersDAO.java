@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class PapersDAO {
     private static PapersDAO instance;
-    private Connection conn = UsersDAO.getConn(); //uzimanje konekcije iz UsersDAO
+    private Connection conn; //uzimanje konekcije iz UsersDAO
 
     private PreparedStatement papersQuery, addPaperQuery, getPaperId, removePaperQuery, getAllCategories, getAllTypes, getAllAuthors;
 
@@ -17,7 +17,23 @@ public class PapersDAO {
         return instance;
     }
 
-    private PapersDAO() {
+    public static void removeInstance () {
+        if(instance != null) {
+            try {
+                instance.conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        instance = null;
+    }
+
+    public PapersDAO() {
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:scientificPapers.db");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             papersQuery = conn.prepareStatement("SELECT * from scientific_paper");
         } catch (SQLException e) {

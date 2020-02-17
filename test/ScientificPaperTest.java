@@ -27,11 +27,23 @@ public class ScientificPaperTest {
 
         paper1.setCategory("Nesto drugo");
         assertEquals(paper1.getCategory(), "Nesto drugo");
+
+        paper1.setReleaseDate(LocalDate.of(2020, 3, 17));
+        assertEquals(paper1.getReleaseDate(), LocalDate.of(2020,3,17));
+
+        paper1.setType(PaperType.OTHER);
+        assertEquals(paper1.getType().getName(), "Other");
+
+        paper1.setTitle("Title");
+        assertEquals(paper1.getTitle(), "Title");
+
+        paper1.setId(5);
+        assertEquals(5, paper1.getId());
     }
 
     @Test
     public void toStringTest () {
         ScientificPaper paper1 = new ScientificPaper(new Author("Bla", "Blic"), LocalDate.now(), "Nesto", "Naslov", 1, PaperType.DOCTORATE);
-        assertEquals(paper1.toString(), "DOCTORATE: 1, Naslov, Bla Blic, 2020-02-17, Nesto");
+        assertEquals(paper1.toString(), "Doctorate: 1, Naslov, Bla Blic, 2020-02-17, Nesto");
     }
 }

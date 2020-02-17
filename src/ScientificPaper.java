@@ -70,7 +70,7 @@ public class ScientificPaper {
 
     @Override
     public String toString() {
-        return type + ": " + id + ", " + title + ", " + author.getName() + " " + author.getSurname() + ", " + releaseDate + ", " + category;
+        return type.getName() + ": " + id + ", " + title + ", " + author.getName() + " " + author.getSurname() + ", " + releaseDate + ", " + category;
     }
 
     @Override

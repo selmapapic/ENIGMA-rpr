@@ -3,11 +3,11 @@ import java.util.Objects;
 public class Author extends Person {
     private String name, surname;
 
-    public Author(String password, String name, String surname) {
-        super(password);
-        this.name = name;
-        this.surname = surname;
-    }
+//    public Author(String password, String name, String surname) {
+//        super(password);
+//        this.name = name;
+//        this.surname = surname;
+//    }
 
     public Author(String name, String surname) {
         super();
