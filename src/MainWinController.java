@@ -184,10 +184,17 @@ public class MainWinController {
         //ukoliko su sva polja validna, tj nijedno polje nije nevalidno, dodaje se novi korisnik
         if(!isTheStyleClassInvalid() && !(choiceEduDeg.getSelectionModel().getSelectedItem().equals("Stepen obrazovanja") || choiceEduDeg.getSelectionModel().getSelectedItem().equals("Academic degree"))) {
             User user = new User(0, fldName.getText(), fldSurname.getText(), fldEmailSignUp.getText(), choiceEduDeg.getSelectionModel().getSelectedItem(), hashPassword(fldPassSignUp.getText()));
-            dao.insertNewUser(user);
-
-            openSignInAction();
-
+            if(dao.getUser(fldEmailSignUp.getText()) == null) {
+                labelWrongFormat.setText("");
+                dao.insertNewUser(user);
+                openSignInAction();
+            }
+            else {
+                if(Locale.getDefault().getCountry().equals("BS")) {
+                    labelWrongFormat.setText("Vec postoji korisnik sa ovim email-om");
+                }
+                else labelWrongFormat.setText("Account with this email already exists");
+            }
         }
     }
 
