@@ -1,7 +1,0 @@
-Java 
-Java is a widely used programming language expressly designed for use in the distributed environment of the internet. It is the most popular programming
-language for Android smartphone applications and is also among the most favored for the development of edge devices and the internet of things.
-
-Java was designed to have the look and feel of the C++ programming language, but is simpler to use and enforces an object-oriented programming model. Java can
-be used to create complete applications that may run on a single computer or be distributed among servers and clients in a network. It can also be used to build
-a small application module or applet for use as part of a webpage.

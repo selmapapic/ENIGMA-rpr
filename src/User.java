@@ -1,14 +1,14 @@
 public class User extends Person {
-    private String name, surname, mail, degOfEducation;
+    private String name, surname, mail, academicDegree;
     private int id;
 
-    public User(int id, String name, String surname, String mail, String degOfEducation, String password) {
+    public User(int id, String name, String surname, String mail, String academicDegree, String password) {
         super(password);
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
-        this.degOfEducation = degOfEducation;
+        this.academicDegree = academicDegree;
     }
 
     public User() {
@@ -46,16 +46,16 @@ public class User extends Person {
         this.mail = mail;
     }
 
-    public String getDegOfEducation() {
-        return degOfEducation;
+    public String getAcademicDegree() {
+        return academicDegree;
     }
 
-    public void setDegOfEducation(String degOfEducation) {
-        this.degOfEducation = degOfEducation;
+    public void setAcademicDegree(String academicDegree) {
+        this.academicDegree = academicDegree;
     }
 
     @Override
     public String toString() {
-        return name + " " + surname + ", " + mail + ", " + degOfEducation;
+        return name + " " + surname + ", " + mail + ", " + academicDegree;
     }
 }

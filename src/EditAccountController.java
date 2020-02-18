@@ -53,7 +53,7 @@ public class EditAccountController {
         labelName.setText(currentUser.getName());
         labelSurname.setText(currentUser.getSurname());
         labelEmail.setText(currentUser.getMail());
-        labelAcDegree.setText(currentUser.getDegOfEducation());
+        labelAcDegree.setText(currentUser.getAcademicDegree());
         fldOldPassword.textProperty().addListener((observable, oldPass, newPass) -> {
             if(!newPass.isEmpty() && checkPass(newPass, currentUser.getPassword())) {
                 fldOldPassword.getStyleClass().removeAll("invalidField");

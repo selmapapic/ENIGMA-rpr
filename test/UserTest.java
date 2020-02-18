@@ -25,10 +25,10 @@ public class UserTest {
         assertEquals(user.getId(), 7);
 
         assertEquals(user.getMail(), "scelosmano1@etf.unsa.ba");
-        assertEquals(user.getDegOfEducation(), "Bachelor");
+        assertEquals(user.getAcademicDegree(), "Bachelor");
 
-        user.setDegOfEducation("Master");
-        assertEquals(user.getDegOfEducation(), "Master");
+        user.setAcademicDegree("Master");
+        assertEquals(user.getAcademicDegree(), "Master");
 
         user.setMail("blabla@gmail.com");
         assertEquals(user.getMail(), "blabla@gmail.com");

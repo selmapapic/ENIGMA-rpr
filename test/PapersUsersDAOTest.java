@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -144,5 +145,41 @@ public class PapersUsersDAOTest {
 
         assertEquals(dao.getAllPapers().get(8).getAuthor().getName(), "Kanita");
         assertEquals(dao.getAllPapers().get(8).getId(), 10);
+    }
+
+    @Test
+    public void mix2 () {
+        //testira se sa defaultnim podacima
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        List<String> categ = dao.getAllCategories();
+        assertEquals(categ.size(), 4); //provjerava se da li su autori dobijeni bez ponavljanja
+    }
+
+    @Test
+    public void mix3 () {
+        //testira se sa defaultnim podacima
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        List<Author> authors = dao.getAllAuthors();
+        assertEquals(authors.size(), 5); //provjerava se da li su autori dobijeni bez ponavljanja
+    }
+
+    @Test
+    public void mix4() {
+        //testira se sa defaultnim podacima
+        File dbfile = new File("scientificPapers.db");
+        dbfile.delete();
+        PapersUsersDAO.removeInstance();
+        PapersUsersDAO dao = PapersUsersDAO.getInstance();
+
+        List<String> types = dao.getAllTypes();
+        assertEquals(types.size(), 4); //provjerava se da li su autori dobijeni bez ponavljanja
     }
 }
