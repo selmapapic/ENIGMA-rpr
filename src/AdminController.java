@@ -20,7 +20,7 @@ public class AdminController {
     public void initialize () {
         anchorAdminPass.toFront();
         fldPass.textProperty().addListener((observable, oldPass, newPass) -> {
-            if(!newPass.isEmpty() && newPass.equals("a")) {
+            if(!newPass.isEmpty() && newPass.equals("administrator")) {
                 fldPass.getStyleClass().removeAll("invalidField");
                 fldPass.getStyleClass().add("validField");
             }

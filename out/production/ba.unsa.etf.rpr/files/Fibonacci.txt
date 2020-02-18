@@ -1,6 +1,0 @@
-Fibonacci
-Fibonacci numbers are strongly related to the golden ratio: Binet's formula expresses the nth Fibonacci number in terms of n and the golden ratio, and implies
-that the ratio of two consecutive Fibonacci numbers tends to the golden ratio as n increases.
-
-Fibonacci numbers are named after Italian mathematician Leonardo of Pisa, later known as Fibonacci. In his 1202 book Liber Abaci, Fibonacci introduced the
-sequence to Western European mathematics

@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import java.net.URL?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <AnchorPane fx:id="anchorAdminPass" layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="366.0" style="-fx-background-color: #747474;">
+         <stylesheets>
+            <URL value="@/css/style.css" />
+         </stylesheets>
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="372.0" layoutX="-3.0" opacity="0.6" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/background.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="50.0" layoutY="37.0" prefHeight="24.0" prefWidth="262.0" text="%access" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="19.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="fldPass" layoutX="100.0" layoutY="79.0" prefHeight="34.0" prefWidth="166.0" promptText="%password" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
+            <Button fx:id="btnOk" defaultButton="true" layoutX="100.0" layoutY="131.0" mnemonicParsing="false" onAction="#okAction" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #0aab35;" text="Ok" />
+            <Button fx:id="btnCancel" cancelButton="true" layoutX="187.0" layoutY="131.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #0aab35;" text="%cancel" />
+            <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="244.0" layoutY="83.0" opacity="0.37">
+               <image>
+                  <Image url="@../images/password%20glyph.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="anchorChoice" layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="366.0" style="-fx-background-color: #747474;">
          <stylesheets>
             <URL value="@/css/style.css" />
@@ -40,31 +66,6 @@
             <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="260.0" layoutY="73.0" opacity="0.6">
                <image>
                   <Image url="@../images/upload%20glyph.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorAdminPass" layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="366.0" style="-fx-background-color: #747474;">
-         <stylesheets>
-            <URL value="@/css/style.css" />
-         </stylesheets>
-         <children>
-            <ImageView fitHeight="200.0" fitWidth="372.0" layoutX="-3.0" opacity="0.6" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/background.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="37.0" prefHeight="24.0" prefWidth="262.0" text="%access" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic" size="19.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="fldPass" layoutX="100.0" layoutY="79.0" prefHeight="34.0" prefWidth="166.0" promptText="%password" style="-fx-background-radius: 1; -fx-background-color: #e3e3e3;" stylesheets="@../css/style.css" />
-            <Button fx:id="btnOk" defaultButton="true" layoutX="100.0" layoutY="131.0" mnemonicParsing="false" onAction="#okAction" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #0aab35;" text="Ok" />
-            <Button fx:id="btnCancel" cancelButton="true" layoutX="187.0" layoutY="131.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #0aab35;" text="%cancel" />
-            <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="244.0" layoutY="83.0" opacity="0.37">
-               <image>
-                  <Image url="@../images/password%20glyph.png" />
                </image>
             </ImageView>
          </children>
