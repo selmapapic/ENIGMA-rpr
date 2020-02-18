@@ -398,6 +398,7 @@ public class MainUserFormController {
         papers.removeAll(dao.getAllPapers());
         papers.addAll(dao.getAllPapers());
         defaultChoiceValues();
+        dpReleaseDate.setValue(null);
     }
 
     public void bosanskiAction () {
