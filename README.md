@@ -1,4 +1,4 @@
-Scientific paper database desktop application
+# Scientific paper database - desktop application
 
 ![logo](/resources/images/ENIGMAlogo.jpg)
 
